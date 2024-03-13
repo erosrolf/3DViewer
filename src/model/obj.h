@@ -1,11 +1,14 @@
 #ifndef SRC_3DVIEWER_MODEL_OBJ_H_
 #define SRC_3DVIEWER_MODEL_OBJ_H_
 
-#include <cstddef>
-#include <deque>
+#include <stdint.h>
+
 #include <stack>
+#include <string>
+#include <vector>
 
 namespace s21 {
+using std::string;
 
 /**
  * @brief struct Vertex_3d
@@ -19,9 +22,9 @@ struct Vertex_3d {
  * @brief struct Polygon_3d
  * contains information about the 3d model polygon
  */
-struct Polygon_3d {
+struct Facet_3d {
   uint8_t count_of_vertexes;
-  std::deque<size_t> vertex_indexes;  ///< array of polygon vertex indices
+  std::vector<size_t> vertex_indexes;  ///< array of polygon vertex indices
 };
 
 /**
@@ -31,14 +34,26 @@ struct Polygon_3d {
 class Obj {
  public:
   using Vertex_3d = struct Vertex_3d;
-  using Polygon_3d = struct Polygon_3d;
+  using Facet_3d = struct Facet_3d;
+
+  Obj(const char* file_name);
+  void read_file();
+  size_t vertexesCount() { return count_of_vertexes_; }
+  size_t facetsCount() { return count_of_faces_; }
 
  private:
+  void parseVertex(const std::string& v_line);
+  void parseFacet(const std::string& f_line);
+  size_t parseFacetIndex(const string& token_with_index);
+
   size_t count_of_vertexes_;
   size_t count_of_faces_;
   double max_coordinate_;  ///< the most distant coordinate from the center
-  std::deque<Vertex_3d> vertexes_;   ///< all vertexes of 3d model into vector
-  std::stack<Polygon_3d> polygons_;  ///< all polygons of 3d model into stack
+  std::vector<Vertex_3d> vertexes_;  ///< all vertexes of 3d model into vector
+  std::stack<Facet_3d> polygons_;    ///< all polygons of 3d model into stack
+  bool is_valid_;
+
+  std::string file_name_;
 };
 
 }  // namespace s21
