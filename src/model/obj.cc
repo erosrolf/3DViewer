@@ -7,74 +7,50 @@
 #include <type_traits>
 
 namespace s21 {
-Obj::Obj(const char* file_name)
-    : count_of_vertexes_(0),
-      count_of_faces_(0),
-      max_coordinate_(0),
-      vertexes_(),
-      polygons_(),
-      is_valid_(true),
-      file_name_(file_name) {
-  readFile();
+Obj::Obj(const char* file_name) : vertexes_(), polygons_(), is_valid_(true) {
+  readFile(file_name);
 }
 
 void Obj::parseVertex(const string& v_line) {
   std::istringstream iss(v_line.substr(2));
   Vertex_3d vertex;
   if (iss >> vertex.x >> vertex.y >> vertex.z) {
-    ++count_of_vertexes_;
     vertexes_.push_back(vertex);
-    std::cout << v_line << '\n';
   }
 }
 
 size_t Obj::parseFacetIndex(const string& token_with_index) {
   std::istringstream iss(token_with_index);
-  string part;
-  size_t number;
-  size_t index_of_vertex;
-  int count = 3;
+  size_t num_1 = 0, num_2 = 0, num_3 = 0;
+  char slash_1 = 0x00, slash_2 = 0x00;
 
-  while (std::getline(iss, part, '/') && is_valid_) {
-    std::istringstream partStream(part);
-    if (partStream >> number) {
-      if (count == 3) {
-        index_of_vertex = number;
-      }
-      --count;
-    } else {
+  if (iss >> num_1 >> slash_1 >> num_2 >> slash_2 >> num_3) {
+    if (slash_1 != '/' || slash_2 != '/') {
       is_valid_ = false;
     }
   }
-  if (count) {
-    is_valid_ = false;
-  }
-  return index_of_vertex;
+  return num_1;
 }
 
 void Obj::parseFacet(const string& f_line) {
-  std::istringstream iss(f_line);
+  std::istringstream iss(f_line.substr(2));
   Facet_3d poly;
-  poly.vertex_indexes.reserve(3);
-  string token;
-  if (iss >> token && token == "f") {
-    std::cout << f_line << '\n';
-    while (iss >> token && is_valid_) {
-      ++poly.count_of_vertexes;
-      poly.vertex_indexes.push_back(parseFacetIndex(token));
-    }
+  poly.vertex_indexes.reserve(4);
+  string token_with_index;
+
+  while (iss >> token_with_index && is_valid_) {
+    poly.vertex_indexes.push_back(parseFacetIndex(token_with_index));
   }
   if (is_valid_) {
-    ++count_of_faces_;
     polygons_.push_back(poly);
   }
 }
 
-void Obj::readFile() {
-  std::ifstream file(file_name_);
+void Obj::readFile(const char* file_name) {
+  std::ifstream file(file_name);
   if (!file.is_open()) {
     is_valid_ = false;
-    std::cerr << "Error opening file: " << file_name_ << '\n';
+    std::cerr << "Error opening file: " << file_name << '\n';
     return;
   }
 
@@ -82,7 +58,7 @@ void Obj::readFile() {
   while (std::getline(file, line) && is_valid_) {
     if (line.rfind("v ", 0) == 0) {
       parseVertex(line);
-    } else if (line.front() == 'f') {
+    } else if (line.rfind("f ", 0) == 0) {
       parseFacet(line);
     }
   }
