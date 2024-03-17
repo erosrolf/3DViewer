@@ -14,13 +14,14 @@ Obj::Obj(const char* file_name)
       vertexes_(),
       polygons_(),
       is_valid_(true),
-      file_name_(file_name) {}
+      file_name_(file_name) {
+  readFile();
+}
 
 void Obj::parseVertex(const string& v_line) {
-  std::istringstream iss(v_line);
+  std::istringstream iss(v_line.substr(2));
   Vertex_3d vertex;
-  string prefix;
-  if (iss >> prefix >> vertex.x >> vertex.y >> vertex.z && prefix == "v") {
+  if (iss >> vertex.x >> vertex.y >> vertex.z) {
     ++count_of_vertexes_;
     vertexes_.push_back(vertex);
     std::cout << v_line << '\n';
@@ -65,11 +66,11 @@ void Obj::parseFacet(const string& f_line) {
   }
   if (is_valid_) {
     ++count_of_faces_;
-    polygons_.push(poly);
+    polygons_.push_back(poly);
   }
 }
 
-void Obj::read_file() {
+void Obj::readFile() {
   std::ifstream file(file_name_);
   if (!file.is_open()) {
     is_valid_ = false;
@@ -79,7 +80,7 @@ void Obj::read_file() {
 
   string line;
   while (std::getline(file, line) && is_valid_) {
-    if (line.front() == 'v') {
+    if (line.rfind("v ", 0) == 0) {
       parseVertex(line);
     } else if (line.front() == 'f') {
       parseFacet(line);
