@@ -4,8 +4,18 @@
 
 namespace s21 {
 
-TranslationStrategy::TranslationStrategy(double x, double y, double z)
-    : x_(x), y_(y), z_(z) {}
+void RotateStrategy::Modify(Obj& obj) {
+  for (auto& vertex : obj.vertexes) {
+  }
+}
+
+void ScalingStrategy::Modify(Obj& obj) {
+  for (auto& vertex : obj.vertexes) {
+    vertex.x *= s_;
+    vertex.y *= s_;
+    vertex.z *= s_;
+  }
+}
 
 void TranslationStrategy::Modify(Obj& obj) {
   for (auto& vertex : obj.vertexes) {
@@ -14,4 +24,5 @@ void TranslationStrategy::Modify(Obj& obj) {
     vertex.z += z_;
   }
 }
+
 }  // namespace s21

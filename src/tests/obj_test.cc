@@ -1,8 +1,8 @@
-#include <gtest/gtest.h>
-
 #include "../model/obj.h"
 
-TEST(model, read_file) {
+#include <gtest/gtest.h>
+
+TEST(obj, parse_file) {
   s21::Obj obj("obj_resurces/cube.obj");
 
   for (auto it : obj.vertexes) {

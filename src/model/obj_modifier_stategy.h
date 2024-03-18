@@ -11,16 +11,34 @@ class ObjModifier {
   virtual void Modify(Obj& obj) = 0;
 };
 
-class CentringStategy : public ObjModifier {
+class CentringStrategy : public ObjModifier {
  public:
   void Modify(Obj& obj) override;
   // TODO Написать алгоритм центрирования в .cc
 };
 
-class ScalingStategy : public ObjModifier {
+class RotateStrategy : public ObjModifier {
  public:
+  RotateStrategy(double x, double y, double z)
+      : angle_x_(x), angle_y_(y), angle_z_(z) {}
+
   void Modify(Obj& obj) override;
-  // TODO Написать алгоритм масштабирования в .cc.
+
+ private:
+  void rotateX(Obj& obj, double angle_x_);
+  void rotateY(Obj& obj, double angle_y_);
+  void rotateZ(Obj& obj, double angle_z_);
+  double angle_x_, angle_y_, angle_z_;
+};
+
+class ScalingStrategy : public ObjModifier {
+ public:
+  ScalingStrategy(double s) : s_(s) {}
+
+  void Modify(Obj& obj) override;
+
+ private:
+  double s_;
 };
 
 class TranslationStrategy : public ObjModifier {
