@@ -6,6 +6,8 @@
 #include <string>
 #include <type_traits>
 
+#include "obj_modifier_stategy.h"
+
 namespace s21 {
 
 // Constructors ------
@@ -72,6 +74,12 @@ void Obj::parseFile(const char* file_name) {
     } else if (line.rfind("f ", 0) == 0) {
       parseFacet(line);
     }
+  }
+}
+
+void Obj::modify(ObjModifier* strategy) {
+  if (strategy) {
+    strategy->Modify(*this);
   }
 }
 
