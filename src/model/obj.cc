@@ -44,7 +44,7 @@ Obj& Obj::operator=(const Obj& other) {
   return *this;
 }
 
-Obj& Obj::operator=(Obj&& other) {
+Obj& Obj::operator=(Obj&& other) noexcept {
   if (this != &other) {
     vertexes = std::move(other.vertexes);
     polygons = std::move(other.polygons);

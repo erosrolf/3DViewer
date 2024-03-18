@@ -35,15 +35,14 @@ class Obj {
   Obj(const Obj& other);
   Obj(const Obj&& other) noexcept;
   Obj& operator=(const Obj& other);
-  Obj& operator=(Obj&& other);
+  Obj& operator=(Obj&& other) noexcept;
   ~Obj() = default;
 
   void parseFile(const char* file_name);
 
   std::vector<Vertex_3d> vertexes;  ///< all vertexes of 3d model
   std::vector<Facet_3d> polygons;   ///< all polygons of 3d model
-  bool is_valid;  ///< is_valid if the .obj file was successfully read and the
-                  ///< data was parsed correctly
+  bool is_valid;  ///< true if the .obj file was successfully parsed
 
  private:
   void parseVertex(const std::string& v_line);
