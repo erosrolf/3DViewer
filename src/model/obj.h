@@ -38,7 +38,7 @@ class Obj {
   Obj& operator=(Obj&& other);
   ~Obj() = default;
 
-  void readFile(const char* file_name);
+  void parseFile(const char* file_name);
 
   std::vector<Vertex_3d> vertexes;  ///< all vertexes of 3d model
   std::vector<Facet_3d> polygons;   ///< all polygons of 3d model

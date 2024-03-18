@@ -12,7 +12,7 @@ namespace s21 {
 
 Obj::Obj() noexcept : vertexes(0), polygons(0), is_valid(false) {}
 
-Obj::Obj(const char* file_name) : Obj() { readFile(file_name); }
+Obj::Obj(const char* file_name) : Obj() { parseFile(file_name); }
 
 Obj::Obj(const Obj& other)
     : vertexes(other.vertexes),
@@ -54,7 +54,28 @@ Obj& Obj::operator=(Obj&& other) {
   return *this;
 }
 
-// Metods ------
+// Public Metods ------
+
+void Obj::parseFile(const char* file_name) {
+  std::ifstream file(file_name);
+  if (file.is_open()) {
+    is_valid = true;
+  } else {
+    std::cerr << "Error opening file: " << file_name << '\n';
+    return;
+  }
+
+  std::string line;
+  while (std::getline(file, line) && is_valid) {
+    if (line.rfind("v ", 0) == 0) {
+      parseVertex(line);
+    } else if (line.rfind("f ", 0) == 0) {
+      parseFacet(line);
+    }
+  }
+}
+
+// Private Metods ------
 
 size_t Obj::parseFacetIndex(const std::string& token_with_index) {
   std::istringstream iss(token_with_index);
@@ -85,25 +106,6 @@ void Obj::parseFacet(const std::string& f_line) {
   }
   if (is_valid) {
     polygons.push_back(poly);
-  }
-}
-
-void Obj::readFile(const char* file_name) {
-  std::ifstream file(file_name);
-  if (file.is_open()) {
-    is_valid = true;
-  } else {
-    std::cerr << "Error opening file: " << file_name << '\n';
-    return;
-  }
-
-  std::string line;
-  while (std::getline(file, line) && is_valid) {
-    if (line.rfind("v ", 0) == 0) {
-      parseVertex(line);
-    } else if (line.rfind("f ", 0) == 0) {
-      parseFacet(line);
-    }
   }
 }
 
