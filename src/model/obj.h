@@ -7,8 +7,6 @@
 #include <vector>
 
 namespace s21 {
-using std::string;
-using std::vector;
 
 /**
  * @brief struct Vertex_3d
@@ -23,7 +21,7 @@ struct Vertex_3d {
  * contains information about the 3d model polygon
  */
 struct Facet_3d {
-  std::vector<size_t> vertex_indexes;  ///< array of polygon vertex indices
+  std::vector<long int> vertex_indexes;  ///< array of polygon vertex indices
 };
 
 /**
@@ -32,20 +30,25 @@ struct Facet_3d {
  */
 class Obj {
  public:
+  Obj() noexcept;
   Obj(const char* file_name);
-  const std::vector<Vertex_3d> vertexes() { return vertexes_; }
-  const std::vector<Facet_3d> polygons() { return polygons_; }
-  bool isValid() noexcept { return is_valid_; }
+  Obj(const Obj& other);
+  Obj(const Obj&& other) noexcept;
+  Obj& operator=(const Obj& other);
+  Obj& operator=(Obj&& other);
+  ~Obj() = default;
+
+  void readFile(const char* file_name);
+
+  std::vector<Vertex_3d> vertexes;  ///< all vertexes of 3d model
+  std::vector<Facet_3d> polygons;   ///< all polygons of 3d model
+  bool is_valid;  ///< is_valid if the .obj file was successfully read and the
+                  ///< data was parsed correctly
 
  private:
-  void readFile(const char* file_name);
   void parseVertex(const std::string& v_line);
   void parseFacet(const std::string& f_line);
-  size_t parseFacetIndex(const string& token_with_index);
-  std::vector<Vertex_3d> vertexes_;  ///< all vertexes of 3d model
-  std::vector<Facet_3d> polygons_;   ///< all polygons of 3d model
-
-  bool is_valid_;
+  size_t parseFacetIndex(const std::string& token_with_index);
 };
 
 }  // namespace s21

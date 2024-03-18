@@ -7,55 +7,98 @@
 #include <type_traits>
 
 namespace s21 {
-Obj::Obj(const char* file_name) : vertexes_(), polygons_(), is_valid_(true) {
-  readFile(file_name);
-}
 
-void Obj::parseVertex(const string& v_line) {
+// Constructors ------
+
+Obj::Obj() noexcept : vertexes(0), polygons(0), is_valid(false) {}
+
+Obj::Obj(const char* file_name) : Obj() { readFile(file_name); }
+
+Obj::Obj(const Obj& other)
+    : vertexes(other.vertexes),
+      polygons(other.polygons),
+      is_valid(other.is_valid) {}
+
+Obj::Obj(const Obj&& other) noexcept
+    : vertexes(std::move(other.vertexes)),
+      polygons(std::move(other.polygons)),
+      is_valid(other.is_valid) {}
+
+void Obj::parseVertex(const std::string& v_line) {
   std::istringstream iss(v_line.substr(2));
   Vertex_3d vertex;
   if (iss >> vertex.x >> vertex.y >> vertex.z) {
-    vertexes_.push_back(vertex);
+    vertexes.push_back(vertex);
+  } else {
+    std::cerr << "Error parse vertex: " << v_line << '\n';
+    is_valid = false;
   }
 }
 
-size_t Obj::parseFacetIndex(const string& token_with_index) {
+Obj& Obj::operator=(const Obj& other) {
+  if (this != &other) {
+    vertexes = other.vertexes;
+    polygons = other.polygons;
+    is_valid = other.is_valid;
+  }
+  return *this;
+}
+
+Obj& Obj::operator=(Obj&& other) {
+  if (this != &other) {
+    vertexes = std::move(other.vertexes);
+    polygons = std::move(other.polygons);
+    is_valid = other.is_valid;
+    other.is_valid = false;
+  }
+  return *this;
+}
+
+// Metods ------
+
+size_t Obj::parseFacetIndex(const std::string& token_with_index) {
   std::istringstream iss(token_with_index);
-  size_t num_1 = 0, num_2 = 0, num_3 = 0;
+  long int num_1 = 0, num_2 = 0, num_3 = 0;
   char slash_1 = 0x00, slash_2 = 0x00;
 
-  if (iss >> num_1 >> slash_1 >> num_2 >> slash_2 >> num_3) {
-    if (slash_1 != '/' || slash_2 != '/') {
-      is_valid_ = false;
-    }
+  iss >> num_1 >> slash_1 >> num_2 >> slash_2 >> num_3;
+
+  if (slash_1 != '/' || slash_2 != '/' ||
+      num_1 > static_cast<long int>(vertexes.size())) {
+    std::cerr << "Error parse facet index: " << token_with_index << '\n';
+    is_valid = false;
+  }
+  if (num_1 < 0) {
+    num_1 = vertexes.size() - num_1;
   }
   return num_1;
 }
 
-void Obj::parseFacet(const string& f_line) {
+void Obj::parseFacet(const std::string& f_line) {
   std::istringstream iss(f_line.substr(2));
   Facet_3d poly;
   poly.vertex_indexes.reserve(4);
-  string token_with_index;
+  std::string token_with_index;
 
-  while (iss >> token_with_index && is_valid_) {
+  while (iss >> token_with_index && is_valid) {
     poly.vertex_indexes.push_back(parseFacetIndex(token_with_index));
   }
-  if (is_valid_) {
-    polygons_.push_back(poly);
+  if (is_valid) {
+    polygons.push_back(poly);
   }
 }
 
 void Obj::readFile(const char* file_name) {
   std::ifstream file(file_name);
-  if (!file.is_open()) {
-    is_valid_ = false;
+  if (file.is_open()) {
+    is_valid = true;
+  } else {
     std::cerr << "Error opening file: " << file_name << '\n';
     return;
   }
 
-  string line;
-  while (std::getline(file, line) && is_valid_) {
+  std::string line;
+  while (std::getline(file, line) && is_valid) {
     if (line.rfind("v ", 0) == 0) {
       parseVertex(line);
     } else if (line.rfind("f ", 0) == 0) {
