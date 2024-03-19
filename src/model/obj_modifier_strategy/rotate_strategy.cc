@@ -1,12 +1,10 @@
-#include "obj_modifier_stategy.h"
+#include "rotate_strategy.h"
 
 #include <cmath>
 
-#include "obj.h"
+#include "../obj.h"
 
 namespace s21 {
-
-// Rotate Strategy -------
 
 void RotateStrategy::modify(Obj& obj) {
   if (angle_ != 0.0) {
@@ -59,26 +57,6 @@ void RotateStrategy::rotateZ(Vertex_3d& vertex, double sin_angle,
   double new_y = vertex.x * sin_angle + vertex.y * cos_angle;
   vertex.x = new_x;
   vertex.y = new_y;
-}
-
-// Scaling Strategy -------
-
-void ScalingStrategy::modify(Obj& obj) {
-  for (auto& vertex : obj.vertexes) {
-    vertex.x *= s_;
-    vertex.y *= s_;
-    vertex.z *= s_;
-  }
-}
-
-// Translation Strategy -------
-
-void TranslationStrategy::modify(Obj& obj) {
-  for (auto& vertex : obj.vertexes) {
-    vertex.x += x_;
-    vertex.y += y_;
-    vertex.z += z_;
-  }
 }
 
 }  // namespace s21
