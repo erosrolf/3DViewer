@@ -18,7 +18,6 @@ class CentringStrategy : public ObjModifier {
    * @param obj Reference to the object to be centered.
    */
   void modify(Obj& obj) override;
-  // TODO Написать алгоритм центрирования в .cc
 };
 }  // namespace s21
 

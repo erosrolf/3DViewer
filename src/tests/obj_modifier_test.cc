@@ -1,7 +1,7 @@
 #include <gtest/gtest.h>
 
-#include "../model/obj.h"
-#include "../model/obj_modifier_stategy.h"
+#include "../core/obj.h"
+#include "../core/obj_modifier_strategy/obj_modifier_strategy.h"
 
 TEST(obj_translation, x_translation) {
   s21::Obj obj("obj_resurces/cube.obj");

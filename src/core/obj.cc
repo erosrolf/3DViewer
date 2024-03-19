@@ -6,7 +6,7 @@
 #include <string>
 #include <type_traits>
 
-#include "obj_modifier_stategy.h"
+#include "obj_modifier_strategy/obj_modifier.h"
 
 namespace s21 {
 
@@ -79,7 +79,7 @@ void Obj::parseFile(const char* file_name) {
 
 void Obj::modify(ObjModifier* strategy) {
   if (strategy) {
-    strategy->Modify(*this);
+    strategy->modify(*this);
   }
 }
 

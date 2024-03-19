@@ -1,4 +1,4 @@
-#include "../model/obj.h"
+#include "../core/obj.h"
 
 #include <gtest/gtest.h>
 
