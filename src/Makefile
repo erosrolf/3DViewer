@@ -3,17 +3,16 @@ UNAME := $(shell uname)
 ifeq ($(UNAME), Linux)
 	OPEN_CMD = xdg-open
 	QTFLAGS = CONFIG+=qtquickcompiler
-	GTEST_LIB = /usr/lib/libgtest.a
 endif
 ifeq ($(UNAME), Darwin)
 	OPEN_CMD = open
 	LCOV_FLAG = --ignore-errors inconsistent
 	QTFLAGS = -spec macx-clang CONFIG+=qtquickcompiler
-	GTEST_LIB = /usr/local/lib/libgtest.a
 endif
 
 CXX = g++
 CXXFLAGS = -std=c++17 -Wall -Wextra -Werror --coverage
+# LDFLAGS = -Wl,--whole-archive -lgtest -lgtest_main -Wl,--no-whole-archive -pthread
 LDFLAGS = -lgtest -lgtest_main -pthread
 LCOV = lcov
 LCOV_FLAGS = --ignore-errors inconsistent --ignore-errors mismatch
@@ -53,7 +52,7 @@ test: $(TEST_EXECUTABLE)
 
 $(TEST_EXECUTABLE): $(OBJ) $(TEST_OBJ)
 	@mkdir -p $(DIR_BUILD)
-	$(CXX) $(CXXFLAGS) $(LDFLAGS) $^ -o $@
+	$(CXX) $(CXXFLAGS) $^ -o $@ $(LDFLAGS)
 
 $(DIR_OBJ)/%.o: $(DIR_TESTS)/%.cc
 	@mkdir -p $(@D)
