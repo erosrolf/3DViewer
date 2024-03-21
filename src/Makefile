@@ -12,7 +12,6 @@ endif
 
 CXX = g++
 CXXFLAGS = -std=c++17 -Wall -Wextra -Werror --coverage
-# LDFLAGS = -Wl,--whole-archive -lgtest -lgtest_main -Wl,--no-whole-archive -pthread
 LDFLAGS = -lgtest -lgtest_main -pthread
 LCOV = lcov
 LCOV_FLAGS = --ignore-errors inconsistent --ignore-errors mismatch
@@ -24,19 +23,16 @@ DIR_OBJ = ./obj
 DIR_BUILD = ./build
 DIR_TESTS = ./tests
 
-LIB_NAME = $(DIR_BUILD)/core.a
-
 SRC = $(shell find $(DIR_CORE) -type f -name '*.cc')
 OBJ = $(SRC:$(DIR_CORE)/%.cc=$(DIR_OBJ)/%.o)
 TEST_SRC = $(shell find $(DIR_TESTS) -type f -name '*.cc')
 TEST_OBJ = $(TEST_SRC:$(DIR_TESTS)/%.cc=$(DIR_OBJ)/%.o)
 TEST_EXECUTABLE = $(DIR_BUILD)/core_test
 
-all: $(LIB_NAME) test
+all: core_lib core_test
 
-
-# CORE LIB 
-$(LIB_NAME): $(OBJ)
+# BUILD CORE LIB
+core_lib: $(OBJ)
 	@mkdir -p $(DIR_BUILD)
 	ar rcs $@ $(OBJ)
 	@ranlib $@
@@ -46,8 +42,8 @@ $(DIR_OBJ)/%.o: $(DIR_CORE)/%.cc
 	$(CXX) $(CXXFLAGS) -c $< -o $@
 
 
-# CORE TESTS
-test: $(TEST_EXECUTABLE)
+# BUILD CORE TESTS
+core_test: $(TEST_EXECUTABLE)
 	@./$(TEST_EXECUTABLE)
 
 $(TEST_EXECUTABLE): $(OBJ) $(TEST_OBJ)
