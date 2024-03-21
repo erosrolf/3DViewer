@@ -6,7 +6,7 @@ pipeline {
       steps {
         echo "Start build core lib"
         sh 'cd ./src'
-        sh 'make core_lib'
+        sh 'make build/core_lib.a'
       }
     }
     stage("core_test") {
