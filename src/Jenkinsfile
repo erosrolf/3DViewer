@@ -29,7 +29,7 @@ pipeline {
   post {
     success {
       script {
-        sh 'curl -s -X POST https://api.telegram.org/bot credentials('telegram-bot-token')/sendMessage -d chat_id=${CHAT_ID} -d text="success"'
+        sh 'curl -s -X POST https://api.telegram.org/botcredentials('telegram-bot-token')/sendMessage -d chat_id=${CHAT_ID} -d text="success"'
       }
     }
     failure {
