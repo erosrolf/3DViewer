@@ -1,6 +1,11 @@
 pipeline {
   agent any
 
+  environment {
+    TELEGRAM_TOKEN = credentials('telegram-bot-token')
+    CHAT_ID = "-1002115020059"
+  }
+
   stages {
     stage("core_lib_build") {
       steps {
@@ -10,12 +15,40 @@ pipeline {
         }
       }
     }
+
     stage("core_test") {
       steps {
         echo "Start build core test"
         dir('src') {
           sh 'make core_test'
         }
+      }
+    }
+  }
+
+  post {
+    success {
+      script {
+        def message = "Pipeline выполнен успешно."
+        def telegramUrl = "https://api.telegram.org/bot${env.TELEGRAM_TOKEN}/sendMessage"
+        httpRequest(
+          url: telegramUrl,
+          httpMode: 'POST',
+          contentType: 'APPLICATION_JSON',
+          requestBody: "{"chat_id":"${env.CHAT_ID}", "text":"${message}"}"
+        )
+      }
+    }
+    failure {
+      script {
+        def message = "Pipeline завершился с ошибкой."
+        def telegramUrl = "https://api.telegram.org/bot${env.TELEGRAM_TOKEN}/sendMessage"
+        httpRequest(
+          url: telegramUrl,
+          httpMode: 'POST',
+          contentType: 'APPLICATION_JSON',
+          requestBody: "{"chat_id":"${env.CHAT_ID}", "text":"${message}"}"
+        )
       }
     }
   }
