@@ -31,7 +31,7 @@ TEST_SRC = $(shell find $(DIR_TESTS) -type f -name '*.cc')
 TEST_OBJ = $(TEST_SRC:$(DIR_TESTS)/%.cc=$(DIR_OBJ)/%.o)
 TEST_EXECUTABLE = $(DIR_BUILD)/core_test
 
-all: /build/core_lib.a core_test
+all: $(CORE_LIB) core_test
 
 # BUILD CORE LIB
 $(CORE_LIB): $(OBJ)
