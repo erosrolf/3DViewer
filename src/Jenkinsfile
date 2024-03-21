@@ -9,6 +9,7 @@ pipeline {
   stages {
     stage("core_lib_build") {
       steps {
+        sh 'printenv'
         echo "Start build core lib"
         dir ('src'){
           sh 'make build/core_lib.a'
