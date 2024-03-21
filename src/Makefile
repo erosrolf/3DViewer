@@ -18,6 +18,8 @@ LCOV_FLAGS = --ignore-errors inconsistent --ignore-errors mismatch
 GENHTML = genhtml
 COVERAGE_DIR = $(DIR_BUILD)/coverage
 
+CORE_LIB = $(DIR_BUILD)/core_lib.a
+
 DIR_CORE = ./core
 DIR_OBJ = ./obj
 DIR_BUILD = ./build
@@ -29,10 +31,10 @@ TEST_SRC = $(shell find $(DIR_TESTS) -type f -name '*.cc')
 TEST_OBJ = $(TEST_SRC:$(DIR_TESTS)/%.cc=$(DIR_OBJ)/%.o)
 TEST_EXECUTABLE = $(DIR_BUILD)/core_test
 
-all: core_lib core_test
+all: /build/core_lib.a core_test
 
 # BUILD CORE LIB
-core_lib: $(OBJ)
+$(CORE_LIB): $(OBJ)
 	@mkdir -p $(DIR_BUILD)
 	ar rcs $@ $(OBJ)
 	@ranlib $@
