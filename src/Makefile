@@ -1,5 +1,6 @@
 UNAME := $(shell uname)
 
+
 ifeq ($(UNAME), Linux)
 	OPEN_CMD = xdg-open
 	QTFLAGS = CONFIG+=qtquickcompiler
