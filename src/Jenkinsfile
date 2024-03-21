@@ -1,0 +1,12 @@
+pipeline {
+  agent any
+
+  stages {
+    stage("core-test") {
+      steps {
+        cd src
+        make test
+      }
+    }
+  }
+}
