@@ -31,12 +31,12 @@ pipeline {
   post {
     success {
       script {
-        sh 'curl -s -X POST https://api.telegram.org/bot${TELEGRAM_TOKEN}/sendMessage -d chat_id=${CHAT_ID} -d text="${GIT_BRANCH} pulled, build number ${BUILD_NUMBER}, CI status = ${CI}"'
+        sh 'curl -s -X POST https://api.telegram.org/bot${TELEGRAM_TOKEN}/sendMessage -d chat_id=${CHAT_ID} -d text="${GIT_BRANCH} pulled, build number ${BUILD_NUMBER}, CI status = ${CI}, pipeline success!"'
       }
     }
     failure {
       script {
-        sh 'curl -s -X POST https://api.telegram.org/bot${TELEGRAM_TOKEN}/sendMessage -d chat_id=${CHAT_ID} -d text="build #${BUILD_ID} success"'
+        sh 'curl -s -X POST https://api.telegram.org/bot${TELEGRAM_TOKEN}/sendMessage -d chat_id=${CHAT_ID} -d text="${GIT_BRANCH} pulled, build number ${BUILD_NUMBER}, CI status = ${CI}, pipeline failure!!!"'
       }
     }
   }
