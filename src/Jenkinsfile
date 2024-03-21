@@ -26,17 +26,4 @@ pipeline {
     }
   }
 
-  post {
-    success {
-      script {
-        sh' curl -s -X POST https://api.telegram.org/bot7077729755:AAG5ZomuHtAH2YDhQxGeQlWtI4peKQuAmkg/sendMessage -d chat_id=-1002115020059 -d text="success"'
-      }
-    }
-    failure {
-      script {
-        sh' curl -s -X POST https://api.telegram.org/bot7077729755:AAG5ZomuHtAH2YDhQxGeQlWtI4peKQuAmkg/sendMessage -d chat_id=-1002115020059 -d text="failure"'
-        )
-      }
-    }
-  }
 }
