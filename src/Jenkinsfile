@@ -6,6 +6,7 @@ pipeline {
       steps {
         echo "Start build core lib"
         sh 'pwd'
+        sh 'ls'
         sh 'make build/core_lib.a'
       }
     }
@@ -13,6 +14,7 @@ pipeline {
       steps {
         echo "Start build core test"
         sh 'pwd'
+        sh 'ls'
         sh 'make core_test'
       }
     }
