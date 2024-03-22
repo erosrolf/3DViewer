@@ -3,6 +3,7 @@
 
 #include <stdint.h>
 
+#include <cmath>
 #include <string>
 #include <vector>
 
@@ -14,6 +15,12 @@ class ObjModifier;
  * contains the coordinates of a point in 3d space.
  */
 struct Vertex_3d {
+  bool operator==(const Vertex_3d& other) const {
+    const double epsilon = 1e-6;
+    return std::fabs(x - other.x) < epsilon &&
+           std::fabs(y - other.y) < epsilon && std::fabs(z - other.z) < epsilon;
+  }
+
   double x, y, z;
 };
 
@@ -22,7 +29,11 @@ struct Vertex_3d {
  * contains information about the 3d model polygon
  */
 struct Facet_3d {
-  std::vector<long int> vertex_indexes;  ///< array of polygon vertex indices
+  bool operator==(const Facet_3d& other) const {
+    return vertex_indexes == other.vertex_indexes;
+  }
+
+  std::vector<long> vertex_indexes;  ///< array of polygon vertex indices
 };
 
 /**
@@ -41,6 +52,7 @@ class Obj {
 
   void parseFile(const char* file_name);
   void modify(ObjModifier* strategy);
+  bool operator==(const Obj& other) const;
 
   std::vector<Vertex_3d> vertexes;  ///< all vertexes of 3d model
   std::vector<Facet_3d> polygons;   ///< all polygons of 3d model

@@ -117,4 +117,12 @@ void Obj::parseFacet(const std::string& f_line) {
   }
 }
 
+bool Obj::operator==(const Obj& other) const {
+  if (this == &other) {
+    return true;
+  }
+  return is_valid == other.is_valid && vertexes == other.vertexes &&
+         polygons == other.polygons;
+}
+
 };  // namespace s21

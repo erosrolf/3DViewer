@@ -36,7 +36,7 @@
     <number>3</number>
    </property>
    <item row="0" column="2">
-    <widget class="QGroupBox" name="menu">
+    <widget class="QGroupBox" name="obj_modify_gr_box">
      <property name="sizePolicy">
       <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
        <horstretch>0</horstretch>
@@ -58,7 +58,7 @@
      <property name="title">
       <string/>
      </property>
-     <widget class="QPushButton" name="openfile">
+     <widget class="QPushButton" name="open_file_btn">
       <property name="geometry">
        <rect>
         <x>5</x>
@@ -71,7 +71,7 @@
        <string>open file</string>
       </property>
      </widget>
-     <widget class="QGroupBox" name="movementGroup">
+     <widget class="QGroupBox" name="movement_gr_box">
       <property name="geometry">
        <rect>
         <x>5</x>
@@ -127,7 +127,7 @@ QPushButton:clicked {
       <property name="alignment">
        <set>Qt::AlignCenter</set>
       </property>
-      <widget class="QPushButton" name="moveLeft">
+      <widget class="QPushButton" name="move_left_btn">
        <property name="enabled">
         <bool>true</bool>
        </property>
@@ -170,7 +170,7 @@ QPushButton:clicked {
         </size>
        </property>
       </widget>
-      <widget class="QPushButton" name="moveRight">
+      <widget class="QPushButton" name="move_right_btn">
        <property name="enabled">
         <bool>true</bool>
        </property>
@@ -213,7 +213,7 @@ QPushButton:clicked {
         </size>
        </property>
       </widget>
-      <widget class="QPushButton" name="moveUp">
+      <widget class="QPushButton" name="move_up_btn">
        <property name="enabled">
         <bool>true</bool>
        </property>
@@ -256,7 +256,7 @@ QPushButton:clicked {
         </size>
        </property>
       </widget>
-      <widget class="QPushButton" name="moveDown">
+      <widget class="QPushButton" name="move_down_btn">
        <property name="enabled">
         <bool>true</bool>
        </property>
@@ -299,7 +299,7 @@ QPushButton:clicked {
         </size>
        </property>
       </widget>
-      <widget class="QPushButton" name="moveForward">
+      <widget class="QPushButton" name="move_forward_btn">
        <property name="geometry">
         <rect>
          <x>0</x>
@@ -324,7 +324,7 @@ QPushButton:clicked {
         <string>forward</string>
        </property>
       </widget>
-      <widget class="QPushButton" name="moveBackward">
+      <widget class="QPushButton" name="move_back_btn">
        <property name="geometry">
         <rect>
          <x>0</x>
@@ -349,14 +349,14 @@ QPushButton:clicked {
         <string>backward</string>
        </property>
       </widget>
-      <zorder>moveForward</zorder>
-      <zorder>moveBackward</zorder>
-      <zorder>moveLeft</zorder>
-      <zorder>moveRight</zorder>
-      <zorder>moveUp</zorder>
-      <zorder>moveDown</zorder>
+      <zorder>move_forward_btn</zorder>
+      <zorder>move_back_btn</zorder>
+      <zorder>move_left_btn</zorder>
+      <zorder>move_right_btn</zorder>
+      <zorder>move_up_btn</zorder>
+      <zorder>move_down_btn</zorder>
      </widget>
-     <widget class="Line" name="line">
+     <widget class="Line" name="line_02">
       <property name="geometry">
        <rect>
         <x>5</x>
@@ -369,7 +369,7 @@ QPushButton:clicked {
        <enum>Qt::Horizontal</enum>
       </property>
      </widget>
-     <widget class="Line" name="line_2">
+     <widget class="Line" name="line_01">
       <property name="geometry">
        <rect>
         <x>5</x>
@@ -382,7 +382,7 @@ QPushButton:clicked {
        <enum>Qt::Horizontal</enum>
       </property>
      </widget>
-     <widget class="QGroupBox" name="rotateGroup">
+     <widget class="QGroupBox" name="rotate_gr_box">
       <property name="enabled">
        <bool>true</bool>
       </property>
@@ -440,7 +440,7 @@ QPushButton:clicked {
       <property name="alignment">
        <set>Qt::AlignCenter</set>
       </property>
-      <widget class="QDial" name="zRotate">
+      <widget class="QDial" name="z_rotate_btn">
        <property name="geometry">
         <rect>
          <x>6</x>
@@ -465,7 +465,7 @@ QPushButton:clicked {
         <number>0</number>
        </property>
       </widget>
-      <widget class="QSlider" name="xRotate">
+      <widget class="QSlider" name="x_rotate_btn">
        <property name="geometry">
         <rect>
          <x>14</x>
@@ -506,7 +506,7 @@ QSlider::handle:horizontal {
         <enum>Qt::Horizontal</enum>
        </property>
       </widget>
-      <widget class="QSlider" name="yRotate">
+      <widget class="QSlider" name="y_rotate_btn">
        <property name="geometry">
         <rect>
          <x>96</x>
@@ -642,7 +642,7 @@ QPushButton:clicked {
        </item>
       </layout>
      </widget>
-     <widget class="Line" name="line_4">
+     <widget class="Line" name="line_03">
       <property name="geometry">
        <rect>
         <x>5</x>
@@ -655,66 +655,10 @@ QPushButton:clicked {
        <enum>Qt::Horizontal</enum>
       </property>
      </widget>
-     <widget class="QGroupBox" name="recordGroup">
-      <property name="geometry">
-       <rect>
-        <x>5</x>
-        <y>469</y>
-        <width>120</width>
-        <height>50</height>
-       </rect>
-      </property>
-      <property name="minimumSize">
-       <size>
-        <width>0</width>
-        <height>50</height>
-       </size>
-      </property>
-      <property name="maximumSize">
-       <size>
-        <width>16777215</width>
-        <height>50</height>
-       </size>
-      </property>
-      <property name="styleSheet">
-       <string notr="true">QGroupBox {
-	border-radius: 0px;
-}
-
-QPushButton {
-    background-color: qlineargradient(x1:0, y1:0, x2:1, y2:1, stop:0 #ffffffff, stop:1 #a3adad);
-	color: rgba(0, 0, 0, 0);
-	border-radius: 12px;
-	border: 1px solid #999999;
-}
-
-QPushButton:hover,
-QPushButton:clicked {
-	background-color: #b6b6ba;
-}</string>
-      </property>
-      <property name="title">
-       <string/>
-      </property>
-      <layout class="QGridLayout" name="gridLayout_5">
-       <property name="leftMargin">
-        <number>4</number>
-       </property>
-       <property name="topMargin">
-        <number>4</number>
-       </property>
-       <property name="rightMargin">
-        <number>4</number>
-       </property>
-       <property name="bottomMargin">
-        <number>4</number>
-       </property>
-      </layout>
-     </widget>
     </widget>
    </item>
    <item row="1" column="2">
-    <widget class="QGroupBox" name="groupBox">
+    <widget class="QGroupBox" name="statistic_group_box">
      <property name="styleSheet">
       <string notr="true">color: gray;
 QPushButton {
@@ -831,7 +775,7 @@ QSpinBox::down-button   { width: 0px; height: 0px; }</string>
     </widget>
    </item>
    <item row="3" column="2" rowspan="2">
-    <widget class="QTabWidget" name="renderSettingsTabGroup">
+    <widget class="QTabWidget" name="settings_tab_gr">
      <property name="sizePolicy">
       <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
        <horstretch>0</horstretch>
@@ -896,16 +840,16 @@ QPushButton:clicked {
       <enum>QTabWidget::Rounded</enum>
      </property>
      <property name="currentIndex">
-      <number>1</number>
+      <number>0</number>
      </property>
      <property name="elideMode">
       <enum>Qt::ElideRight</enum>
      </property>
-     <widget class="QWidget" name="renderSettingsTab">
+     <widget class="QWidget" name="render_settings_tab">
       <attribute name="title">
        <string/>
       </attribute>
-      <widget class="QLabel" name="renderSettingsLabel">
+      <widget class="QLabel" name="render_settings_label">
        <property name="geometry">
         <rect>
          <x>7</x>
@@ -921,7 +865,7 @@ QPushButton:clicked {
         <set>Qt::AlignCenter</set>
        </property>
       </widget>
-      <widget class="QComboBox" name="vertexModeSettings">
+      <widget class="QComboBox" name="vertex_mode_box">
        <property name="geometry">
         <rect>
          <x>0</x>
@@ -963,7 +907,7 @@ QPushButton:clicked {
         </property>
        </item>
       </widget>
-      <widget class="QComboBox" name="edgeModeSettings">
+      <widget class="QComboBox" name="edge_mode_box">
        <property name="geometry">
         <rect>
          <x>0</x>
@@ -1000,7 +944,7 @@ QPushButton:clicked {
         </property>
        </item>
       </widget>
-      <widget class="QComboBox" name="perspectiveSettings">
+      <widget class="QComboBox" name="perspective_mode_box">
        <property name="geometry">
         <rect>
          <x>0</x>
@@ -1192,11 +1136,11 @@ QSlider::handle:horizontal {
       <zorder>edgeScaleSlider</zorder>
       <zorder>scaleSettingsLabel</zorder>
      </widget>
-     <widget class="QWidget" name="colorSettingsTab">
+     <widget class="QWidget" name="color_settings_tab">
       <attribute name="title">
        <string/>
       </attribute>
-      <widget class="QPushButton" name="background_color">
+      <widget class="QPushButton" name="background_btn">
        <property name="geometry">
         <rect>
          <x>0</x>
@@ -1214,7 +1158,7 @@ QSlider::handle:horizontal {
         <string>Background</string>
        </property>
       </widget>
-      <widget class="QPushButton" name="edges_color">
+      <widget class="QPushButton" name="edges_color_btn">
        <property name="geometry">
         <rect>
          <x>0</x>
@@ -1232,7 +1176,7 @@ QSlider::handle:horizontal {
         <string>Edges</string>
        </property>
       </widget>
-      <widget class="QPushButton" name="vertexes_color">
+      <widget class="QPushButton" name="vertexes_color_btn">
        <property name="geometry">
         <rect>
          <x>0</x>
@@ -1250,7 +1194,7 @@ QSlider::handle:horizontal {
         <string>Vertexes</string>
        </property>
       </widget>
-      <widget class="QLabel" name="label">
+      <widget class="QLabel" name="settings_label">
        <property name="geometry">
         <rect>
          <x>7</x>
@@ -1266,15 +1210,15 @@ QSlider::handle:horizontal {
         <set>Qt::AlignCenter</set>
        </property>
       </widget>
-      <zorder>background_color</zorder>
-      <zorder>vertexes_color</zorder>
-      <zorder>label</zorder>
-      <zorder>edges_color</zorder>
+      <zorder>background_btn</zorder>
+      <zorder>vertexes_color_btn</zorder>
+      <zorder>settings_label</zorder>
+      <zorder>edges_color_btn</zorder>
      </widget>
     </widget>
    </item>
    <item row="2" column="2">
-    <widget class="QGroupBox" name="groupBox_2">
+    <widget class="QGroupBox" name="record_group_box">
      <property name="sizePolicy">
       <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
        <horstretch>0</horstretch>
@@ -1304,7 +1248,7 @@ QPushButton:clicked {
      <property name="title">
       <string/>
      </property>
-     <widget class="QPushButton" name="screenshot_2">
+     <widget class="QPushButton" name="screenshot_btn">
       <property name="geometry">
        <rect>
         <x>21</x>
@@ -1332,7 +1276,7 @@ QPushButton:clicked {
        <string/>
       </property>
      </widget>
-     <widget class="QPushButton" name="gif_2">
+     <widget class="QPushButton" name="gif_btn">
       <property name="geometry">
        <rect>
         <x>77</x>
@@ -1363,7 +1307,7 @@ QPushButton:clicked {
     </widget>
    </item>
    <item row="0" column="0" rowspan="5">
-    <widget class="QGroupBox" name="groupBox_3">
+    <widget class="QGroupBox" name="render_gr_box">
      <property name="title">
       <string/>
      </property>
@@ -1387,7 +1331,7 @@ QPushButton:clicked {
        <widget class="OpenGLWidget" name="widget" native="true"/>
       </item>
       <item>
-       <widget class="QLineEdit" name="lineEdit">
+       <widget class="QLineEdit" name="obj_path_line">
         <property name="sizePolicy">
          <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
           <horstretch>0</horstretch>

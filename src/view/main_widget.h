@@ -15,7 +15,10 @@ public:
     MainWidget(QWidget *parent = nullptr);
     ~MainWidget();
 
+    void openFileBtnClicked();
+
 private:
     Ui::MainWidget *ui;
+
 };
 #endif // MAINWIDGET_H
