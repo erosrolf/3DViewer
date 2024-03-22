@@ -1,0 +1,17 @@
+<RCC>
+    <qresource prefix="/">
+        <file>cube_24x24.png</file>
+        <file>down.png</file>
+        <file>fullscreen.png</file>
+        <file>gif.png</file>
+        <file>icons.qrc</file>
+        <file>left.png</file>
+        <file>minimize.png</file>
+        <file>palette_24x24.png</file>
+        <file>rec.png</file>
+        <file>right.png</file>
+        <file>screenshot.png</file>
+        <file>up.png</file>
+        <file>vertex_24x24.png</file>
+    </qresource>
+</RCC>

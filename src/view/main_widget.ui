@@ -6,13 +6,1410 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>800</width>
-    <height>600</height>
+    <width>1000</width>
+    <height>640</height>
    </rect>
+  </property>
+  <property name="minimumSize">
+   <size>
+    <width>1000</width>
+    <height>640</height>
+   </size>
   </property>
   <property name="windowTitle">
    <string>MainWidget</string>
   </property>
+  <layout class="QGridLayout" name="gridLayout">
+   <property name="leftMargin">
+    <number>6</number>
+   </property>
+   <property name="topMargin">
+    <number>6</number>
+   </property>
+   <property name="rightMargin">
+    <number>6</number>
+   </property>
+   <property name="bottomMargin">
+    <number>6</number>
+   </property>
+   <property name="spacing">
+    <number>3</number>
+   </property>
+   <item row="0" column="2">
+    <widget class="QGroupBox" name="menu">
+     <property name="sizePolicy">
+      <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+       <horstretch>0</horstretch>
+       <verstretch>0</verstretch>
+      </sizepolicy>
+     </property>
+     <property name="minimumSize">
+      <size>
+       <width>130</width>
+       <height>386</height>
+      </size>
+     </property>
+     <property name="maximumSize">
+      <size>
+       <width>126</width>
+       <height>16777215</height>
+      </size>
+     </property>
+     <property name="title">
+      <string/>
+     </property>
+     <widget class="QPushButton" name="openfile">
+      <property name="geometry">
+       <rect>
+        <x>5</x>
+        <y>4</y>
+        <width>120</width>
+        <height>32</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>open file</string>
+      </property>
+     </widget>
+     <widget class="QGroupBox" name="movementGroup">
+      <property name="geometry">
+       <rect>
+        <x>5</x>
+        <y>48</y>
+        <width>120</width>
+        <height>140</height>
+       </rect>
+      </property>
+      <property name="sizePolicy">
+       <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+        <horstretch>0</horstretch>
+        <verstretch>0</verstretch>
+       </sizepolicy>
+      </property>
+      <property name="minimumSize">
+       <size>
+        <width>120</width>
+        <height>140</height>
+       </size>
+      </property>
+      <property name="maximumSize">
+       <size>
+        <width>120</width>
+        <height>120</height>
+       </size>
+      </property>
+      <property name="baseSize">
+       <size>
+        <width>100</width>
+        <height>100</height>
+       </size>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">QGroupBox {
+	border-radius: 0px;
+}
+
+QPushButton {
+    background-color: qlineargradient(x1:0, y1:0, x2:1, y2:1, stop:0 #ffffffff, stop:1 #a3adad);
+	color: rgba(0, 0, 0, 0);
+	border-radius: 12px;
+	border: 1px solid #999999;
+}
+
+QPushButton:hover,
+QPushButton:clicked {
+	background-color: #b6b6ba;
+}</string>
+      </property>
+      <property name="title">
+       <string/>
+      </property>
+      <property name="alignment">
+       <set>Qt::AlignCenter</set>
+      </property>
+      <widget class="QPushButton" name="moveLeft">
+       <property name="enabled">
+        <bool>true</bool>
+       </property>
+       <property name="geometry">
+        <rect>
+         <x>8</x>
+         <y>52</y>
+         <width>34</width>
+         <height>34</height>
+        </rect>
+       </property>
+       <property name="sizePolicy">
+        <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+         <horstretch>0</horstretch>
+         <verstretch>0</verstretch>
+        </sizepolicy>
+       </property>
+       <property name="minimumSize">
+        <size>
+         <width>34</width>
+         <height>34</height>
+        </size>
+       </property>
+       <property name="maximumSize">
+        <size>
+         <width>32</width>
+         <height>32</height>
+        </size>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">background-image: url(:/left.png);</string>
+       </property>
+       <property name="text">
+        <string>left</string>
+       </property>
+       <property name="iconSize">
+        <size>
+         <width>20</width>
+         <height>20</height>
+        </size>
+       </property>
+      </widget>
+      <widget class="QPushButton" name="moveRight">
+       <property name="enabled">
+        <bool>true</bool>
+       </property>
+       <property name="geometry">
+        <rect>
+         <x>78</x>
+         <y>52</y>
+         <width>34</width>
+         <height>34</height>
+        </rect>
+       </property>
+       <property name="sizePolicy">
+        <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+         <horstretch>0</horstretch>
+         <verstretch>0</verstretch>
+        </sizepolicy>
+       </property>
+       <property name="minimumSize">
+        <size>
+         <width>34</width>
+         <height>34</height>
+        </size>
+       </property>
+       <property name="maximumSize">
+        <size>
+         <width>32</width>
+         <height>32</height>
+        </size>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">background-image: url(:/right.png);</string>
+       </property>
+       <property name="text">
+        <string>right</string>
+       </property>
+       <property name="iconSize">
+        <size>
+         <width>20</width>
+         <height>20</height>
+        </size>
+       </property>
+      </widget>
+      <widget class="QPushButton" name="moveUp">
+       <property name="enabled">
+        <bool>true</bool>
+       </property>
+       <property name="geometry">
+        <rect>
+         <x>43</x>
+         <y>18</y>
+         <width>34</width>
+         <height>34</height>
+        </rect>
+       </property>
+       <property name="sizePolicy">
+        <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+         <horstretch>0</horstretch>
+         <verstretch>0</verstretch>
+        </sizepolicy>
+       </property>
+       <property name="minimumSize">
+        <size>
+         <width>34</width>
+         <height>34</height>
+        </size>
+       </property>
+       <property name="maximumSize">
+        <size>
+         <width>32</width>
+         <height>32</height>
+        </size>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">background-image: url(:/up.png);</string>
+       </property>
+       <property name="text">
+        <string>up</string>
+       </property>
+       <property name="iconSize">
+        <size>
+         <width>20</width>
+         <height>20</height>
+        </size>
+       </property>
+      </widget>
+      <widget class="QPushButton" name="moveDown">
+       <property name="enabled">
+        <bool>true</bool>
+       </property>
+       <property name="geometry">
+        <rect>
+         <x>43</x>
+         <y>87</y>
+         <width>34</width>
+         <height>34</height>
+        </rect>
+       </property>
+       <property name="sizePolicy">
+        <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+         <horstretch>0</horstretch>
+         <verstretch>0</verstretch>
+        </sizepolicy>
+       </property>
+       <property name="minimumSize">
+        <size>
+         <width>34</width>
+         <height>34</height>
+        </size>
+       </property>
+       <property name="maximumSize">
+        <size>
+         <width>32</width>
+         <height>32</height>
+        </size>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">background-image: url(:/down.png);</string>
+       </property>
+       <property name="text">
+        <string>down</string>
+       </property>
+       <property name="iconSize">
+        <size>
+         <width>20</width>
+         <height>20</height>
+        </size>
+       </property>
+      </widget>
+      <widget class="QPushButton" name="moveForward">
+       <property name="geometry">
+        <rect>
+         <x>0</x>
+         <y>125</y>
+         <width>120</width>
+         <height>13</height>
+        </rect>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">QPushButton {
+	background-color: rgba(255, 255, 255, 100);
+	border-radius: 4px;
+	border: 1px solid #999999;
+}
+
+QPushButton:hover,
+QPushButton:clicked {
+	background-color: #cfcfd1;
+}</string>
+       </property>
+       <property name="text">
+        <string>forward</string>
+       </property>
+      </widget>
+      <widget class="QPushButton" name="moveBackward">
+       <property name="geometry">
+        <rect>
+         <x>0</x>
+         <y>1</y>
+         <width>120</width>
+         <height>13</height>
+        </rect>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">QPushButton {
+	background-color: rgba(255, 255, 255, 100);
+	border-radius: 4px;
+	border: 1px solid #999999;
+}
+
+QPushButton:hover,
+QPushButton:clicked {
+	background-color: #cfcfd1;
+}</string>
+       </property>
+       <property name="text">
+        <string>backward</string>
+       </property>
+      </widget>
+      <zorder>moveForward</zorder>
+      <zorder>moveBackward</zorder>
+      <zorder>moveLeft</zorder>
+      <zorder>moveRight</zorder>
+      <zorder>moveUp</zorder>
+      <zorder>moveDown</zorder>
+     </widget>
+     <widget class="Line" name="line">
+      <property name="geometry">
+       <rect>
+        <x>5</x>
+        <y>192</y>
+        <width>120</width>
+        <height>16</height>
+       </rect>
+      </property>
+      <property name="orientation">
+       <enum>Qt::Horizontal</enum>
+      </property>
+     </widget>
+     <widget class="Line" name="line_2">
+      <property name="geometry">
+       <rect>
+        <x>5</x>
+        <y>32</y>
+        <width>120</width>
+        <height>16</height>
+       </rect>
+      </property>
+      <property name="orientation">
+       <enum>Qt::Horizontal</enum>
+      </property>
+     </widget>
+     <widget class="QGroupBox" name="rotateGroup">
+      <property name="enabled">
+       <bool>true</bool>
+      </property>
+      <property name="geometry">
+       <rect>
+        <x>5</x>
+        <y>260</y>
+        <width>120</width>
+        <height>120</height>
+       </rect>
+      </property>
+      <property name="sizePolicy">
+       <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+        <horstretch>0</horstretch>
+        <verstretch>0</verstretch>
+       </sizepolicy>
+      </property>
+      <property name="minimumSize">
+       <size>
+        <width>120</width>
+        <height>120</height>
+       </size>
+      </property>
+      <property name="maximumSize">
+       <size>
+        <width>120</width>
+        <height>120</height>
+       </size>
+      </property>
+      <property name="baseSize">
+       <size>
+        <width>100</width>
+        <height>100</height>
+       </size>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">QGroupBox {
+	border-radius: 0px;
+}
+
+QPushButton {
+	background-color: #cfcfd1;
+	color: #fff;
+	border-radius: 5px;
+}
+
+QPushButton:hover,
+QPushButton:clicked {
+	background-color: #b6b6ba;
+}</string>
+      </property>
+      <property name="title">
+       <string/>
+      </property>
+      <property name="alignment">
+       <set>Qt::AlignCenter</set>
+      </property>
+      <widget class="QDial" name="zRotate">
+       <property name="geometry">
+        <rect>
+         <x>6</x>
+         <y>4</y>
+         <width>96</width>
+         <height>100</height>
+        </rect>
+       </property>
+       <property name="styleSheet">
+        <string notr="true"/>
+       </property>
+       <property name="minimum">
+        <number>-10</number>
+       </property>
+       <property name="maximum">
+        <number>10</number>
+       </property>
+       <property name="pageStep">
+        <number>10</number>
+       </property>
+       <property name="value">
+        <number>0</number>
+       </property>
+      </widget>
+      <widget class="QSlider" name="xRotate">
+       <property name="geometry">
+        <rect>
+         <x>14</x>
+         <y>95</y>
+         <width>90</width>
+         <height>25</height>
+        </rect>
+       </property>
+       <property name="layoutDirection">
+        <enum>Qt::LeftToRight</enum>
+       </property>
+       <property name="autoFillBackground">
+        <bool>false</bool>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">QSlider::groove:horizontal {
+    border: 1px solid #999999;
+    border-radius: 3px;
+    height: 6px; /* the groove expands to the size of the slider by default. by giving it a height, it has a fixed size */
+	margin: 2px 0;
+}
+
+QSlider::handle:horizontal {
+    background: qlineargradient(x1:0, y1:0, x2:1, y2:1, stop:0 #f3f3f3, stop:1 #8f8f8f);
+    border: 1px solid #5c5c5c;
+    width: 12px;
+    margin: -2px 0; /* handle is placed by default on the contents rect of the groove. Expand outside the groove */
+    border-radius: 3px;
+}</string>
+       </property>
+       <property name="minimum">
+        <number>-10</number>
+       </property>
+       <property name="maximum">
+        <number>10</number>
+       </property>
+       <property name="orientation">
+        <enum>Qt::Horizontal</enum>
+       </property>
+      </widget>
+      <widget class="QSlider" name="yRotate">
+       <property name="geometry">
+        <rect>
+         <x>96</x>
+         <y>14</y>
+         <width>25</width>
+         <height>90</height>
+        </rect>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">QSlider::groove:vertical {
+    border: 1px solid #999999;
+    border-radius: 3px;
+    width: 7px; /* the groove expands to the size of the slider by default. by giving it a height, it has a fixed size */
+	margin: 2px 0;
+}
+
+QSlider::handle:vertical {
+    background: qlineargradient(x1:0, y1:0, x2:1, y2:1, stop:0 #f3f3f3, stop:1 #8f8f8f);
+    border: 1px solid #5c5c5c;
+    height: 12px;
+    margin: -2px 0; /* handle is placed by default on the contents rect of the groove. Expand outside the groove */
+    border-radius: 3px;
+}</string>
+       </property>
+       <property name="minimum">
+        <number>-10</number>
+       </property>
+       <property name="maximum">
+        <number>10</number>
+       </property>
+       <property name="orientation">
+        <enum>Qt::Vertical</enum>
+       </property>
+      </widget>
+     </widget>
+     <widget class="QGroupBox" name="SizeGroup">
+      <property name="geometry">
+       <rect>
+        <x>5</x>
+        <y>202</y>
+        <width>120</width>
+        <height>50</height>
+       </rect>
+      </property>
+      <property name="minimumSize">
+       <size>
+        <width>0</width>
+        <height>50</height>
+       </size>
+      </property>
+      <property name="maximumSize">
+       <size>
+        <width>16777215</width>
+        <height>50</height>
+       </size>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">QGroupBox {
+	border-radius: 0px;
+}
+
+QPushButton {
+    background-color: qlineargradient(x1:0, y1:0, x2:1, y2:1, stop:0 #ffffffff, stop:1 #a3adad);
+	color: rgba(0, 0, 0, 0);
+	border-radius: 12px;
+	border: 1px solid #999999;
+}
+
+QPushButton:hover,
+QPushButton:clicked {
+	background-color: #b6b6ba;
+}</string>
+      </property>
+      <property name="title">
+       <string/>
+      </property>
+      <layout class="QGridLayout" name="gridLayout_4">
+       <property name="leftMargin">
+        <number>4</number>
+       </property>
+       <property name="topMargin">
+        <number>4</number>
+       </property>
+       <property name="rightMargin">
+        <number>4</number>
+       </property>
+       <property name="bottomMargin">
+        <number>4</number>
+       </property>
+       <item row="0" column="1">
+        <widget class="QPushButton" name="zoomOut">
+         <property name="minimumSize">
+          <size>
+           <width>34</width>
+           <height>34</height>
+          </size>
+         </property>
+         <property name="maximumSize">
+          <size>
+           <width>32</width>
+           <height>32</height>
+          </size>
+         </property>
+         <property name="styleSheet">
+          <string notr="true">background-image: url(:/minimize.png);</string>
+         </property>
+         <property name="text">
+          <string/>
+         </property>
+        </widget>
+       </item>
+       <item row="0" column="2">
+        <widget class="QPushButton" name="zoomIn">
+         <property name="minimumSize">
+          <size>
+           <width>34</width>
+           <height>34</height>
+          </size>
+         </property>
+         <property name="maximumSize">
+          <size>
+           <width>32</width>
+           <height>32</height>
+          </size>
+         </property>
+         <property name="styleSheet">
+          <string notr="true">background-image: url(:/fullscreen.png);</string>
+         </property>
+         <property name="text">
+          <string/>
+         </property>
+        </widget>
+       </item>
+      </layout>
+     </widget>
+     <widget class="Line" name="line_4">
+      <property name="geometry">
+       <rect>
+        <x>5</x>
+        <y>249</y>
+        <width>120</width>
+        <height>16</height>
+       </rect>
+      </property>
+      <property name="orientation">
+       <enum>Qt::Horizontal</enum>
+      </property>
+     </widget>
+     <widget class="QGroupBox" name="recordGroup">
+      <property name="geometry">
+       <rect>
+        <x>5</x>
+        <y>469</y>
+        <width>120</width>
+        <height>50</height>
+       </rect>
+      </property>
+      <property name="minimumSize">
+       <size>
+        <width>0</width>
+        <height>50</height>
+       </size>
+      </property>
+      <property name="maximumSize">
+       <size>
+        <width>16777215</width>
+        <height>50</height>
+       </size>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">QGroupBox {
+	border-radius: 0px;
+}
+
+QPushButton {
+    background-color: qlineargradient(x1:0, y1:0, x2:1, y2:1, stop:0 #ffffffff, stop:1 #a3adad);
+	color: rgba(0, 0, 0, 0);
+	border-radius: 12px;
+	border: 1px solid #999999;
+}
+
+QPushButton:hover,
+QPushButton:clicked {
+	background-color: #b6b6ba;
+}</string>
+      </property>
+      <property name="title">
+       <string/>
+      </property>
+      <layout class="QGridLayout" name="gridLayout_5">
+       <property name="leftMargin">
+        <number>4</number>
+       </property>
+       <property name="topMargin">
+        <number>4</number>
+       </property>
+       <property name="rightMargin">
+        <number>4</number>
+       </property>
+       <property name="bottomMargin">
+        <number>4</number>
+       </property>
+      </layout>
+     </widget>
+    </widget>
+   </item>
+   <item row="2" column="2">
+    <widget class="QGroupBox" name="groupBox_2">
+     <property name="sizePolicy">
+      <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
+       <horstretch>0</horstretch>
+       <verstretch>0</verstretch>
+      </sizepolicy>
+     </property>
+     <property name="minimumSize">
+      <size>
+       <width>0</width>
+       <height>50</height>
+      </size>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">
+QPushButton {
+    background-color: qlineargradient(x1:0, y1:0, x2:1, y2:1, stop:0 #ffffffff, stop:1 #a3adad);
+	color: rgba(0, 0, 0, 0);
+	border-radius: 12px;
+	border: 1px solid #999999;
+}
+
+QPushButton:hover,
+QPushButton:clicked {
+	background-color: #b6b6ba;
+}</string>
+     </property>
+     <property name="title">
+      <string/>
+     </property>
+     <widget class="QPushButton" name="screenshot_2">
+      <property name="geometry">
+       <rect>
+        <x>21</x>
+        <y>7</y>
+        <width>34</width>
+        <height>34</height>
+       </rect>
+      </property>
+      <property name="minimumSize">
+       <size>
+        <width>34</width>
+        <height>34</height>
+       </size>
+      </property>
+      <property name="maximumSize">
+       <size>
+        <width>32</width>
+        <height>32</height>
+       </size>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">background-image: url(:/screenshot.png);</string>
+      </property>
+      <property name="text">
+       <string/>
+      </property>
+     </widget>
+     <widget class="QPushButton" name="gif_2">
+      <property name="geometry">
+       <rect>
+        <x>77</x>
+        <y>7</y>
+        <width>34</width>
+        <height>34</height>
+       </rect>
+      </property>
+      <property name="minimumSize">
+       <size>
+        <width>34</width>
+        <height>34</height>
+       </size>
+      </property>
+      <property name="maximumSize">
+       <size>
+        <width>32</width>
+        <height>32</height>
+       </size>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">background-image: url(:/gif.png);</string>
+      </property>
+      <property name="text">
+       <string/>
+      </property>
+     </widget>
+    </widget>
+   </item>
+   <item row="1" column="2">
+    <widget class="QGroupBox" name="groupBox">
+     <property name="styleSheet">
+      <string notr="true">color: gray;
+QPushButton {
+    background-color: qlineargradient(x1:0, y1:0, x2:1, y2:1, stop:0 #ffffffff, stop:1 #a3adad);
+	color: rgba(0, 0, 0, 0);
+	border-radius: 12px;
+	border: 1px solid #999999;
+}
+
+QPushButton:hover,
+QPushButton:clicked {
+	background-color: #b6b6ba;
+}</string>
+     </property>
+     <property name="title">
+      <string/>
+     </property>
+     <widget class="QLabel" name="labelPoly">
+      <property name="geometry">
+       <rect>
+        <x>10</x>
+        <y>27</y>
+        <width>26</width>
+        <height>18</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>poly</string>
+      </property>
+     </widget>
+     <widget class="QLabel" name="labelVert">
+      <property name="geometry">
+       <rect>
+        <x>10</x>
+        <y>7</y>
+        <width>26</width>
+        <height>18</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>vert</string>
+      </property>
+     </widget>
+     <widget class="QSpinBox" name="counterVert">
+      <property name="geometry">
+       <rect>
+        <x>46</x>
+        <y>7</y>
+        <width>78</width>
+        <height>18</height>
+       </rect>
+      </property>
+      <property name="layoutDirection">
+       <enum>Qt::RightToLeft</enum>
+      </property>
+      <property name="autoFillBackground">
+       <bool>false</bool>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">QSpinBox{
+	border-radius: 3px;
+}
+QSpinBox::up-button   { width: 0px; height: 0px; }
+QSpinBox::down-button   { width: 0px; height: 0px; }</string>
+      </property>
+      <property name="frame">
+       <bool>true</bool>
+      </property>
+      <property name="alignment">
+       <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+      </property>
+      <property name="readOnly">
+       <bool>true</bool>
+      </property>
+      <property name="maximum">
+       <number>1000000000</number>
+      </property>
+     </widget>
+     <widget class="QSpinBox" name="counterPoly">
+      <property name="geometry">
+       <rect>
+        <x>46</x>
+        <y>27</y>
+        <width>78</width>
+        <height>18</height>
+       </rect>
+      </property>
+      <property name="layoutDirection">
+       <enum>Qt::RightToLeft</enum>
+      </property>
+      <property name="autoFillBackground">
+       <bool>false</bool>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">QSpinBox{
+	border-radius: 3px;
+}
+QSpinBox::up-button   { width: 0px; height: 0px; }
+QSpinBox::down-button   { width: 0px; height: 0px; }</string>
+      </property>
+      <property name="frame">
+       <bool>true</bool>
+      </property>
+      <property name="alignment">
+       <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+      </property>
+      <property name="readOnly">
+       <bool>true</bool>
+      </property>
+      <property name="maximum">
+       <number>1000000000</number>
+      </property>
+     </widget>
+    </widget>
+   </item>
+   <item row="0" column="0" rowspan="5">
+    <widget class="QGroupBox" name="groupBox_3">
+     <property name="title">
+      <string/>
+     </property>
+     <layout class="QVBoxLayout" name="verticalLayout">
+      <property name="spacing">
+       <number>2</number>
+      </property>
+      <property name="leftMargin">
+       <number>1</number>
+      </property>
+      <property name="topMargin">
+       <number>1</number>
+      </property>
+      <property name="rightMargin">
+       <number>1</number>
+      </property>
+      <property name="bottomMargin">
+       <number>1</number>
+      </property>
+      <item>
+       <widget class="QWidget" name="widget" native="true"/>
+      </item>
+      <item>
+       <widget class="QLineEdit" name="lineEdit">
+        <property name="sizePolicy">
+         <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
+          <horstretch>0</horstretch>
+          <verstretch>0</verstretch>
+         </sizepolicy>
+        </property>
+        <property name="minimumSize">
+         <size>
+          <width>0</width>
+          <height>20</height>
+         </size>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">    border-radius: 3px;
+</string>
+        </property>
+       </widget>
+      </item>
+     </layout>
+    </widget>
+   </item>
+   <item row="3" column="2" rowspan="2">
+    <widget class="QTabWidget" name="renderSettingsTabGroup">
+     <property name="sizePolicy">
+      <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+       <horstretch>0</horstretch>
+       <verstretch>0</verstretch>
+      </sizepolicy>
+     </property>
+     <property name="minimumSize">
+      <size>
+       <width>0</width>
+       <height>120</height>
+      </size>
+     </property>
+     <property name="maximumSize">
+      <size>
+       <width>130</width>
+       <height>16777215</height>
+      </size>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">QTabBar::tab  {
+height: 16px; 
+width: 16px;
+}
+
+QTabBar::tab1 {
+        width: 16px;
+        height: 16px;
+    }
+
+QTabBar::tab2{
+        width: 16px;
+        height: 16px;
+    }
+
+QPushButton {
+	background-color: #cfcfd1;
+	color: #fff;
+	border-radius: 5px;
+}
+
+QPushButton:hover,
+QPushButton:clicked {
+	background-color: #b6b6ba;
+}
+
+QComboBox {
+	background-color: #cfcfd1;
+	color: #fff;
+	border-radius: 5px;
+}
+
+QPushButton:hover,
+QPushButton:clicked {
+	background-color: #b6b6ba;
+}
+</string>
+     </property>
+     <property name="tabPosition">
+      <enum>QTabWidget::South</enum>
+     </property>
+     <property name="tabShape">
+      <enum>QTabWidget::Rounded</enum>
+     </property>
+     <property name="currentIndex">
+      <number>1</number>
+     </property>
+     <property name="elideMode">
+      <enum>Qt::ElideRight</enum>
+     </property>
+     <widget class="QWidget" name="renderSettingsTab">
+      <attribute name="title">
+       <string/>
+      </attribute>
+      <widget class="QLabel" name="renderSettingsLabel">
+       <property name="geometry">
+        <rect>
+         <x>7</x>
+         <y>0</y>
+         <width>111</width>
+         <height>20</height>
+        </rect>
+       </property>
+       <property name="text">
+        <string>render settings</string>
+       </property>
+       <property name="alignment">
+        <set>Qt::AlignCenter</set>
+       </property>
+      </widget>
+      <widget class="QComboBox" name="vertexModeSettings">
+       <property name="geometry">
+        <rect>
+         <x>0</x>
+         <y>20</y>
+         <width>125</width>
+         <height>30</height>
+        </rect>
+       </property>
+       <property name="font">
+        <font>
+         <pointsize>11</pointsize>
+        </font>
+       </property>
+       <property name="currentText">
+        <string>vertex - square</string>
+       </property>
+       <property name="currentIndex">
+        <number>0</number>
+       </property>
+       <property name="maxVisibleItems">
+        <number>3</number>
+       </property>
+       <property name="frame">
+        <bool>true</bool>
+       </property>
+       <item>
+        <property name="text">
+         <string>vertex - square</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>vertex - circle</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>vertex - no</string>
+        </property>
+       </item>
+      </widget>
+      <widget class="QComboBox" name="edgeModeSettings">
+       <property name="geometry">
+        <rect>
+         <x>0</x>
+         <y>43</y>
+         <width>125</width>
+         <height>30</height>
+        </rect>
+       </property>
+       <property name="font">
+        <font>
+         <pointsize>11</pointsize>
+        </font>
+       </property>
+       <property name="currentText">
+        <string>edge - solid</string>
+       </property>
+       <property name="currentIndex">
+        <number>0</number>
+       </property>
+       <property name="maxVisibleItems">
+        <number>3</number>
+       </property>
+       <property name="frame">
+        <bool>true</bool>
+       </property>
+       <item>
+        <property name="text">
+         <string>edge - solid</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>edge - dashed</string>
+        </property>
+       </item>
+      </widget>
+      <widget class="QComboBox" name="perspectiveSettings">
+       <property name="geometry">
+        <rect>
+         <x>0</x>
+         <y>66</y>
+         <width>125</width>
+         <height>30</height>
+        </rect>
+       </property>
+       <property name="font">
+        <font>
+         <pointsize>11</pointsize>
+        </font>
+       </property>
+       <property name="currentText">
+        <string>perspective</string>
+       </property>
+       <property name="currentIndex">
+        <number>1</number>
+       </property>
+       <property name="maxVisibleItems">
+        <number>3</number>
+       </property>
+       <property name="frame">
+        <bool>true</bool>
+       </property>
+       <item>
+        <property name="text">
+         <string>orthagonal</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>perspective</string>
+        </property>
+       </item>
+      </widget>
+     </widget>
+     <widget class="QWidget" name="scaleSettingsTab">
+      <attribute name="title">
+       <string/>
+      </attribute>
+      <widget class="QSlider" name="vertexScaleSlider">
+       <property name="enabled">
+        <bool>true</bool>
+       </property>
+       <property name="geometry">
+        <rect>
+         <x>0</x>
+         <y>24</y>
+         <width>124</width>
+         <height>31</height>
+        </rect>
+       </property>
+       <property name="layoutDirection">
+        <enum>Qt::LeftToRight</enum>
+       </property>
+       <property name="autoFillBackground">
+        <bool>false</bool>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">QSlider::groove:horizontal {
+    border-radius: 6px;
+    height: 25px; /* the groove expands to the size of the slider by default. by giving it a height, it has a fixed size */
+	margin: 2px 0;
+}
+
+QSlider::handle:horizontal {
+    background: qlineargradient(x1:0, y1:0, x2:1, y2:1, stop:0 #f3f3f3, stop:1 #8f8f8f);
+    border: 1px solid #5c5c5c;
+    width: 12px;
+    margin: -2px 0; /* handle is placed by default on the contents rect of the groove. Expand outside the groove */
+    border-radius: 3px;
+}</string>
+       </property>
+       <property name="minimum">
+        <number>1</number>
+       </property>
+       <property name="maximum">
+        <number>10</number>
+       </property>
+       <property name="orientation">
+        <enum>Qt::Horizontal</enum>
+       </property>
+      </widget>
+      <widget class="QPushButton" name="vertex_scale_phone">
+       <property name="enabled">
+        <bool>false</bool>
+       </property>
+       <property name="geometry">
+        <rect>
+         <x>0</x>
+         <y>27</y>
+         <width>123</width>
+         <height>25</height>
+        </rect>
+       </property>
+       <property name="font">
+        <font>
+         <pointsize>11</pointsize>
+        </font>
+       </property>
+       <property name="text">
+        <string>Vertex size</string>
+       </property>
+      </widget>
+      <widget class="QPushButton" name="edgePhone">
+       <property name="enabled">
+        <bool>false</bool>
+       </property>
+       <property name="geometry">
+        <rect>
+         <x>0</x>
+         <y>63</y>
+         <width>123</width>
+         <height>25</height>
+        </rect>
+       </property>
+       <property name="font">
+        <font>
+         <pointsize>11</pointsize>
+        </font>
+       </property>
+       <property name="text">
+        <string>Edge size</string>
+       </property>
+      </widget>
+      <widget class="QSlider" name="edgeScaleSlider">
+       <property name="enabled">
+        <bool>true</bool>
+       </property>
+       <property name="geometry">
+        <rect>
+         <x>0</x>
+         <y>60</y>
+         <width>124</width>
+         <height>31</height>
+        </rect>
+       </property>
+       <property name="layoutDirection">
+        <enum>Qt::LeftToRight</enum>
+       </property>
+       <property name="autoFillBackground">
+        <bool>false</bool>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">QSlider::groove:horizontal {
+    border-radius: 6px;
+    height: 25px; /* the groove expands to the size of the slider by default. by giving it a height, it has a fixed size */
+	margin: 2px 0;
+}
+
+QSlider::handle:horizontal {
+    background: qlineargradient(x1:0, y1:0, x2:1, y2:1, stop:0 #f3f3f3, stop:1 #8f8f8f);
+    border: 1px solid #5c5c5c;
+    width: 12px;
+    margin: -2px 0; /* handle is placed by default on the contents rect of the groove. Expand outside the groove */
+    border-radius: 3px;
+}</string>
+       </property>
+       <property name="minimum">
+        <number>1</number>
+       </property>
+       <property name="maximum">
+        <number>10</number>
+       </property>
+       <property name="orientation">
+        <enum>Qt::Horizontal</enum>
+       </property>
+      </widget>
+      <widget class="QLabel" name="scaleSettingsLabel">
+       <property name="geometry">
+        <rect>
+         <x>6</x>
+         <y>0</y>
+         <width>111</width>
+         <height>20</height>
+        </rect>
+       </property>
+       <property name="text">
+        <string>scale settings</string>
+       </property>
+       <property name="alignment">
+        <set>Qt::AlignCenter</set>
+       </property>
+      </widget>
+      <zorder>vertex_scale_phone</zorder>
+      <zorder>vertexScaleSlider</zorder>
+      <zorder>edgePhone</zorder>
+      <zorder>edgeScaleSlider</zorder>
+      <zorder>scaleSettingsLabel</zorder>
+     </widget>
+     <widget class="QWidget" name="colorSettingsTab">
+      <attribute name="title">
+       <string/>
+      </attribute>
+      <widget class="QPushButton" name="background_color">
+       <property name="geometry">
+        <rect>
+         <x>0</x>
+         <y>20</y>
+         <width>125</width>
+         <height>30</height>
+        </rect>
+       </property>
+       <property name="font">
+        <font>
+         <pointsize>11</pointsize>
+        </font>
+       </property>
+       <property name="text">
+        <string>Background</string>
+       </property>
+      </widget>
+      <widget class="QPushButton" name="edges_color">
+       <property name="geometry">
+        <rect>
+         <x>0</x>
+         <y>66</y>
+         <width>125</width>
+         <height>30</height>
+        </rect>
+       </property>
+       <property name="font">
+        <font>
+         <pointsize>11</pointsize>
+        </font>
+       </property>
+       <property name="text">
+        <string>Edges</string>
+       </property>
+      </widget>
+      <widget class="QPushButton" name="vertexes_color">
+       <property name="geometry">
+        <rect>
+         <x>0</x>
+         <y>43</y>
+         <width>125</width>
+         <height>30</height>
+        </rect>
+       </property>
+       <property name="font">
+        <font>
+         <pointsize>11</pointsize>
+        </font>
+       </property>
+       <property name="text">
+        <string>Vertexes</string>
+       </property>
+      </widget>
+      <widget class="QLabel" name="label">
+       <property name="geometry">
+        <rect>
+         <x>7</x>
+         <y>0</y>
+         <width>111</width>
+         <height>20</height>
+        </rect>
+       </property>
+       <property name="text">
+        <string>color selection</string>
+       </property>
+       <property name="alignment">
+        <set>Qt::AlignCenter</set>
+       </property>
+      </widget>
+      <zorder>background_color</zorder>
+      <zorder>vertexes_color</zorder>
+      <zorder>label</zorder>
+      <zorder>edges_color</zorder>
+     </widget>
+    </widget>
+   </item>
+  </layout>
  </widget>
  <resources/>
  <connections/>

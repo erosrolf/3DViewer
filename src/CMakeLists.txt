@@ -12,13 +12,16 @@ set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
 find_package(QT NAMES Qt6 Qt5 REQUIRED COMPONENTS Widgets)
-find_package(Qt${QT_VERSION_MAJOR} REQUIRED COMPONENTS Widgets)
+find_package(Qt${QT_VERSION_MAJOR} REQUIRED COMPONENTS Widgets OpenGLWidgets)
 
 set(PROJECT_SOURCES
         main.cc
         view/main_widget.cc
         view/main_widget.h
         view/main_widget.ui
+        view/gl_view.cc
+        view/gl_view.h
+        view/icons/icons.qrc
 )
 
 if(${QT_VERSION_MAJOR} GREATER_EQUAL 6)
@@ -44,7 +47,7 @@ else()
     endif()
 endif()
 
-target_link_libraries(src PRIVATE Qt${QT_VERSION_MAJOR}::Widgets)
+target_link_libraries(src PRIVATE Qt${QT_VERSION_MAJOR}::Widgets Qt${QT_VERSION_MAJOR}::OpenGLWidgets)
 
 set_target_properties(src PROPERTIES
     MACOSX_BUNDLE_GUI_IDENTIFIER my.example.com
