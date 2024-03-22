@@ -9,7 +9,6 @@ MainWidget::MainWidget(QWidget *parent)
     ui->renderSettingsTabGroup->setTabIcon(0, QIcon(":/vertex_24x24.png"));
     ui->renderSettingsTabGroup->setTabIcon(1, QIcon(":/cube_24x24.png"));
     ui->renderSettingsTabGroup->setTabIcon(2, QIcon(":/palette_24x24.png"));
-
 }
 
 MainWidget::~MainWidget()
