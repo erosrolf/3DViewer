@@ -4,15 +4,17 @@ UNAME := $(shell uname)
 ifeq ($(UNAME), Linux)
 	OPEN_CMD = xdg-open
 	QTFLAGS = CONFIG+=qtquickcompiler
+	RUNINSTR= ./build/$(NAME_PROJECT).app
 endif
 ifeq ($(UNAME), Darwin)
 	OPEN_CMD = open
 	LCOV_FLAG = --ignore-errors inconsistent
 	QTFLAGS = -spec macx-clang CONFIG+=qtquickcompiler
+	RUNINSTR= open build/$(NAME_PROJECT).app
 endif
 
 CXX = g++
-CXXFLAGS = -std=c++17 -Wall -Wextra -Werror --coverage
+CXXFLAGS = -std=c++17 -Wall -Wextra -Werror -g --coverage
 LDFLAGS = -lgtest -lgtest_main -pthread
 LCOV = lcov
 LCOV_FLAGS = --ignore-errors inconsistent --ignore-errors mismatch
@@ -33,6 +35,16 @@ TEST_OBJ = $(TEST_SRC:$(DIR_TESTS)/%.cc=$(DIR_OBJ)/%.o)
 TEST_EXECUTABLE = $(DIR_BUILD)/core_test
 
 all: $(CORE_LIB) core_test
+
+install: uninstall
+	mkdir build
+	cd build && cmake -D INSTALL_GTEST=OFF ../ && make
+
+uninstall:
+	@rm -rf build
+
+run:
+	$(RUNINSTR)
 
 # BUILD CORE LIB
 $(CORE_LIB): $(OBJ)
