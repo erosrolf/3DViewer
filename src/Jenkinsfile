@@ -31,12 +31,12 @@ pipeline {
       post {
         success {
           script {
-            appendToFile('message', "Core lib build: SUCCESSn")
+            appendToFile('message', "Core lib build: SUCCESS\n")
           }
         }
         failure {
           script {
-            appendToFile('message', "Core lib build: FAILUREn")
+            appendToFile('message', "Core lib build: FAILURE\n")
           }
         }
       }
@@ -52,12 +52,12 @@ pipeline {
       post {
         success {
           script {
-            appendToFile('message', "Core test: SUCCESSn")
+            appendToFile('message', "Core test: SUCCESS\n")
           }
         }
         failure {
           script {
-            appendToFile('message', "Core test: FAILUREn")
+            appendToFile('message', "Core test: FAILURE\n")
           }
         }
       }
