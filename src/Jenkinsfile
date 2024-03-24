@@ -26,29 +26,32 @@ pipeline {
       }
     }
   }
+
   post {
     always {
       script {
         env.GIT_COMMIT_AUTHOR = sh(script: "git log -1 --pretty=format:'%an'", returnStdout: true).trim()
         env.GIT_COMMIT_MESSAGE = sh(script: "git log -1 --pretty=format:'%s'", returnStdout: true).trim()
+        // Устанавливаем GIT_BRANCH, если он не был установлен ранее
+        env.GIT_BRANCH = sh(script: "git rev-parse --abbrev-ref HEAD", returnStdout: true).trim()
       }
     }
     success {
       script {
         env.PIPELINE_STATUS = "✅"
         // Формируем сообщение
-        def message = "💼💼💼nBuild number ${env.BUILD_NUMBER} pushed to ${env.GIT_BRANCH}, CI status = ${env.PIPELINE_STATUS}!nLast commit by ${env.GIT_COMMIT_AUTHOR}: ${env.GIT_COMMIT_MESSAGE}"
+        def message = "💼💼💼\nBuild number ${env.BUILD_NUMBER} pushed to ${env.GIT_BRANCH}, CI status = ${env.PIPELINE_STATUS}!\nLast commit by ${env.GIT_COMMIT_AUTHOR}: ${env.GIT_COMMIT_MESSAGE}"
         // Отправляем сообщение в Telegram
-        sh "curl -s -X POST https://api.telegram.org/bot${env.TELEGRAM_TOKEN}/sendMessage -d chat_id=${env.CHAT_ID} -d text="${message}""
+        sh "curl -s -X POST https://api.telegram.org/bot${env.TELEGRAM_TOKEN}/sendMessage -d chat_id=${env.CHAT_ID} -d text="$message""
       }
     }
     failure {
       script {
         env.PIPELINE_STATUS = "❌"
         // Формируем сообщение
-        def message = "💼💼💼nBuild number ${env.BUILD_NUMBER} pushed to ${env.GIT_BRANCH}, CI status = ${env.PIPELINE_STATUS}!nLast commit by ${env.GIT_COMMIT_AUTHOR}: ${env.GIT_COMMIT_MESSAGE}"
+        def message = "💼💼💼\nBuild number ${env.BUILD_NUMBER} pushed to ${env.GIT_BRANCH}, CI status = ${env.PIPELINE_STATUS}!\nLast commit by ${env.GIT_COMMIT_AUTHOR}: ${env.GIT_COMMIT_MESSAGE}"
         // Отправляем сообщение в Telegram
-        sh "curl -s -X POST https://api.telegram.org/bot${env.TELEGRAM_TOKEN}/sendMessage -d chat_id=${env.CHAT_ID} -d text="${message}""
+        sh "curl -s -X POST https://api.telegram.org/bot${env.TELEGRAM_TOKEN}/sendMessage -d chat_id=${env.CHAT_ID} -d text="$message""
       }
     }
   }
