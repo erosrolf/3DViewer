@@ -14,7 +14,7 @@ pipeline {
           env.GIT_COMMIT_MESSAGE = sh(script: "git log -1 --pretty=format:'%s'", returnStdout: true).trim()
           // Инициализируем переменную для сообщения
           env.MESSAGE = "Build number ${env.BUILD_NUMBER}\n" +
-                        "Pushed to ${env.GIT_BRANCH}, commit ID = ${env.GIT_COMMIT}\n" +
+                        "Pushed to ${env.GIT_BRANCH}\n, commit ID = ${env.GIT_COMMIT}\n" +
                         "Publisher: ${env.GIT_COMMIT_AUTHOR}\n" +
                         "Commit message: ${env.GIT_COMMIT_MESSAGE}\n"
         }
@@ -69,10 +69,7 @@ pipeline {
   post {
     always {
       script {
-        // Выводим накопленное сообщение в консоль
-        echo "Final message:n${env.MESSAGE}"
-        // Отправляем сообщение в Telegram
-        sh "curl -s -X POST https://api.telegram.org/bot${env.TELEGRAM_TOKEN}/sendMessage -d chat_id=${env.CHAT_ID} -d text="${env.MESSAGE}""
+        sh "curl -s -X POST https://api.telegram.org/bot${env.TELEGRAM_TOKEN}/sendMessage -d chat_id=${env.CHAT_ID} -d text=${MESSAGE}"
       }
     }
   }
