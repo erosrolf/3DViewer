@@ -28,7 +28,7 @@ pipeline {
   }
 
   post {
-    slways {
+    always {
       script {
         env.COMMIT_AUTHOR = sh(script: "git log -1 --pretty=format:'%an'", returnStdout: true).trim()
         env.COMMIT_AUTHOR = "Commit author = ${env.COMMIT_AUTHOR} \n"
