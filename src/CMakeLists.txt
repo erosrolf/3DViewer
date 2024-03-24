@@ -2,6 +2,8 @@ cmake_minimum_required(VERSION 3.5)
 
 project(src VERSION 0.1 LANGUAGES CXX)
 
+set(CMAKE_PREFIX_PATH "/usr/local/Qt-6.6.2/lib/cmake")
+
 set(CMAKE_INCLUDE_CURRENT_DIR ON)
 
 set(CMAKE_AUTOUIC ON)
@@ -22,6 +24,7 @@ set(PROJECT_SOURCES
         view/gl_view.cc
         view/gl_view.h
         view/icons/icons.qrc
+        controller/controller.h
 )
 
 if(${QT_VERSION_MAJOR} GREATER_EQUAL 6)

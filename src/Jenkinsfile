@@ -7,12 +7,37 @@ pipeline {
   }
 
   stages {
+    stage("Prepare message") {
+      steps {
+        script {
+          env.GIT_COMMIT_AUTHOR = sh(script: "git log -1 --pretty=format:'%an'", returnStdout: true).trim()
+          env.GIT_COMMIT_MESSAGE = sh(script: "git log -1 --pretty=format:'%s'", returnStdout: true).trim()
+          writeFile file: 'message', text: "Build number ${env.BUILD_NUMBER}n"
+          appendToFile('message', "Pushed to ${env.GIT_BRANCH}, commit ID = ${env.GIT_COMMIT}n")
+          appendToFile('message', "Publisher: ${env.GIT_COMMIT_AUTHOR}n")
+          appendToFile('message', "Commit message: ${env.GIT_COMMIT_MESSAGE}n")
+        }
+      }
+    }
+
     stage("core_lib_build") {
       steps {
         sh 'printenv'
         echo "Start build core lib"
         dir ('src'){
           sh 'make build/core_lib.a'
+        }
+      }
+      post {
+        success {
+          script {
+            appendToFile('message', "Core lib build: SUCCESSn")
+          }
+        }
+        failure {
+          script {
+            appendToFile('message', "Core lib build: FAILUREn")
+          }
         }
       }
     }
@@ -24,19 +49,33 @@ pipeline {
           sh 'make core_test'
         }
       }
+      post {
+        success {
+          script {
+            appendToFile('message', "Core test: SUCCESSn")
+          }
+        }
+        failure {
+          script {
+            appendToFile('message', "Core test: FAILUREn")
+          }
+        }
+      }
     }
   }
 
+
   post {
-    success {
+    always {
       script {
-        sh 'curl -s -X POST https://api.telegram.org/bot${TELEGRAM_TOKEN}/sendMessage -d chat_id=${CHAT_ID} -d text="💼💼💼\nBuild number ${BUILD_NUMBER} pushed to ${GIT_BRANCH}, CI status = ${CI} \nPIPELINE ✅!"'
-      }
-    }
-    failure {
-      script {
-        sh 'curl -s -X POST https://api.telegram.org/bot${TELEGRAM_TOKEN}/sendMessage -d chat_id=${CHAT_ID} -d text="💼💼💼\nBuild number ${BUILD_NUMBER} pushed to ${GIT_BRANCH}, CI status = ${CI} \nPIPELINE ❌!"'
+        def message = readFile 'message'
+        sh "curl -s -X POST https://api.telegram.org/bot${env.TELEGRAM_TOKEN}/sendMessage -d chat_id=${env.CHAT_ID} -d text="${message}""
       }
     }
   }
 }
+
+def appendToFile(String fileName, String text) {
+  writeFile file: fileName, text: text, append: true
+}
+
