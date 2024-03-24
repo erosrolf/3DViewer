@@ -12,10 +12,11 @@ pipeline {
         script {
           env.GIT_COMMIT_AUTHOR = sh(script: "git log -1 --pretty=format:'%an'", returnStdout: true).trim()
           env.GIT_COMMIT_MESSAGE = sh(script: "git log -1 --pretty=format:'%s'", returnStdout: true).trim()
-          writeFile file: 'message', text: "Build number ${env.BUILD_NUMBER}\n"
-          appendToFile('message', "Pushed to ${env.GIT_BRANCH}, commit ID = ${env.GIT_COMMIT}\n")
-          appendToFile('message', "Publisher: ${env.GIT_COMMIT_AUTHOR}\n")
-          appendToFile('message', "Commit message: ${env.GIT_COMMIT_MESSAGE}\n")
+          // Инициализируем переменную для сообщения
+          env.MESSAGE = "Build number ${env.BUILD_NUMBER}\n" +
+                        "Pushed to ${env.GIT_BRANCH}, commit ID = ${env.GIT_COMMIT}\n" +
+                        "Publisher: ${env.GIT_COMMIT_AUTHOR}\n" +
+                        "Commit message: ${env.GIT_COMMIT_MESSAGE}\n"
         }
       }
     }
@@ -31,12 +32,13 @@ pipeline {
       post {
         success {
           script {
-            appendToFile('message', "Core lib build: SUCCESS\n")
+            // Добавляем информацию о статусе сборки в переменную MESSAGE
+            env.MESSAGE += "Core lib build: SUCCESS\n"
           }
         }
         failure {
           script {
-            appendToFile('message', "Core lib build: FAILURE\n")
+            env.MESSAGE += "Core lib build: FAILURE\n"
           }
         }
       }
@@ -52,12 +54,12 @@ pipeline {
       post {
         success {
           script {
-            appendToFile('message', "Core test: SUCCESS\n")
+            env.MESSAGE += "Core test: SUCCESS\n"
           }
         }
         failure {
           script {
-            appendToFile('message', "Core test: FAILURE\n")
+            env.MESSAGE += "Core test: FAILURE\n"
           }
         }
       }
@@ -67,15 +69,12 @@ pipeline {
   post {
     always {
       script {
-        sh 'cat message' // Выводим содержимое файла 'message' в консоль
-        def message = readFile 'message'
-        // Используем фигурные скобки и обрамляем текст в двойные кавычки
-        sh "curl -s -X POST https://api.telegram.org/bot${env.TELEGRAM_TOKEN}/sendMessage -d chat_id=${env.CHAT_ID} -d text="${message}""
+        // Выводим накопленное сообщение в консоль
+        echo "Final message:n${env.MESSAGE}"
+        // Отправляем сообщение в Telegram
+        sh "curl -s -X POST https://api.telegram.org/bot${env.TELEGRAM_TOKEN}/sendMessage -d chat_id=${env.CHAT_ID} -d text="${env.MESSAGE}""
       }
     }
   }
 }
 
-def appendToFile(String fileName, String text) {
-  writeFile file: fileName, text: text, append: true
-}
