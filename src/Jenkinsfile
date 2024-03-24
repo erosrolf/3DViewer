@@ -4,6 +4,7 @@ pipeline {
   environment {
     TELEGRAM_TOKEN = credentials('telegram-bot-token')
     CHAT_ID = "-1002115020059"
+    STAGES_STATUS = "\n"
   }
 
   stages {
@@ -18,12 +19,12 @@ pipeline {
       post {
         success {
           script {
-            env.CORE_LIB_BUILD_STATUS = "SUCCESS"
+            env.STAGES_STATUS = "${STAGES_STATUS}Core lib build: SUCCESS\n"
           }
         }
         failure {
           script {
-            env.CORE_LIB_BUILD_STATUS = "FAILURE"
+            env.STAGES_STATUS = "${STAGES_STATUS}Core lib build: FAILURE\n"
           }
         }
       }
@@ -39,12 +40,12 @@ pipeline {
       post {
         success {
           script {
-            env.CORE_TEST_STATUS = "SUCCESS"
+            env.STAGES_STATUS = "${STAGES_STATUS}Core test: SUCCESS\n"
           }
         }
         failure {
           script {
-            env.CORE_TEST_STATUS = "FAILURE"
+            env.STAGES_STATUS = "${STAGES_STATUS}Core test: FAILURE\n"
           }
         }
       }
@@ -61,7 +62,7 @@ pipeline {
     }
     success {
       script {
-        sh 'curl -s -X POST https://api.telegram.org/bot${TELEGRAM_TOKEN}/sendMessage -d chat_id=${CHAT_ID} -d text="💼💼💼\nBuild number ${BUILD_NUMBER}\npushed to ${GIT_BRANCH}, commit ID = ${GIT_COMMIT}\nPublisher: ${GIT_COMMIT_AUTHOR}\nCommit message: ${GIT_COMMIT_MESSAGE}\nCore lib build status = ${CORE_LIB_BUILD_STATUS} \ncore test status = ${CORE_TEST_STATUS}"'
+        sh 'curl -s -X POST https://api.telegram.org/bot${TELEGRAM_TOKEN}/sendMessage -d chat_id=${CHAT_ID} -d text="💼💼💼\nBuild number ${BUILD_NUMBER}\npushed to ${GIT_BRANCH}, commit ID = ${GIT_COMMIT}\nPublisher:${GIT_COMMIT_AUTHOR}\nCommit message: ${GIT_COMMIT_MESSAGE}\n${STAGES_STATUS}"'
       }
     }
     failure {
