@@ -1,5 +1,5 @@
 UNAME := $(shell uname)
-
+NAME_PROJECT = 3DViewer
 
 ifeq ($(UNAME), Linux)
 	OPEN_CMD = xdg-open
