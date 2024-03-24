@@ -12,10 +12,10 @@ pipeline {
         script {
           env.GIT_COMMIT_AUTHOR = sh(script: "git log -1 --pretty=format:'%an'", returnStdout: true).trim()
           env.GIT_COMMIT_MESSAGE = sh(script: "git log -1 --pretty=format:'%s'", returnStdout: true).trim()
-          writeFile file: 'message', text: "Build number ${BUILD_NUMBER}\n"
-          appendToFile('message', "Pushed to ${GIT_BRANCH}, commit ID = ${GIT_COMMIT}\n)
-          appendToFile('message', "Publisher ${GIT_COMMIT_AUTHOR}")
-          appendToFile('message', "Commit message ${GIT_COMMIT_MESSAGE}")
+          writeFile file: 'message', text: "Build number ${env.BUILD_NUMBER}n"
+          appendToFile('message', "Pushed to ${env.GIT_BRANCH}, commit ID = ${env.GIT_COMMIT}n")
+          appendToFile('message', "Publisher: ${env.GIT_COMMIT_AUTHOR}n")
+          appendToFile('message', "Commit message: ${env.GIT_COMMIT_MESSAGE}n")
         }
       }
     }
@@ -31,12 +31,12 @@ pipeline {
       post {
         success {
           script {
-            appendToFile('message', "Core lib build: SUCCESS\n")
+            appendToFile('message', "Core lib build: SUCCESSn")
           }
         }
         failure {
           script {
-            appendToFile('message', "Core lib build: FAILURE\n")
+            appendToFile('message', "Core lib build: FAILUREn")
           }
         }
       }
@@ -68,12 +68,12 @@ pipeline {
     always {
       script {
         env.TEXT = readFile 'message'
-        sh "curl -s -X POST https://api.telegram.org/bot${env.TELEGRAM_TOKEN}/sendMessage -d chat_id=${env.CHAT_ID} -d text="${env.TEXT}""}
+        sh "curl -s -X POST https://api.telegram.org/bot${env.TELEGRAM_TOKEN}/sendMessage -d chat_id=${env.CHAT_ID} -d text="${env.TEXT}""
+      }
     }
   }
 }
 
-// Используйте writeFile с параметром append: true для добавления текста в файл
 def appendToFile(String fileName, String text) {
   writeFile file: fileName, text: text, append: true
 }
