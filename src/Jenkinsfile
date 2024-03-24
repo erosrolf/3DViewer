@@ -20,12 +20,12 @@ pipeline {
       post {
         success {
           script {
-            stagesStatus += "Core lib build: SUCCESS\n"
+            stagesStatus = "${stagesStatus}Core lib build: SUCCESS\n"
           }
         }
         failure {
           script {
-            stagesStatus += "Core lib build: FAILURE\n"
+            stagesStatus = "${stagesStatus}Core lib build: FAILURE\n"
           }
         }
       }
@@ -41,12 +41,12 @@ pipeline {
       post {
         success {
           script {
-            stagesStatus += "Core test: SUCCESS\n"
+            stagesStatus = "${stagesStatus}Core test: SUCCESS\n"
           }
         }
         failure {
           script {
-            stagesStatus += "Core test: FAILURE\n"
+            stagesStatus = "${stagesStatus}Core test: FAILURE\n"
           }
         }
       }
