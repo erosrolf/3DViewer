@@ -26,20 +26,29 @@ pipeline {
       }
     }
   }
-
   post {
     always {
       script {
-        sh 'cat Jenkinsfile'
+        env.GIT_COMMIT_AUTHOR = sh(script: "git log -1 --pretty=format:'%an'", returnStdout: true).trim()
+        env.GIT_COMMIT_MESSAGE = sh(script: "git log -1 --pretty=format:'%s'", returnStdout: true).trim()
+      }
     }
     success {
       script {
-        sh 'curl -s -X POST https://api.telegram.org/bot${TELEGRAM_TOKEN}/sendMessage -d chat_id=${CHAT_ID} -d text="💼💼💼\nBuild number ${BUILD_NUMBER} pushed to ${GIT_BRANCH}, CI status = ${CI} \nPIPELINE ✅!"'
+        env.PIPELINE_STATUS = "✅"
+        // Формируем сообщение
+        def message = "💼💼💼nBuild number ${env.BUILD_NUMBER} pushed to ${env.GIT_BRANCH}, CI status = ${env.PIPELINE_STATUS}!nLast commit by ${env.GIT_COMMIT_AUTHOR}: ${env.GIT_COMMIT_MESSAGE}"
+        // Отправляем сообщение в Telegram
+        sh "curl -s -X POST https://api.telegram.org/bot${env.TELEGRAM_TOKEN}/sendMessage -d chat_id=${env.CHAT_ID} -d text="${message}""
       }
     }
     failure {
       script {
-        sh 'curl -s -X POST https://api.telegram.org/bot${TELEGRAM_TOKEN}/sendMessage -d chat_id=${CHAT_ID} -d text="💼💼💼\nBuild number ${BUILD_NUMBER} pushed to ${GIT_BRANCH}, CI status = ${CI} \nPIPELINE ❌!"'
+        env.PIPELINE_STATUS = "❌"
+        // Формируем сообщение
+        def message = "💼💼💼nBuild number ${env.BUILD_NUMBER} pushed to ${env.GIT_BRANCH}, CI status = ${env.PIPELINE_STATUS}!nLast commit by ${env.GIT_COMMIT_AUTHOR}: ${env.GIT_COMMIT_MESSAGE}"
+        // Отправляем сообщение в Telegram
+        sh "curl -s -X POST https://api.telegram.org/bot${env.TELEGRAM_TOKEN}/sendMessage -d chat_id=${env.CHAT_ID} -d text="${message}""
       }
     }
   }
