@@ -2,8 +2,7 @@ cmake_minimum_required(VERSION 3.5)
 
 project(3DViewer VERSION 0.1 LANGUAGES CXX)
 
-# закомичено для QT
-# set(CMAKE_PREFIX_PATH "/usr/local/Qt-6.6.2/lib/cmake")
+set(CMAKE_PREFIX_PATH "/usr/local/Qt-6.6.2/lib/cmake")
 
 set(CMAKE_INCLUDE_CURRENT_DIR ON)
 
