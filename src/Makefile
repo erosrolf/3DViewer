@@ -38,7 +38,7 @@ all: $(CORE_LIB) core_test
 
 install: uninstall
 	mkdir build
-	cd build && cmake -D INSTALL_GTEST=OFF ../ && make
+	cd build && cmake ../ && make
 
 uninstall:
 	@rm -rf build
