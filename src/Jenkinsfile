@@ -4,9 +4,9 @@ pipeline {
   environment {
     TELEGRAM_TOKEN = credentials('telegram-bot-token')
     CHAT_ID = "-1002115020059"
-    def stagesStatus = ""
   }
 
+  def stagesStatus = ""
 
   stages {
     stage("core_lib_build") {
@@ -20,12 +20,12 @@ pipeline {
       post {
         success {
           script {
-            stagesStatus = "${stagesStatus}Core lib build: SUCCESS\n"
+            stagesStatus += "Core lib build: SUCCESS\n"
           }
         }
         failure {
           script {
-            stagesStatus = "${stagesStatus}Core lib build: FAILURE\n"
+            stagesStatus += "Core lib build: FAILURE\n"
           }
         }
       }
@@ -41,12 +41,12 @@ pipeline {
       post {
         success {
           script {
-            stagesStatus = "${stagesStatus}Core test: SUCCESS\n"
+            stagesStatus += "Core test: SUCCESS\n"
           }
         }
         failure {
           script {
-            stagesStatus = "${stagesStatus}Core test: FAILURE\n"
+            stagesStatus += "Core test: FAILURE\n"
           }
         }
       }
