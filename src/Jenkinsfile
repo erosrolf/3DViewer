@@ -15,6 +15,18 @@ pipeline {
           sh 'make build/core_lib.a'
         }
       }
+      post {
+        success {
+          script {
+            env.CORE_LIB_BUILD_STATUS = "SUCCESS"
+          }
+        }
+        failure {
+          script {
+            env.CORE_LIB_BUILD_STATUS = "FAILURE"
+          }
+        }
+      }
     }
 
     stage("core_test") {
@@ -24,25 +36,37 @@ pipeline {
           sh 'make core_test'
         }
       }
+      post {
+        success {
+          script {
+            env.CORE_TEST_STATUS = "SUCCESS"
+          }
+        }
+        failure {
+          script {
+            env.CORE_TEST_STATUS = "FAILURE"
+          }
+        }
+      }
     }
   }
 
   post {
     always {
       script {
-        env.GIT_COMMIT_ID = sh(script: "git rev-parse HEAD", returnStdout: true).trim()
+        // env.GIT_COMMIT_ID = sh(script: "git rev-parse HEAD", returnStdout: true).trim()
         env.GIT_COMMIT_AUTHOR = sh(script: "git log -1 --pretty=format:'%an'", returnStdout: true).trim()
         env.GIT_COMMIT_MESSAGE = sh(script: "git log -1 --pretty=format:'%s'", returnStdout: true).trim()
       }
     }
     success {
       script {
-        sh 'curl -s -X POST https://api.telegram.org/bot${TELEGRAM_TOKEN}/sendMessage -d chat_id=${CHAT_ID} -d text="💼💼💼\nBuild number ${BUILD_NUMBER} pushed to ${GIT_BRANCH}, commit ID = ${GIT_COMMIT_ID}\n Publisher: ${GIT_COMMIT_AUTHOR}\nCommit message: ${GIT_COMMIT_MESSAGE}\nCI status = ${CI} \nPIPELINE ✅!"'
+        sh 'curl -s -X POST https://api.telegram.org/bot${TELEGRAM_TOKEN}/sendMessage -d chat_id=${CHAT_ID} -d text="💼💼💼\nBuild number ${BUILD_NUMBER}\npushed to ${GIT_BRANCH}, commit ID = ${GIT_COMMIT}\nPublisher: ${GIT_COMMIT_AUTHOR}\nCommit message: ${GIT_COMMIT_MESSAGE}\nCore lib build status = ${CORE_LIB_BUILD_STATUS} \ncore test status = ${CORE_TEST_STATUS}"'
       }
     }
     failure {
       script {
-        sh 'curl -s -X POST https://api.telegram.org/bot${TELEGRAM_TOKEN}/sendMessage -d chat_id=${CHAT_ID} -d text="💼💼💼\nBuild number ${BUILD_NUMBER} pushed to ${GIT_BRANCH}, commit ID = ${GIT_COMMIT_ID}\n Publisher: ${GIT_COMMIT_AUTHOR}\nCommit message: ${GIT_COMMIT_MESSAGE}\nCI status = ${CI} \nPIPELINE ❌!"'
+        sh 'curl -s -X POST https://api.telegram.org/bot${TELEGRAM_TOKEN}/sendMessage -d chat_id=${CHAT_ID} -d text="💼💼💼\nBuild number ${BUILD_NUMBER} pushed to ${GIT_BRANCH}, commit ID = ${GIT_COMMIT_ID}\nPublisher: ${GIT_COMMIT_AUTHOR}\nCommit message: ${GIT_COMMIT_MESSAGE}\nCI status = ${CI} \nPIPELINE ❌!"'
         // sh 'curl -s -X POST https://api.telegram.org/bot${TELEGRAM_TOKEN}/sendMessage -d chat_id=${CHAT_ID} -d text="💼💼💼\nBuild number ${BUILD_NUMBER} pushed to ${GIT_BRANCH}, CI status = ${CI} \nPIPELINE ❌!"'
       }
     }
