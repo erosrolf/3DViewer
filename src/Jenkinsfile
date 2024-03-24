@@ -6,9 +6,16 @@ pipeline {
     CHAT_ID = "-1002115020059"
   }
 
-  def stagesStatus = ""
-
   stages {
+    stage("Prepare message") {
+      steps {
+        script {
+          // Создаем или очищаем файл message перед началом сборки
+          writeFile file: 'message', text: "Build number ${env.BUILD_NUMBER}npushed to ${env.GIT_BRANCH}, commit ID = ${env.GIT_COMMIT}n"
+        }
+      }
+    }
+
     stage("core_lib_build") {
       steps {
         sh 'printenv'
@@ -20,12 +27,12 @@ pipeline {
       post {
         success {
           script {
-            stagesStatus += "Core lib build: SUCCESS\n"
+            appendToFile('message', "Core lib build: SUCCESS");
           }
         }
         failure {
           script {
-            stagesStatus += "Core lib build: FAILURE\n"
+            appendToFile('message', "Core lib build: FAILURE");
           }
         }
       }
@@ -41,12 +48,12 @@ pipeline {
       post {
         success {
           script {
-            stagesStatus += "Core test: SUCCESS\n"
+            appendToFile('message', "Core lib test: SUCCESS");
           }
         }
         failure {
           script {
-            stagesStatus += "Core test: FAILURE\n"
+            appendToFile('message', "Core lib test: FAILURE");
           }
         }
       }
@@ -56,10 +63,16 @@ pipeline {
   post {
     always {
       script {
+        env.TEXT = readFile 'message'
         env.GIT_COMMIT_AUTHOR = sh(script: "git log -1 --pretty=format:'%an'", returnStdout: true).trim()
         env.GIT_COMMIT_MESSAGE = sh(script: "git log -1 --pretty=format:'%s'", returnStdout: true).trim()
-        sh 'curl -s -X POST https://api.telegram.org/bot${TELEGRAM_TOKEN}/sendMessage -d chat_id=${CHAT_ID} -d text="💼💼💼\nBuild number ${BUILD_NUMBER}\npushed to ${GIT_BRANCH}, commit ID = ${GIT_COMMIT}\nPublisher:${GIT_COMMIT_AUTHOR}\nCommit message: ${GIT_COMMIT_MESSAGE}\n${stagesStatus}"'
+        sh 'curl -s -X POST https://api.telegram.org/bot${TELEGRAM_TOKEN}/sendMessage -d chat_id=${CHAT_ID} -d text="${message}"'
       }
     }
   }
+}
+
+def appendToFile(String fileName, String text) {
+  def file = new File(fileName)
+  file << text
 }
