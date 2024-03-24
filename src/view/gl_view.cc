@@ -8,29 +8,29 @@ OpenGLWidget::OpenGLWidget(QWidget *parent) : QOpenGLWidget{parent} {
 }
 
 void OpenGLWidget::initRenderSettings() {
-  glPointSize(vertexSize);  // размер точек
-  glLineWidth(edgeWidth);   // толщина линий
-  glClearColor(backgroundColor.redF(), backgroundColor.greenF(),
-               backgroundColor.blueF(), backgroundColor.alphaF());  //цвет фона
-  if (vertexMode == 1)
-    glEnable(GL_POINT_SMOOTH);
-  else if (vertexMode == 0)
-    glDisable(GL_POINT_SMOOTH);
-  if (lineMode) {  // вид линии - пунктир
-    glEnable(GL_LINE_STIPPLE);
-    glLineStipple(1, 0x00F0);
-  } else  // вид линии - сплошная
-    glDisable(GL_LINE_STIPPLE);
+  // glPointSize(vertexSize);  // размер точек
+  // glLineWidth(edgeWidth);   // толщина линий
+  // glClearColor(backgroundColor.redF(), backgroundColor.greenF(),
+  //              backgroundColor.blueF(), backgroundColor.alphaF());  //цвет фона
+  // if (vertexMode == 1)
+  //   glEnable(GL_POINT_SMOOTH);
+  // else if (vertexMode == 0)
+  //   glDisable(GL_POINT_SMOOTH);
+  // if (lineMode) {  // вид линии - пунктир
+  //   glEnable(GL_LINE_STIPPLE);
+  //   glLineStipple(1, 0x00F0);
+  // } else  // вид линии - сплошная
+  //   glDisable(GL_LINE_STIPPLE);
 }
 
 void OpenGLWidget::initializeGL() { initRenderSettings(); }
 
 void OpenGLWidget::resizeGL(int w, int h) {
-  aspectRatio = static_cast<double>(geometry().width()) /
-                static_cast<double>(geometry().height());  // соотношение сторон
-  setupPerspective();      // Настройка перспективы
-  glViewport(0, 0, w, h);  // Установка точки опоры
-  glLoadIdentity();
+  // aspectRatio = static_cast<double>(geometry().width()) /
+  //               static_cast<double>(geometry().height());  // соотношение сторон
+  // setupPerspective();      // Настройка перспективы
+  // glViewport(0, 0, w, h);  // Установка точки опоры
+  // glLoadIdentity();
 }
 
 void OpenGLWidget::paintGL() {
