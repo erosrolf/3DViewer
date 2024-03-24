@@ -4,10 +4,9 @@ pipeline {
   environment {
     TELEGRAM_TOKEN = credentials('telegram-bot-token')
     CHAT_ID = "-1002115020059"
-    STAGES_STATUS = "\n"
+    def stagesStatus = ""
   }
 
-  def stagesStatus = ""
 
   stages {
     stage("core_lib_build") {
