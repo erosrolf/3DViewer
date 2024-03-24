@@ -17,15 +17,24 @@ set(CMAKE_CXX_STANDARD_REQUIRED ON)
 find_package(QT NAMES Qt6 Qt5 REQUIRED COMPONENTS Widgets)
 find_package(Qt${QT_VERSION_MAJOR} REQUIRED COMPONENTS Widgets OpenGLWidgets)
 
+
 set(PROJECT_SOURCES
     main.cc
+    
     view/main_widget.cc
     view/main_widget.h
     view/main_widget.ui
     view/gl_view.cc
     view/gl_view.h
     view/icons/icons.qrc
+
     controller/controller.h
+
+    core/model.h
+    core/obj.h
+    core/obj.cc
+    core/model.h
+    core/model.h
 )
 
 add_executable(${PROJECT_NAME} ${PROJECT_SOURCES})

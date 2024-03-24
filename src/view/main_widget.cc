@@ -21,3 +21,5 @@ MainWidget::~MainWidget()
 {
     delete ui;
 }
+
+
