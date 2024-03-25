@@ -10,6 +10,7 @@ class Model {
   Model() {}
 
   const Obj& openNewObj(const char* file_name) {
+    obj_.clear();
     obj_.parseFile(file_name);
     return obj_;
   }
@@ -40,6 +41,13 @@ class Model {
 
   /* void objRotateAroundX(double value) { obj_.modify(newRotateStrategy(1)); }
    */
+
+  bool objIsValid() const noexcept { return obj_.valid(); }
+
+  const std::vector<Vertex_3d>& getObjVertexes() { return obj_.vertexes; }
+  const std::vector<Facet_3d>& getObjPolygons() { return obj_.polygons; }
+
+  void reset() noexcept { obj_.clear(); }
 
  private:
   Obj obj_;

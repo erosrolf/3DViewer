@@ -23,6 +23,9 @@ class OpenGLWidget : public QOpenGLWidget {
   void initializeGL() override;
   void resizeGL(int w, int h) override;
   void paintGL() override;
+
+ private:
+  void paintObjLines();
   void setupPerspective();
   void initRenderSettings();
 };
