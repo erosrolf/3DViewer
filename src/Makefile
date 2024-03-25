@@ -56,6 +56,7 @@ $(DIR_OBJ)/%.o: $(DIR_CORE)/%.cc
 	@mkdir -p $(@D)
 	$(CXX) $(CXXFLAGS) -c $< -o $@
 
+tests: clean core_test
 
 # BUILD CORE TESTS
 core_test: $(TEST_EXECUTABLE)
@@ -69,20 +70,16 @@ $(DIR_OBJ)/%.o: $(DIR_TESTS)/%.cc
 	@mkdir -p $(@D)
 	$(CXX) $(CXXFLAGS) -c $< -o $@
 
+gcov_report: tests
+	./$(TEST_EXECUTABLE)
+	@lcov -o test.info --no-external -c -d . $(LCOV_FLAG) --ignore-errors mismatch
+	@genhtml -o report test.info $(LCOV_FLAG)
+	@$(OPEN_CMD) report/index.html
+	@rm -rf *.gcda *.gcno *.info *.dSYM 
 
-#GCOV REPORT
-gcov_report: test
-	@mkdir -p $(COVERAGE_DIR)
-	# Собираем данные о покрытии кода
-	$(LCOV) --capture --directory $(DIR_OBJ) --output-file $(COVERAGE_DIR)/coverage.info $(LCOV_FLAGS)
-	# Фильтруем данные, исключая тесты и внешние библиотеки
-	$(LCOV) --remove $(COVERAGE_DIR)/coverage.info '*/tests/*' '/usr/*' --output-file $(COVERAGE_DIR)/coverage.filtered.info
-	# Генерируем HTML-отчет
-	$(GENHTML) -o $(COVERAGE_DIR)/html $(COVERAGE_DIR)/coverage.filtered.info
-	# Открываем HTML-отчет в браузере
-	@$(OPEN_CMD) $(COVERAGE_DIR)/html/index.html
 
 clean:
 	rm -rf $(DIR_OBJ) $(DIR_BUILD)
+	rm -rf report
 
 .PHONY: all clean test
