@@ -1,8 +1,9 @@
 #ifndef MAINWIDGET_H
 #define MAINWIDGET_H
 
-#include <QWidget>
 #include <QFileDialog>
+#include <QWidget>
+
 #include "../controller/controller.h"
 
 //#include <QColorDialog>
@@ -16,21 +17,22 @@
 //#include "qgifimage.h"
 
 QT_BEGIN_NAMESPACE
-namespace Ui { class MainWidget; }
+namespace Ui {
+class MainWidget;
+}
 QT_END_NAMESPACE
 
-class MainWidget : public QWidget
-{
-    Q_OBJECT
+class MainWidget : public QWidget {
+  Q_OBJECT
 
-public:
-    MainWidget(QWidget *parent = nullptr);
-    ~MainWidget();
+ public:
+  MainWidget(QWidget* parent = nullptr, s21::Controller* controller = nullptr);
+  ~MainWidget();
 
-    void openFileBtnClicked();
+  void openFileBtnClicked();
 
-private:
-    Ui::MainWidget *ui;
-    s21::Controller controller;
+ private:
+  s21::Controller* controller_;
+  Ui::MainWidget* ui;
 };
-#endif // MAINWIDGET_H
+#endif  // MAINWIDGET_H

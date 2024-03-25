@@ -1,8 +1,9 @@
 #include "main_widget.h"
 
+#include "./ui_main_widget.h"
 
-MainWidget::MainWidget(QWidget *parent)
-    : QWidget(parent), ui(new Ui::MainWidget) {
+MainWidget::MainWidget(QWidget *parent, s21::Controller* controller)
+    : QWidget(parent), controller_(controller), ui(new Ui::MainWidget) {
   ui->setupUi(this);
   ui->settings_tab_gr->setTabIcon(0, QIcon(":/vertex_24x24.png"));
   ui->settings_tab_gr->setTabIcon(1, QIcon(":/cube_24x24.png"));
@@ -19,11 +20,10 @@ void MainWidget::openFileBtnClicked() {
   if (ui->obj_path_line->text().size() > 0) {
     QByteArray ba = fName.toLocal8Bit();
     char *inpt = ba.data();
-    s21::Controller cont;
-    s21::Obj obj = cont.openNewObj(inpt);
-    if (obj.is_valid) {
-      ui->counterVert->setValue(obj.vertexes.size());
-      ui->counterPoly->setValue(obj.polygons.size());
+    controller_->openNewObj(inpt);
+    if (controller_->objIsValid()) {
+      ui->counterVert->setValue(controller_->getObjVertexes().size());
+      ui->counterPoly->setValue(controller_->getObjPolygons().size());
     } else {
       ui->counterVert->clear();
       ui->counterPoly->clear();

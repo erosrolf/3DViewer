@@ -7,9 +7,9 @@
 
 int main(int argc, char *argv[]) {
   QApplication a(argc, argv);
-  MainWidget w;
   s21::Model model;
   s21::Controller controller(&model);
-  w.show();
+  MainWidget main_widget(nullptr, &controller);
+  main_widget.show();
   return a.exec();
 }
