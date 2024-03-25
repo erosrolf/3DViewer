@@ -36,6 +36,25 @@ public:
   void objMoveBack(double value) {
     model_calculator_.objMoveBack(value);
   }
+
+  void objRotateAroundX(double sin_angle, double cos_angle) {
+    // model_calculator_.objRotateAroundX(sin_angle, cos_angle);
+  }
+
+  void objRotateAroundY(double sin_angle, double cos_angle) {
+    // model_calculator_.objRotateAroundY(sin_angle, cos_angle);
+  }
+
+  void objRotateAroundZ(double sin_angle, double cos_angle) {
+    // model_calculator_.objRotateAroundZ(sin_angle, cos_angle);
+  }
+
+  void screenshot() {
+    // some instruction
+  }
+  void gifRecord() {
+    // some instruction
+  }
 };
 
 } // namespace s21
