@@ -2,7 +2,18 @@
 #define MAINWIDGET_H
 
 #include <QWidget>
+#include <QFileDialog>
 #include "../controller/controller.h"
+
+//#include <QColorDialog>
+
+//#include <QMainWindow>
+//#include <QPixmap>
+//#include <QScreen>
+//#include <QSettings>
+//#include <QTimer>
+
+//#include "qgifimage.h"
 
 QT_BEGIN_NAMESPACE
 namespace Ui { class MainWidget; }

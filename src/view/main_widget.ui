@@ -840,7 +840,7 @@ QPushButton:clicked {
       <enum>QTabWidget::Rounded</enum>
      </property>
      <property name="currentIndex">
-      <number>0</number>
+      <number>1</number>
      </property>
      <property name="elideMode">
       <enum>Qt::ElideRight</enum>
@@ -1331,7 +1331,7 @@ QPushButton:clicked {
        <widget class="OpenGLWidget" name="widget" native="true"/>
       </item>
       <item>
-       <widget class="QLineEdit" name="obj_path_line">
+       <widget class="QLabel" name="obj_path_line">
         <property name="sizePolicy">
          <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
           <horstretch>0</horstretch>
@@ -1344,9 +1344,8 @@ QPushButton:clicked {
           <height>20</height>
          </size>
         </property>
-        <property name="styleSheet">
-         <string notr="true">    border-radius: 3px;
-</string>
+        <property name="text">
+         <string/>
         </property>
        </widget>
       </item>
