@@ -23,10 +23,13 @@ COVERAGE_DIR = $(DIR_BUILD)/coverage
 
 CORE_LIB = $(DIR_BUILD)/core_lib.a
 
+DIR_VIEW = ./view
 DIR_CORE = ./core
 DIR_OBJ = ./obj
 DIR_BUILD = ./build
 DIR_TESTS = ./tests
+
+DIST_ARCHIVE = $(NAME_PROJECT).tgz
 
 SRC = $(shell find $(DIR_CORE) -type f -name '*.cc')
 OBJ = $(SRC:$(DIR_CORE)/%.cc=$(DIR_OBJ)/%.o)
@@ -77,9 +80,18 @@ gcov_report: tests
 	@$(OPEN_CMD) report/index.html
 	@rm -rf *.gcda *.gcno *.info *.dSYM 
 
+dist:
+	git archive --format=tar --prefix=$(NAME_PROJECT)/ HEAD | gzip > $(DIST_ARCHIVE)
+
+style_check:
+	@find . -type f -name '*.cc' -or -name '*.h' | xargs -I {} sh -c 'echo "Checking {}" && clang-format -n -style=Google{}'
+
+style_repair: clean
+	@find . -type f -name '*.cc' -or -name '*.h' | xargs -I {} sh -c 'echo "Checking {}" && clang-format -i -style=Google{}'
 
 clean:
 	rm -rf $(DIR_OBJ) $(DIR_BUILD)
 	rm -rf report
+	rm -rf *.tgz
 
 .PHONY: all clean test
