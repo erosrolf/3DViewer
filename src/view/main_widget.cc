@@ -24,11 +24,13 @@ void MainWidget::openFileBtnClicked() {
     char *inpt = ba.data();
     controller_->openNewObj(inpt);
     if (controller_->objIsValid()) {
-      ui->counterVert->setValue(controller_->getObjVertexes().size());
-      ui->counterPoly->setValue(controller_->getObjPolygons().size());
+      ui->vert_counter->setText(
+          QString::number(controller_->getObjVertexes().size()) + " ");
+      ui->poly_counter->setText(
+          QString::number(controller_->getObjPolygons().size()) + " ");
     } else {
-      ui->counterVert->clear();
-      ui->counterPoly->clear();
+      ui->vert_counter->setText("0 ");
+      ui->poly_counter->setText("0 ");
       ui->obj_path_line->setText("ERROR");
     }
   }
