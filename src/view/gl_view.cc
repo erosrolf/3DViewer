@@ -3,9 +3,13 @@
 
 #include <QDebug>
 
-OpenGLWidget::OpenGLWidget(QWidget *parent) : QOpenGLWidget(parent) {
-  // init_data_struct(&objData);
-}
+#include "main_widget.h"
+
+OpenGLWidget::OpenGLWidget(QWidget* parent, MainWidget* mv_ptr)
+    : QOpenGLWidget(parent), main_widget_ptr_(mv_ptr) {}
+
+// init_data_struct(&objData);
+//}
 
 void OpenGLWidget::initRenderSettings() {
   glPointSize(2);            // размер точек

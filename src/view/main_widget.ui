@@ -1328,7 +1328,7 @@ QPushButton:clicked {
        <number>1</number>
       </property>
       <item>
-       <widget class="OpenGLWidget" name="widget" native="true"/>
+       <widget class="OpenGLWidget" name="gl_widget" native="true"/>
       </item>
       <item>
        <widget class="QLabel" name="obj_path_line">

@@ -2,12 +2,18 @@
 #define OPENGLWIDGET_H
 
 #include <QOpenGLWidget>
+#include "main_widget.h"
 
 class OpenGLWidget : public QOpenGLWidget {
   Q_OBJECT
 
  public:
-  OpenGLWidget(QWidget *parent = nullptr);
+  OpenGLWidget(QWidget *parent = nullptr, MainWidget* mw_prt = nullptr);
+
+  void setMainWidgetPtr(MainWidget* ptr) {
+      main_widget_ptr_ = ptr;
+  }
+
   int perspectiveMode;
   double aspectRatio;
   QColor backgroundColor;
@@ -28,6 +34,7 @@ class OpenGLWidget : public QOpenGLWidget {
   void paintObjLines();
   void setupPerspective();
   void initRenderSettings();
+  MainWidget* main_widget_ptr_;
 };
 
 #endif  // OPENGLWIDGET_H
