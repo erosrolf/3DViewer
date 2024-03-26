@@ -49,6 +49,7 @@ uninstall:
 run:
 	$(RUNINSTR)
 
+core_lib: $(CORE_LIB)
 # BUILD CORE LIB
 $(CORE_LIB): $(OBJ)
 	@mkdir -p $(DIR_BUILD)

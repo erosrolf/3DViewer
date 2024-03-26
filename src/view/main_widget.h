@@ -30,6 +30,10 @@ class MainWidget : public QWidget {
   ~MainWidget();
 
   void openFileBtnClicked();
+  void moveUpBtnClicked();
+  void moveDownBtnClicked();
+  void moveLeftBtnClicked();
+  void moveRightBtnClicked();
 
  private:
   s21::Controller* controller_;

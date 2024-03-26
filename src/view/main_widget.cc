@@ -1,6 +1,7 @@
 #include "main_widget.h"
 
 #include "./ui_main_widget.h"
+#include "controller/controller.h"
 
 MainWidget::MainWidget(QWidget *parent, s21::Controller *controller)
     : QWidget(parent), controller_(controller), ui(new Ui::MainWidget) {
@@ -13,6 +14,10 @@ MainWidget::MainWidget(QWidget *parent, s21::Controller *controller)
 
   connect(ui->open_file_btn, &QPushButton::clicked, this,
           &MainWidget::openFileBtnClicked);
+  connect(ui->move_up_btn, &QPushButton::clicked, this, &MainWidget::moveUpBtnClicked);
+  connect(ui->move_down_btn, &QPushButton::clicked, this, &MainWidget::moveDownBtnClicked);
+  connect(ui->move_left_btn, &QPushButton::clicked, this, &MainWidget::moveLeftBtnClicked);
+  connect(ui->move_right_btn, &QPushButton::clicked, this, &MainWidget::moveRightBtnClicked);
 }
 
 void MainWidget::openFileBtnClicked() {
@@ -34,6 +39,26 @@ void MainWidget::openFileBtnClicked() {
       ui->obj_path_line->setText("ERROR");
     }
   }
+}
+
+void MainWidget::moveUpBtnClicked() {
+  controller_->objMoveUp(0.5);
+  ui->gl_widget->update();
+}
+
+void MainWidget::moveDownBtnClicked() {
+  controller_->objMoveDown(0.5);
+  ui->gl_widget->update();
+}
+
+void MainWidget::moveLeftBtnClicked() {
+  controller_->objMoveToLeft(0.5);
+  ui->gl_widget->update();
+}
+
+void MainWidget::moveRightBtnClicked() {
+  controller_->objMoveToRight(0.5);
+  ui->gl_widget->update();
 }
 
 MainWidget::~MainWidget() { delete ui; }

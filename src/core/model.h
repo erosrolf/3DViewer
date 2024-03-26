@@ -5,6 +5,7 @@
 #include "obj_modifier_strategy/translation_strategy.h"
 
 namespace s21 {
+
 class Model {
  public:
   Model() {}

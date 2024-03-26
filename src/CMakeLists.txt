@@ -29,6 +29,10 @@ set(PROJECT_SOURCES
 
     controller/controller.h
 
+    core/obj_modifier_strategy/obj_modifier_strategy.h
+    core/obj_modifier_strategy/translation_strategy.cc
+    core/obj_modifier_strategy/rotate_strategy.cc
+    core/obj_modifier_strategy/scale_strategy.cc
     core/model.h
     core/obj.h
     core/obj.cc
