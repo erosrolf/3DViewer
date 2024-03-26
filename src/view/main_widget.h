@@ -3,9 +3,10 @@
 
 #include <QWidget>
 #include <QFileDialog>
+#include <QColorDialog>
+
 #include "../controller/controller.h"
 
-//#include <QColorDialog>
 
 //#include <QMainWindow>
 //#include <QPixmap>
@@ -28,6 +29,23 @@ public:
     ~MainWidget();
 
     void openFileBtnClicked();
+
+private slots:
+    void on_background_btn_clicked();
+
+    void on_vertexes_color_btn_clicked();
+
+    void on_edges_color_btn_clicked();
+
+    void on_vertexScaleSlider_actionTriggered(int action);
+
+    void on_edgeScaleSlider_actionTriggered(int action);
+
+    void on_vertex_mode_box_activated(int index);
+
+    void on_edge_mode_box_activated(int index);
+
+    void on_perspective_mode_box_activated(int index);
 
 private:
     Ui::MainWidget *ui;

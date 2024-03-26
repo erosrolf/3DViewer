@@ -34,3 +34,67 @@ void MainWidget::openFileBtnClicked() {
 }
 
 MainWidget::~MainWidget() { delete ui; }
+
+void MainWidget::on_background_btn_clicked()
+{
+    QColor background = QColorDialog::getColor();
+    if (background.isValid()) {
+        ui->widget->backgroundColor = background;
+        ui->widget->update();
+    }
+}
+
+void MainWidget::on_vertexes_color_btn_clicked()
+{
+    QColor vertexesColor = QColorDialog::getColor();
+    if (vertexesColor.isValid()) {
+        ui->widget->vertexColor = vertexesColor;
+        ui->widget->update();
+    }
+}
+
+
+void MainWidget::on_edges_color_btn_clicked()
+{
+    QColor edgesColor = QColorDialog::getColor();
+    if (edgesColor.isValid()) {
+        ui->widget->edgeColor = edgesColor;
+        ui->widget->update();
+    }
+}
+
+
+void MainWidget::on_vertexScaleSlider_actionTriggered(int action)
+{
+    ui->widget->vertexSize = action;
+    ui->widget->update();
+}
+
+
+void MainWidget::on_edgeScaleSlider_actionTriggered(int action)
+{
+    ui->widget->edgeWidth = action;
+    ui->widget->update();
+}
+
+
+void MainWidget::on_vertex_mode_box_activated(int index)
+{
+    ui->widget->vertexMode = index;
+    ui->widget->update();
+}
+
+
+void MainWidget::on_edge_mode_box_activated(int index)
+{
+    ui->widget->lineMode = index;
+    ui->widget->update();
+}
+
+
+void MainWidget::on_perspective_mode_box_activated(int index)
+{
+    ui->widget->perspectiveMode = index;
+    ui->widget->update();
+}
+
