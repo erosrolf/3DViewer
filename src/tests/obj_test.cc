@@ -12,8 +12,14 @@ TEST(obj, parse_file) {
       {-1.000000, 1.000000, -1.000000}, {-1.000000, -1.000000, -1.000000},
       {-1.000000, 1.000000, 1.000000},  {-1.000000, -1.000000, 1.000000}};
 
-  ASSERT_TRUE(obj.is_valid);
+  std::vector<s21::Facet_3d> ref_facets = {
+      s21::Facet_3d{{0, 4, 6, 2}}, s21::Facet_3d{{3, 2, 6, 7}},
+      s21::Facet_3d{{7, 6, 4, 5}}, s21::Facet_3d{{5, 1, 3, 7}},
+      s21::Facet_3d{{1, 0, 2, 3}}, s21::Facet_3d{{5, 4, 0, 1}}};
+
+  ASSERT_TRUE(obj.valid());
   ASSERT_EQ(obj.vertexes, ref);
+  ASSERT_EQ(obj.polygons, ref_facets);
   ASSERT_EQ(obj, obj2);
   ASSERT_EQ(obj, obj);
 }

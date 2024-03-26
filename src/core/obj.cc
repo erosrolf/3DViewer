@@ -100,7 +100,7 @@ size_t Obj::parseFacetIndex(const std::string& token_with_index) {
   if (num_1 < 0) {
     num_1 = vertexes.size() - num_1;
   }
-  return num_1;
+  return num_1 - 1;
 }
 
 void Obj::parseFacet(const std::string& f_line) {
