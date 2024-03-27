@@ -14,10 +14,21 @@ MainWidget::MainWidget(QWidget *parent, s21::Controller *controller)
 
   connect(ui->open_file_btn, &QPushButton::clicked, this,
           &MainWidget::openFileBtnClicked);
-  connect(ui->move_up_btn, &QPushButton::clicked, this, &MainWidget::moveUpBtnClicked);
-  connect(ui->move_down_btn, &QPushButton::clicked, this, &MainWidget::moveDownBtnClicked);
-  connect(ui->move_left_btn, &QPushButton::clicked, this, &MainWidget::moveLeftBtnClicked);
-  connect(ui->move_right_btn, &QPushButton::clicked, this, &MainWidget::moveRightBtnClicked);
+  connect(ui->move_up_btn, &QPushButton::clicked, this,
+          &MainWidget::moveUpBtnClicked);
+  connect(ui->move_down_btn, &QPushButton::clicked, this,
+          &MainWidget::moveDownBtnClicked);
+  connect(ui->move_left_btn, &QPushButton::clicked, this,
+          &MainWidget::moveLeftBtnClicked);
+  connect(ui->move_right_btn, &QPushButton::clicked, this,
+          &MainWidget::moveRightBtnClicked);
+  connect(ui->zoomIn, &QPushButton::clicked, this, &MainWidget::zoomInClicked);
+  connect(ui->zoomOut, &QPushButton::clicked, this,
+          &MainWidget::zoomOutClicked);
+  connect(ui->move_forward_btn, &QPushButton::clicked, this,
+          &MainWidget::zoomInClicked);
+  connect(ui->move_back_btn, &QPushButton::clicked, this,
+          &MainWidget::zoomOutClicked);
 }
 
 void MainWidget::openFileBtnClicked() {
@@ -62,3 +73,13 @@ void MainWidget::moveRightBtnClicked() {
 }
 
 MainWidget::~MainWidget() { delete ui; }
+
+void MainWidget::zoomInClicked() {
+  controller_->objZoom(1.1);
+  ui->gl_widget->update();
+}
+
+void MainWidget::zoomOutClicked() {
+  controller_->objZoom(0.9);
+  ui->gl_widget->update();
+}

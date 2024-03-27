@@ -2,6 +2,7 @@
 #define _3DVIEWER_SRC_CORE_MODEL_H_
 
 #include "obj.h"
+#include "obj_modifier_strategy/scale_strategy.h"
 #include "obj_modifier_strategy/translation_strategy.h"
 
 namespace s21 {
@@ -39,6 +40,8 @@ class Model {
   void objMoveBack(double value) {
     obj_.modify(new TranslationStrategy(0, 0, -value));
   }
+
+  void objZoom(double value) { obj_.modify(new ScalingStrategy(value)); }
 
   /* void objRotateAroundX(double value) { obj_.modify(newRotateStrategy(1)); }
    */

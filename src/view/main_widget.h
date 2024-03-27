@@ -6,15 +6,15 @@
 
 #include "../controller/controller.h"
 
-//#include <QColorDialog>
+// #include <QColorDialog>
 
-//#include <QMainWindow>
-//#include <QPixmap>
-//#include <QScreen>
-//#include <QSettings>
-//#include <QTimer>
+// #include <QMainWindow>
+// #include <QPixmap>
+// #include <QScreen>
+// #include <QSettings>
+// #include <QTimer>
 
-//#include "qgifimage.h"
+// #include "qgifimage.h"
 
 QT_BEGIN_NAMESPACE
 namespace Ui {
@@ -34,6 +34,8 @@ class MainWidget : public QWidget {
   void moveDownBtnClicked();
   void moveLeftBtnClicked();
   void moveRightBtnClicked();
+  void zoomInClicked();
+  void zoomOutClicked();
 
  private:
   s21::Controller* controller_;

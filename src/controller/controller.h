@@ -26,6 +26,8 @@ class Controller {
 
   void objMoveBack(double value) { model_->objMoveBack(value); }
 
+  void objZoom(double value) { model_->objZoom(value); }
+
   void objRotateAroundX(double sin_angle, double cos_angle) {
     // model_calculator_.objRotateAroundX(sin_angle, cos_angle);
   }

@@ -107,3 +107,25 @@ TEST(obj_translation, xyz_rotation_on_0_degrees) {
   obj.modify(new s21::RotateStrategy(s21::RotateStrategy::Type::Z, 0));
   ASSERT_EQ(ref, obj.vertexes);
 }
+
+TEST(obj_scale, zoom_in_10_percent) {
+  s21::Obj obj("tests/obj_resurces/cube.obj");
+  s21::ScalingStrategy zoomIn(1.1);
+  obj.modify(&zoomIn);
+  std::vector<s21::Vertex_3d> ref = {{1.1, 1.1, -1.1},  {1.1, -1.1, -1.1},
+                                     {1.1, 1.1, 1.1},   {1.1, -1.1, 1.1},
+                                     {-1.1, 1.1, -1.1}, {-1.1, -1.1, -1.1},
+                                     {-1.1, 1.1, 1.1},  {-1.1, -1.1, 1.1}};
+  ASSERT_EQ(ref, obj.vertexes);
+}
+
+TEST(obj_scale, zoom_out_10_percent) {
+  s21::Obj obj("tests/obj_resurces/cube.obj");
+  s21::ScalingStrategy zoomOut(0.9);
+  obj.modify(&zoomOut);
+  std::vector<s21::Vertex_3d> ref = {{0.9, 0.9, -0.9},  {0.9, -0.9, -0.9},
+                                     {0.9, 0.9, 0.9},   {0.9, -0.9, 0.9},
+                                     {-0.9, 0.9, -0.9}, {-0.9, -0.9, -0.9},
+                                     {-0.9, 0.9, 0.9},  {-0.9, -0.9, 0.9}};
+  ASSERT_EQ(ref, obj.vertexes);
+}
