@@ -36,6 +36,7 @@ class MainWidget : public QWidget {
   void moveRightBtnClicked();
   void zoomInClicked();
   void zoomOutClicked();
+  void screenshotBtnClicked();
 
  private:
   s21::Controller* controller_;

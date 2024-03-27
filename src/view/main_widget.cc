@@ -1,5 +1,9 @@
 #include "main_widget.h"
 
+#include <QFileDialog>
+#include <QPushButton>
+#include <QString>
+
 #include "./ui_main_widget.h"
 #include "controller/controller.h"
 
@@ -29,6 +33,9 @@ MainWidget::MainWidget(QWidget *parent, s21::Controller *controller)
           &MainWidget::zoomInClicked);
   connect(ui->move_back_btn, &QPushButton::clicked, this,
           &MainWidget::zoomOutClicked);
+
+  connect(ui->screenshot_btn, &QPushButton::clicked, this,
+          &MainWidget::screenshotBtnClicked);
 }
 
 void MainWidget::openFileBtnClicked() {
@@ -70,6 +77,16 @@ void MainWidget::moveLeftBtnClicked() {
 void MainWidget::moveRightBtnClicked() {
   controller_->objMoveToRight(0.5);
   ui->gl_widget->update();
+}
+
+void MainWidget::screenshotBtnClicked() {
+  QFileDialog dialogPhoto(this);
+  QString screenshot_name =
+      dialogPhoto.getSaveFileName(this, "Save as...", "Screenshot",
+                                  "BMP (*.bmp);; JPEG(*.jpeg) ;; PNG(*.png)");
+  if (!screenshot_name.isEmpty()) {
+    controller_->screenshot(*ui->gl_widget, screenshot_name);
+  }
 }
 
 MainWidget::~MainWidget() { delete ui; }
