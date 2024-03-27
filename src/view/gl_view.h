@@ -5,6 +5,7 @@
 
 #include "controller/controller.h"
 #include "main_widget.h"
+#include "view/recordable_view.h"
 
 class OpenGLWidget : public QOpenGLWidget {
   Q_OBJECT

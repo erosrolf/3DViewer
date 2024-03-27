@@ -1,6 +1,10 @@
 #ifndef _3DVIEWER_SRC_CONTROLLER_CONTROLLER_H_
 #define _3DVIEWER_SRC_CONTROLLER_CONTROLLER_H_
 
+#include <QImage>
+#include <QOpenGLWidget>
+#include <QString>
+
 #include "../core/model.h"
 
 namespace s21 {
@@ -38,9 +42,11 @@ class Controller {
     // model_calculator_.objRotateAroundZ(sin_angle, cos_angle);
   }
 
-  void screenshot() {
-    // some instruction
+  void screenshot(QOpenGLWidget& view, QString screenshot_name) {
+    QImage screenshot = view.grabFramebuffer();
+    screenshot.save(screenshot_name);
   }
+
   void gifRecord() {
     // some instruction
   }

@@ -1,5 +1,8 @@
 #include "main_widget.h"
 
+#include <QFileDialog>
+#include <QString>
+
 #include "./ui_main_widget.h"
 #include "controller/controller.h"
 
@@ -14,10 +17,17 @@ MainWidget::MainWidget(QWidget *parent, s21::Controller *controller)
 
   connect(ui->open_file_btn, &QPushButton::clicked, this,
           &MainWidget::openFileBtnClicked);
-  connect(ui->move_up_btn, &QPushButton::clicked, this, &MainWidget::moveUpBtnClicked);
-  connect(ui->move_down_btn, &QPushButton::clicked, this, &MainWidget::moveDownBtnClicked);
-  connect(ui->move_left_btn, &QPushButton::clicked, this, &MainWidget::moveLeftBtnClicked);
-  connect(ui->move_right_btn, &QPushButton::clicked, this, &MainWidget::moveRightBtnClicked);
+  connect(ui->move_up_btn, &QPushButton::clicked, this,
+          &MainWidget::moveUpBtnClicked);
+  connect(ui->move_down_btn, &QPushButton::clicked, this,
+          &MainWidget::moveDownBtnClicked);
+  connect(ui->move_left_btn, &QPushButton::clicked, this,
+          &MainWidget::moveLeftBtnClicked);
+  connect(ui->move_right_btn, &QPushButton::clicked, this,
+          &MainWidget::moveRightBtnClicked);
+
+  connect(ui->screenshot_btn, &QPushButton::clicked, this,
+          &MainWidget::screenshotBtnClicked);
 }
 
 void MainWidget::openFileBtnClicked() {
@@ -59,6 +69,16 @@ void MainWidget::moveLeftBtnClicked() {
 void MainWidget::moveRightBtnClicked() {
   controller_->objMoveToRight(0.5);
   ui->gl_widget->update();
+}
+
+void MainWidget::screenshotBtnClicked() {
+  QFileDialog dialogPhoto(this);
+  QString screenshot_name =
+      dialogPhoto.getSaveFileName(this, "Save as...", "Screenshot",
+                                  "BMP (*.bmp);; JPEG(*.jpeg) ;; PNG(*.png)");
+  if (!screenshot_name.isEmpty()) {
+    controller_->screenshot(*ui->gl_widget, screenshot_name);
+  }
 }
 
 MainWidget::~MainWidget() { delete ui; }
