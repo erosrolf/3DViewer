@@ -4,6 +4,7 @@
 #include "obj.h"
 #include "obj_modifier_strategy/scale_strategy.h"
 #include "obj_modifier_strategy/translation_strategy.h"
+#include "obj_modifier_strategy/rotate_strategy.h"
 
 namespace s21 {
 
@@ -43,8 +44,17 @@ class Model {
 
   void objZoom(double value) { obj_.modify(new ScalingStrategy(value)); }
 
-  /* void objRotateAroundX(double value) { obj_.modify(newRotateStrategy(1)); }
-   */
+  void objRotateAroundX(double value) {
+    obj_.modify(new RotateStrategy(s21::RotateStrategy::Type::X, value));
+  }
+
+  void objRotateAroundY(double value) {
+    obj_.modify(new RotateStrategy(s21::RotateStrategy::Type::Y, value));
+  }
+
+  void objRotateAroundZ(double value) {
+    obj_.modify(new RotateStrategy(s21::RotateStrategy::Type::Z, value));
+  }
 
   bool objIsValid() const noexcept { return obj_.valid(); }
 

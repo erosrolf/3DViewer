@@ -465,7 +465,7 @@ QPushButton:clicked {
         <number>0</number>
        </property>
       </widget>
-      <widget class="QSlider" name="x_rotate_btn">
+      <widget class="QSlider" name="y_rotate_btn">
        <property name="geometry">
         <rect>
          <x>14</x>
@@ -506,7 +506,7 @@ QSlider::handle:horizontal {
         <enum>Qt::Horizontal</enum>
        </property>
       </widget>
-      <widget class="QSlider" name="y_rotate_btn">
+      <widget class="QSlider" name="x_rotate_btn">
        <property name="geometry">
         <rect>
          <x>96</x>

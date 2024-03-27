@@ -38,6 +38,11 @@ class MainWidget : public QWidget {
   void zoomOutClicked();
   void screenshotBtnClicked();
 
+ public slots:
+  void onXRotateValueChanged(int value);
+  void onYRotateValueChanged(int value);
+  void onZRotateValueChanged(int value);
+
  private:
   s21::Controller* controller_;
   Ui::MainWidget* ui;

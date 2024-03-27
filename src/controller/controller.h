@@ -32,17 +32,11 @@ class Controller {
 
   void objZoom(double value) { model_->objZoom(value); }
 
-  void objRotateAroundX(double sin_angle, double cos_angle) {
-    // model_calculator_.objRotateAroundX(sin_angle, cos_angle);
-  }
+  void objRotateAroundX(double value) { model_->objRotateAroundX(value); }
 
-  void objRotateAroundY(double sin_angle, double cos_angle) {
-    // model_calculator_.objRotateAroundY(sin_angle, cos_angle);
-  }
+  void objRotateAroundY(double value) { model_->objRotateAroundY(value); }
 
-  void objRotateAroundZ(double sin_angle, double cos_angle) {
-    // model_calculator_.objRotateAroundZ(sin_angle, cos_angle);
-  }
+  void objRotateAroundZ(double value) { model_->objRotateAroundZ(value); }
 
   void screenshot(QOpenGLWidget& view, QString screenshot_name) {
     QImage screenshot = view.grabFramebuffer();

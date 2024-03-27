@@ -36,6 +36,11 @@ MainWidget::MainWidget(QWidget *parent, s21::Controller *controller)
 
   connect(ui->screenshot_btn, &QPushButton::clicked, this,
           &MainWidget::screenshotBtnClicked);
+
+  connect(ui->x_rotate_btn, SIGNAL(valueChanged(int)), this,
+          SLOT(onXRotateValueChanged(int)));
+  connect(ui->y_rotate_btn, SIGNAL(valueChanged(int)), this,
+          SLOT(onYRotateValueChanged(int)));
 }
 
 void MainWidget::openFileBtnClicked() {
@@ -57,6 +62,9 @@ void MainWidget::openFileBtnClicked() {
       ui->obj_path_line->setText("ERROR");
     }
   }
+  ui->x_rotate_btn->setSliderPosition(0);
+  ui->y_rotate_btn->setSliderPosition(0);
+  ui->z_rotate_btn->setSliderPosition(0);
 }
 
 void MainWidget::moveUpBtnClicked() {
@@ -98,5 +106,20 @@ void MainWidget::zoomInClicked() {
 
 void MainWidget::zoomOutClicked() {
   controller_->objZoom(0.9);
+  ui->gl_widget->update();
+}
+
+void MainWidget::onXRotateValueChanged(int value) {
+  controller_->objRotateAroundX(value);
+  ui->gl_widget->update();
+}
+
+void MainWidget::onYRotateValueChanged(int value) {
+  controller_->objRotateAroundY(value);
+  ui->gl_widget->update();
+}
+
+void MainWidget::onZRotateValueChanged(int value) {
+  controller_->objRotateAroundZ(value);
   ui->gl_widget->update();
 }
