@@ -1,4 +1,7 @@
 .DS_Store
+src/CMakeLists.txt.user
+src/compile_commands.json
+src/.cache
 
 build*
 

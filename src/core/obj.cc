@@ -12,19 +12,19 @@ namespace s21 {
 
 // Constructors ------
 
-Obj::Obj() noexcept : vertexes(0), polygons(0), is_valid(false) {}
+Obj::Obj() noexcept : vertexes(0), polygons(0), is_valid_(false) {}
 
 Obj::Obj(const char* file_name) : Obj() { parseFile(file_name); }
 
 Obj::Obj(const Obj& other)
     : vertexes(other.vertexes),
       polygons(other.polygons),
-      is_valid(other.is_valid) {}
+      is_valid_(other.is_valid_) {}
 
 Obj::Obj(const Obj&& other) noexcept
     : vertexes(std::move(other.vertexes)),
       polygons(std::move(other.polygons)),
-      is_valid(other.is_valid) {}
+      is_valid_(other.is_valid_) {}
 
 void Obj::parseVertex(const std::string& v_line) {
   std::istringstream iss(v_line.substr(2));
@@ -33,7 +33,7 @@ void Obj::parseVertex(const std::string& v_line) {
     vertexes.push_back(vertex);
   } else {
     std::cerr << "Error parse vertex: " << v_line << '\n';
-    is_valid = false;
+    is_valid_ = false;
   }
 }
 
@@ -41,7 +41,7 @@ Obj& Obj::operator=(const Obj& other) {
   if (this != &other) {
     vertexes = other.vertexes;
     polygons = other.polygons;
-    is_valid = other.is_valid;
+    is_valid_ = other.is_valid_;
   }
   return *this;
 }
@@ -50,8 +50,8 @@ Obj& Obj::operator=(Obj&& other) noexcept {
   if (this != &other) {
     vertexes = std::move(other.vertexes);
     polygons = std::move(other.polygons);
-    is_valid = other.is_valid;
-    other.is_valid = false;
+    is_valid_ = other.is_valid_;
+    other.is_valid_ = false;
   }
   return *this;
 }
@@ -61,14 +61,14 @@ Obj& Obj::operator=(Obj&& other) noexcept {
 void Obj::parseFile(const char* file_name) {
   std::ifstream file(file_name);
   if (file.is_open()) {
-    is_valid = true;
+    is_valid_ = true;
   } else {
     std::cerr << "Error opening file: " << file_name << '\n';
     return;
   }
 
   std::string line;
-  while (std::getline(file, line) && is_valid) {
+  while (std::getline(file, line) && is_valid_) {
     if (line.rfind("v ", 0) == 0) {
       parseVertex(line);
     } else if (line.rfind("f ", 0) == 0) {
@@ -95,12 +95,12 @@ size_t Obj::parseFacetIndex(const std::string& token_with_index) {
   if (slash_1 != '/' || slash_2 != '/' ||
       num_1 > static_cast<long int>(vertexes.size())) {
     std::cerr << "Error parse facet index: " << token_with_index << '\n';
-    is_valid = false;
+    is_valid_ = false;
   }
   if (num_1 < 0) {
-    num_1 = vertexes.size() - num_1;
+    num_1 = vertexes.size() + (num_1 + 1);
   }
-  return num_1;
+  return num_1 - 1;
 }
 
 void Obj::parseFacet(const std::string& f_line) {
@@ -109,10 +109,10 @@ void Obj::parseFacet(const std::string& f_line) {
   poly.vertex_indexes.reserve(4);
   std::string token_with_index;
 
-  while (iss >> token_with_index && is_valid) {
+  while (iss >> token_with_index && is_valid_) {
     poly.vertex_indexes.push_back(parseFacetIndex(token_with_index));
   }
-  if (is_valid) {
+  if (is_valid_) {
     polygons.push_back(poly);
   }
 }
@@ -121,8 +121,14 @@ bool Obj::operator==(const Obj& other) const {
   if (this == &other) {
     return true;
   }
-  return is_valid == other.is_valid && vertexes == other.vertexes &&
+  return is_valid_ == other.is_valid_ && vertexes == other.vertexes &&
          polygons == other.polygons;
+}
+
+void Obj::clear() noexcept {
+  vertexes.clear();
+  polygons.clear();
+  is_valid_ = true;
 }
 
 };  // namespace s21

@@ -53,15 +53,17 @@ class Obj {
   void parseFile(const char* file_name);
   void modify(ObjModifier* strategy);
   bool operator==(const Obj& other) const;
+  bool valid() const noexcept { return is_valid_; }
+  void clear() noexcept;
 
   std::vector<Vertex_3d> vertexes;  ///< all vertexes of 3d model
   std::vector<Facet_3d> polygons;   ///< all polygons of 3d model
-  bool is_valid;  ///< true if the .obj file was successfully parsed
 
  private:
   void parseVertex(const std::string& v_line);
   void parseFacet(const std::string& f_line);
   size_t parseFacetIndex(const std::string& token_with_index);
+  bool is_valid_;  ///< true if the .obj file was successfully parsed
 };
 
 }  // namespace s21

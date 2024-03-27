@@ -1,9 +1,9 @@
 #ifndef MAINWIDGET_H
 #define MAINWIDGET_H
 
-#include <QWidget>
 #include <QFileDialog>
 #include <QColorDialog>
+#include <QWidget>
 
 #include "../controller/controller.h"
 
@@ -17,38 +17,36 @@
 //#include "qgifimage.h"
 
 QT_BEGIN_NAMESPACE
-namespace Ui { class MainWidget; }
+namespace Ui {
+class MainWidget;
+}
 QT_END_NAMESPACE
 
-class MainWidget : public QWidget
-{
-    Q_OBJECT
+class MainWidget : public QWidget {
+  Q_OBJECT
 
-public:
-    MainWidget(QWidget *parent = nullptr);
-    ~MainWidget();
+ public:
+  MainWidget(QWidget* parent = nullptr, s21::Controller* controller = nullptr);
+  ~MainWidget();
 
-    void openFileBtnClicked();
+  void openFileBtnClicked();
+  void moveUpBtnClicked();
+  void moveDownBtnClicked();
+  void moveLeftBtnClicked();
+  void moveRightBtnClicked();
 
-private slots:
-    void on_background_btn_clicked();
+ private slots:
+  void onBackgroundColorClicked();
+  void onVertexesColorClicked();
+  void onEdgesColorClicked();
+  void onVertexScaleSliderSliderMoved(int action);
+  void onEdgeScaleSliderSliderMoved(int action);
+  void onVertexModeSettingsCurrentIndexChanged(int index);
+  void onEdgeModeSettingsCurrentIndexChanged(int index);
+  void onPerspectiveSettingsCurrentIndexChanged(int index);
 
-    void on_vertexes_color_btn_clicked();
-
-    void on_edges_color_btn_clicked();
-
-    void on_vertexScaleSlider_actionTriggered(int action);
-
-    void on_edgeScaleSlider_actionTriggered(int action);
-
-    void on_vertex_mode_box_activated(int index);
-
-    void on_edge_mode_box_activated(int index);
-
-    void on_perspective_mode_box_activated(int index);
-
-private:
-    Ui::MainWidget *ui;
-    s21::Controller controller;
+ private:
+  Ui::MainWidget *ui;
+  s21::Controller* controller_;
 };
-#endif // MAINWIDGET_H
+#endif  // MAINWIDGET_H

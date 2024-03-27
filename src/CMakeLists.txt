@@ -2,7 +2,7 @@ cmake_minimum_required(VERSION 3.5)
 
 project(3DViewer VERSION 0.1 LANGUAGES CXX)
 
-# set(CMAKE_PREFIX_PATH "/usr/local/Qt-6.6.2/lib/cmake")
+#set(CMAKE_PREFIX_PATH "/usr/local/Qt-6.6.2/lib/cmake")
 
 set(CMAKE_INCLUDE_CURRENT_DIR ON)
 
@@ -16,6 +16,7 @@ set(CMAKE_CXX_STANDARD_REQUIRED ON)
 find_package(QT NAMES Qt6 Qt5 REQUIRED COMPONENTS Widgets)
 find_package(Qt${QT_VERSION_MAJOR} REQUIRED COMPONENTS Widgets OpenGLWidgets)
 
+link_libraries(${OPENGL_LIBRARIES})
 
 set(PROJECT_SOURCES
     main.cc
@@ -29,6 +30,10 @@ set(PROJECT_SOURCES
 
     controller/controller.h
 
+    core/obj_modifier_strategy/obj_modifier_strategy.h
+    core/obj_modifier_strategy/translation_strategy.cc
+    core/obj_modifier_strategy/rotate_strategy.cc
+    core/obj_modifier_strategy/scale_strategy.cc
     core/model.h
     core/obj.h
     core/obj.cc
