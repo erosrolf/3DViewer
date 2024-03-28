@@ -440,7 +440,7 @@ QPushButton:clicked {
       <property name="alignment">
        <set>Qt::AlignCenter</set>
       </property>
-      <widget class="QDial" name="z_rotate_btn">
+      <widget class="QDial" name="z_rotate_dial">
        <property name="geometry">
         <rect>
          <x>6</x>
@@ -464,8 +464,14 @@ QPushButton:clicked {
        <property name="value">
         <number>0</number>
        </property>
+       <property name="tracking">
+        <bool>true</bool>
+       </property>
+       <property name="wrapping">
+        <bool>true</bool>
+       </property>
       </widget>
-      <widget class="QSlider" name="y_rotate_btn">
+      <widget class="QSlider" name="y_rotate_slider">
        <property name="geometry">
         <rect>
          <x>14</x>
@@ -506,7 +512,7 @@ QSlider::handle:horizontal {
         <enum>Qt::Horizontal</enum>
        </property>
       </widget>
-      <widget class="QSlider" name="x_rotate_btn">
+      <widget class="QSlider" name="x_rotate_slider">
        <property name="geometry">
         <rect>
          <x>96</x>
@@ -597,7 +603,7 @@ QPushButton:clicked {
         <number>4</number>
        </property>
        <item row="0" column="1">
-        <widget class="QPushButton" name="zoomOut">
+        <widget class="QPushButton" name="zoom_out">
          <property name="minimumSize">
           <size>
            <width>34</width>
@@ -619,7 +625,7 @@ QPushButton:clicked {
         </widget>
        </item>
        <item row="0" column="2">
-        <widget class="QPushButton" name="zoomIn">
+        <widget class="QPushButton" name="zoom_in">
          <property name="minimumSize">
           <size>
            <width>34</width>
@@ -976,7 +982,7 @@ QPushButton:clicked {
       <attribute name="title">
        <string/>
       </attribute>
-      <widget class="QSlider" name="vertexScaleSlider">
+      <widget class="QSlider" name="vertex_scale_slider">
        <property name="enabled">
         <bool>true</bool>
        </property>
@@ -1040,7 +1046,7 @@ QSlider::handle:horizontal {
         <string>Vertex size</string>
        </property>
       </widget>
-      <widget class="QPushButton" name="edgePhone">
+      <widget class="QPushButton" name="edge_scale_phone">
        <property name="enabled">
         <bool>false</bool>
        </property>
@@ -1061,7 +1067,7 @@ QSlider::handle:horizontal {
         <string>Edge size</string>
        </property>
       </widget>
-      <widget class="QSlider" name="edgeScaleSlider">
+      <widget class="QSlider" name="edge_scale_slider">
        <property name="enabled">
         <bool>true</bool>
        </property>
@@ -1104,7 +1110,7 @@ QSlider::handle:horizontal {
         <enum>Qt::Horizontal</enum>
        </property>
       </widget>
-      <widget class="QLabel" name="scaleSettingsLabel">
+      <widget class="QLabel" name="scale_settings_label">
        <property name="geometry">
         <rect>
          <x>6</x>
@@ -1121,10 +1127,10 @@ QSlider::handle:horizontal {
        </property>
       </widget>
       <zorder>vertex_scale_phone</zorder>
-      <zorder>vertexScaleSlider</zorder>
-      <zorder>edgePhone</zorder>
-      <zorder>edgeScaleSlider</zorder>
-      <zorder>scaleSettingsLabel</zorder>
+      <zorder>vertex_scale_slider</zorder>
+      <zorder>edge_scale_phone</zorder>
+      <zorder>edge_scale_slider</zorder>
+      <zorder>scale_settings_label</zorder>
      </widget>
      <widget class="QWidget" name="color_settings_tab">
       <attribute name="title">

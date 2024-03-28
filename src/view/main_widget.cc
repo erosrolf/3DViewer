@@ -26,21 +26,21 @@ MainWidget::MainWidget(QWidget *parent, s21::Controller *controller)
           &MainWidget::moveLeftBtnClicked);
   connect(ui->move_right_btn, &QPushButton::clicked, this,
           &MainWidget::moveRightBtnClicked);
-  connect(ui->zoomIn, &QPushButton::clicked, this, &MainWidget::zoomInClicked);
-  connect(ui->zoomOut, &QPushButton::clicked, this,
+  connect(ui->zoom_in, &QPushButton::clicked, this, &MainWidget::zoomInClicked);
+  connect(ui->zoom_out, &QPushButton::clicked, this,
           &MainWidget::zoomOutClicked);
   connect(ui->move_forward_btn, &QPushButton::clicked, this,
           &MainWidget::zoomInClicked);
   connect(ui->move_back_btn, &QPushButton::clicked, this,
           &MainWidget::zoomOutClicked);
-
+  connect(ui->x_rotate_slider, &QSlider::valueChanged, this,
+          &MainWidget::onXRotateValueChanged);
+  connect(ui->y_rotate_slider, &QSlider::valueChanged, this,
+          &MainWidget::onYRotateValueChanged);
+  connect(ui->z_rotate_dial, &QDial::valueChanged, this,
+          &MainWidget::onZRotateValueChanged);
   connect(ui->screenshot_btn, &QPushButton::clicked, this,
           &MainWidget::screenshotBtnClicked);
-
-  connect(ui->x_rotate_btn, SIGNAL(valueChanged(int)), this,
-          SLOT(onXRotateValueChanged(int)));
-  connect(ui->y_rotate_btn, SIGNAL(valueChanged(int)), this,
-          SLOT(onYRotateValueChanged(int)));
 }
 
 void MainWidget::openFileBtnClicked() {
@@ -62,9 +62,9 @@ void MainWidget::openFileBtnClicked() {
       ui->obj_path_line->setText("ERROR");
     }
   }
-  ui->x_rotate_btn->setSliderPosition(0);
-  ui->y_rotate_btn->setSliderPosition(0);
-  ui->z_rotate_btn->setSliderPosition(0);
+  ui->x_rotate_slider->setSliderPosition(0);
+  ui->y_rotate_slider->setSliderPosition(0);
+  ui->z_rotate_dial->setSliderPosition(0);
 }
 
 void MainWidget::moveUpBtnClicked() {
@@ -110,16 +110,19 @@ void MainWidget::zoomOutClicked() {
 }
 
 void MainWidget::onXRotateValueChanged(int value) {
+  qDebug() << value;
   controller_->objRotateAroundX(value);
   ui->gl_widget->update();
 }
 
 void MainWidget::onYRotateValueChanged(int value) {
+  qDebug() << value;
   controller_->objRotateAroundY(value);
   ui->gl_widget->update();
 }
 
 void MainWidget::onZRotateValueChanged(int value) {
+  qDebug() << value;
   controller_->objRotateAroundZ(value);
   ui->gl_widget->update();
 }
