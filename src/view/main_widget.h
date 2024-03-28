@@ -47,5 +47,8 @@ class MainWidget : public QWidget {
  private:
   s21::Controller* controller_;
   Ui::MainWidget* ui;
+  int prevValXRotate_;
+  int prevValYRotate_;
+  int prevValZRotate_;
 };
 #endif  // MAINWIDGET_H

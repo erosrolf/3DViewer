@@ -113,31 +113,49 @@ void MainWidget::zoomOutClicked() {
 }
 
 void MainWidget::onXRotateSliderReleased() {
+  prevValXRotate_ = 0;
   ui->x_rotate_slider->setSliderPosition(0);
 }
 
 void MainWidget::onYRotateSliderReleased() {
+  prevValYRotate_ = 0;
   ui->y_rotate_slider->setSliderPosition(0);
 }
 
 void MainWidget::onZRotateSliderReleased() {
+  prevValZRotate_ = 0;
   ui->z_rotate_dial->setSliderPosition(0);
 }
 
 void MainWidget::onXRotateValueChanged(int value) {
-  qDebug() << value;
-  controller_->objRotateAroundX(value);
-  ui->gl_widget->update();
+  if (controller_->objIsValid()) {
+    if (value < prevValXRotate_) {
+      controller_->objRotateAroundX(20);
+    } else if (value) {
+      controller_->objRotateAroundX(-20);
+    }
+    ui->gl_widget->update();
+  }
 }
 
 void MainWidget::onYRotateValueChanged(int value) {
-  qDebug() << value;
-  controller_->objRotateAroundY(value);
-  ui->gl_widget->update();
+  if (controller_->objIsValid()) {
+    if (value < prevValYRotate_) {
+      controller_->objRotateAroundY(20);
+    } else if (value) {
+      controller_->objRotateAroundY(-20);
+    }
+    ui->gl_widget->update();
+  }
 }
 
 void MainWidget::onZRotateValueChanged(int value) {
-  qDebug() << value;
-  controller_->objRotateAroundZ(value);
-  ui->gl_widget->update();
+  if (controller_->objIsValid()) {
+    if (value < prevValZRotate_) {
+      controller_->objRotateAroundZ(20);
+    } else if (value) {
+      controller_->objRotateAroundZ(-20);
+    }
+    ui->gl_widget->update();
+  }
 }
