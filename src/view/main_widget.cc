@@ -33,6 +33,12 @@ MainWidget::MainWidget(QWidget *parent, s21::Controller *controller)
           &MainWidget::zoomInClicked);
   connect(ui->move_back_btn, &QPushButton::clicked, this,
           &MainWidget::zoomOutClicked);
+  connect(ui->x_rotate_slider, &QSlider::sliderReleased, this,
+          &MainWidget::onXRotateSliderReleased);
+  connect(ui->y_rotate_slider, &QSlider::sliderReleased, this,
+          &MainWidget::onYRotateSliderReleased);
+  connect(ui->z_rotate_dial, &QSlider::sliderReleased, this,
+          &MainWidget::onZRotateSliderReleased);
   connect(ui->x_rotate_slider, &QSlider::valueChanged, this,
           &MainWidget::onXRotateValueChanged);
   connect(ui->y_rotate_slider, &QSlider::valueChanged, this,
@@ -62,9 +68,6 @@ void MainWidget::openFileBtnClicked() {
       ui->obj_path_line->setText("ERROR");
     }
   }
-  ui->x_rotate_slider->setSliderPosition(0);
-  ui->y_rotate_slider->setSliderPosition(0);
-  ui->z_rotate_dial->setSliderPosition(0);
 }
 
 void MainWidget::moveUpBtnClicked() {
@@ -107,6 +110,18 @@ void MainWidget::zoomInClicked() {
 void MainWidget::zoomOutClicked() {
   controller_->objZoom(0.9);
   ui->gl_widget->update();
+}
+
+void MainWidget::onXRotateSliderReleased() {
+  ui->x_rotate_slider->setSliderPosition(0);
+}
+
+void MainWidget::onYRotateSliderReleased() {
+  ui->y_rotate_slider->setSliderPosition(0);
+}
+
+void MainWidget::onZRotateSliderReleased() {
+  ui->z_rotate_dial->setSliderPosition(0);
 }
 
 void MainWidget::onXRotateValueChanged(int value) {

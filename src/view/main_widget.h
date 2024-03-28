@@ -37,6 +37,9 @@ class MainWidget : public QWidget {
   void zoomInClicked();
   void zoomOutClicked();
   void screenshotBtnClicked();
+  void onXRotateSliderReleased();
+  void onYRotateSliderReleased();
+  void onZRotateSliderReleased();
   void onXRotateValueChanged(int value);
   void onYRotateValueChanged(int value);
   void onZRotateValueChanged(int value);

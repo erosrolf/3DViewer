@@ -453,10 +453,10 @@ QPushButton:clicked {
         <string notr="true"/>
        </property>
        <property name="minimum">
-        <number>-10</number>
+        <number>-40</number>
        </property>
        <property name="maximum">
-        <number>10</number>
+        <number>40</number>
        </property>
        <property name="pageStep">
         <number>10</number>
@@ -503,10 +503,10 @@ QSlider::handle:horizontal {
 }</string>
        </property>
        <property name="minimum">
-        <number>-10</number>
+        <number>-40</number>
        </property>
        <property name="maximum">
-        <number>10</number>
+        <number>40</number>
        </property>
        <property name="orientation">
         <enum>Qt::Horizontal</enum>
@@ -538,10 +538,10 @@ QSlider::handle:vertical {
 }</string>
        </property>
        <property name="minimum">
-        <number>-10</number>
+        <number>-40</number>
        </property>
        <property name="maximum">
-        <number>10</number>
+        <number>40</number>
        </property>
        <property name="orientation">
         <enum>Qt::Vertical</enum>
