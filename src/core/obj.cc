@@ -1,7 +1,5 @@
 #include "obj.h"
 
-#include <sys/_types/_caddr_t.h>
-
 #include <algorithm>
 #include <cmath>
 #include <fstream>
