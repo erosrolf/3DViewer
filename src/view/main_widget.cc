@@ -18,14 +18,14 @@ MainWidget::MainWidget(QWidget *parent, s21::Controller *controller)
   connect(ui->move_left_btn, &QPushButton::clicked, this, &MainWidget::moveLeftBtnClicked);
   connect(ui->move_right_btn, &QPushButton::clicked, this, &MainWidget::moveRightBtnClicked);
 
-  connect(ui->background_btn, SIGNAL(clicked()), this, SLOT(onBackgroundColorClicked()));
-  connect(ui->vertexes_color_btn, SIGNAL(clicked()), this, SLOT(onVertexesColorClicked()));
-  connect(ui->edges_color_btn, SIGNAL(clicked()), this, SLOT(onEdgesColorClicked()));
-  connect(ui->vertexScaleSlider, SIGNAL(sliderMoved(int)), this, SLOT(onVertexScaleSliderSliderMoved(int)));
-  connect(ui->edgeScaleSlider, SIGNAL(sliderMoved(int)), this, SLOT(onEdgeScaleSliderSliderMoved(int)));
-  connect(ui->vertex_mode_box, SIGNAL(currentIndexChanged(int)), this, SLOT(onVertexModeSettingsCurrentIndexChanged(int)));
-  connect(ui->edge_mode_box, SIGNAL(currentIndexChanged(int)), this, SLOT(onEdgeModeSettingsCurrentIndexChanged(int)));
-  connect(ui->perspective_mode_box, SIGNAL(currentIndexChanged(int)), this, SLOT(onPerspectiveSettingsCurrentIndexChanged(int)));
+  connect(ui->background_btn, &QPushButton::clicked, this, &MainWidget::onBackgroundColorClicked);
+  connect(ui->vertexes_color_btn, &QPushButton::clicked, this, &MainWidget::onVertexesColorClicked);
+  connect(ui->edges_color_btn, &QPushButton::clicked, this, &MainWidget::onEdgesColorClicked);
+  connect(ui->vertexScaleSlider, &QSlider::sliderMoved, this, &MainWidget::onVertexScaleSliderSliderMoved);
+  connect(ui->edgeScaleSlider, &QSlider::sliderMoved, this, &MainWidget::onEdgeScaleSliderSliderMoved);
+  connect(ui->vertex_mode_box, &QComboBox::currentIndexChanged, this, &MainWidget::onVertexModeSettingsCurrentIndexChanged);
+  connect(ui->edge_mode_box, &QComboBox::currentIndexChanged, this, &MainWidget::onEdgeModeSettingsCurrentIndexChanged);
+  connect(ui->perspective_mode_box, &QComboBox::currentIndexChanged, this, &MainWidget::onPerspectiveSettingsCurrentIndexChanged);
 }
 
 MainWidget::~MainWidget() { delete ui; }

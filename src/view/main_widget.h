@@ -35,7 +35,6 @@ class MainWidget : public QWidget {
   void moveLeftBtnClicked();
   void moveRightBtnClicked();
 
- private slots:
   void onBackgroundColorClicked();
   void onVertexesColorClicked();
   void onEdgesColorClicked();
