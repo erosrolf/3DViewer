@@ -15,7 +15,8 @@ OpenGLWidget::OpenGLWidget(QWidget* parent, MainWidget* mv_ptr,
       main_widget_ptr_(mv_ptr),
       controller_(controller_ptr) {
 
-  // значения по умолчанию. потом убрать ???
+  perspectiveMode = 0;
+  // цвета по умолчанию. потом убрать ???
   edgeColor = QColor(Qt::white);
   vertexColor = QColor(Qt::yellow); 
   backgroundColor = QColor(Qt::black);
@@ -69,9 +70,7 @@ void OpenGLWidget::paintObjLines() {
 
 void OpenGLWidget::paintObjVertexes() {
   // glColor3d(1, 1, 1);
-  if (vertexMode != 2)  // 2 мод = отсутвствие точек
-    glColor3d(vertexColor.redF(), vertexColor.greenF(), vertexColor.blueF());  // задаем цвет для точек
-
+  glColor3d(vertexColor.redF(), vertexColor.greenF(), vertexColor.blueF());  // задаем цвет для точек
   glBegin(GL_POINTS);
   for (auto& vertex : controller_->getObjVertexes()) {
     glVertex3d(vertex.x, vertex.y, vertex.z);
@@ -89,8 +88,8 @@ void OpenGLWidget::paintGL() {
 
   if (controller_->objIsValid()) {
     paintObjLines();
-    // if отсутствие точек добавить
-    paintObjVertexes();
+    if (vertexMode != 2)
+      paintObjVertexes();
   }
 }
 
@@ -102,7 +101,7 @@ void OpenGLWidget::setupPerspective() {
   if (maxCoord < 1) {
     maxCoord = 2;
   }
-  if (perspectiveMode) {
+  if (!perspectiveMode) {
     GLdouble fovY = 90;  // Поле зрения в градусах по оси y
     GLdouble fH = tan(fovY / 360 * M_PI) * zNear;
     GLdouble fW = fH * aspectRatio;
