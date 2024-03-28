@@ -2,11 +2,11 @@
 #define MAINWIDGET_H
 
 #include <QFileDialog>
+#include <QColorDialog>
 #include <QWidget>
 
 #include "../controller/controller.h"
 
-// #include <QColorDialog>
 
 // #include <QMainWindow>
 // #include <QPixmap>
@@ -44,7 +44,17 @@ class MainWidget : public QWidget {
   void onYRotateValueChanged(int value);
   void onZRotateValueChanged(int value);
 
+  void onBackgroundColorClicked();
+  void onVertexesColorClicked();
+  void onEdgesColorClicked();
+  void onVertexScaleSliderSliderMoved(int action);
+  void onEdgeScaleSliderSliderMoved(int action);
+  void onVertexModeSettingsCurrentIndexChanged(int index);
+  void onEdgeModeSettingsCurrentIndexChanged(int index);
+  void onPerspectiveSettingsCurrentIndexChanged(int index);
+
  private:
+  Ui::MainWidget *ui;
   s21::Controller* controller_;
   Ui::MainWidget* ui;
   int prevValXRotate_;

@@ -836,7 +836,7 @@ QPushButton:clicked {
       <enum>QTabWidget::Rounded</enum>
      </property>
      <property name="currentIndex">
-      <number>1</number>
+      <number>0</number>
      </property>
      <property name="elideMode">
       <enum>Qt::ElideRight</enum>
@@ -958,7 +958,7 @@ QPushButton:clicked {
         <string>perspective</string>
        </property>
        <property name="currentIndex">
-        <number>1</number>
+        <number>0</number>
        </property>
        <property name="maxVisibleItems">
         <number>3</number>
@@ -968,12 +968,12 @@ QPushButton:clicked {
        </property>
        <item>
         <property name="text">
-         <string>orthagonal</string>
+         <string>perspective</string>
         </property>
        </item>
        <item>
         <property name="text">
-         <string>perspective</string>
+         <string>orthagonal</string>
         </property>
        </item>
       </widget>
