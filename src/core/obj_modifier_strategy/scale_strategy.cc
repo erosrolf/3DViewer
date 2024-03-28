@@ -10,6 +10,9 @@ void ScalingStrategy::modify(Obj& obj) {
     vertex.y *= s_;
     vertex.z *= s_;
   }
+  obj.center.x *= s_;
+  obj.center.y *= s_;
+  obj.center.z *= s_;
 }
 
 }  // namespace s21

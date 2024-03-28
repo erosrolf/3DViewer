@@ -15,6 +15,9 @@ void TranslationStrategy::modify(Obj& obj) {
     vertex.y += y_;
     vertex.z += z_;
   }
+  obj.center.x += x_;
+  obj.center.y += y_;
+  obj.center.z += z_;
 }
 
 }  // namespace s21

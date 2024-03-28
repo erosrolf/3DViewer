@@ -3,6 +3,7 @@
 
 #include <stdint.h>
 
+#include <algorithm>
 #include <cmath>
 #include <string>
 #include <vector>
@@ -15,11 +16,7 @@ class ObjModifier;
  * contains the coordinates of a point in 3d space.
  */
 struct Vertex_3d {
-  bool operator==(const Vertex_3d& other) const {
-    const double epsilon = 1e-6;
-    return std::fabs(x - other.x) < epsilon &&
-           std::fabs(y - other.y) < epsilon && std::fabs(z - other.z) < epsilon;
-  }
+  bool operator==(const Vertex_3d& other) const;
 
   double x, y, z;
 };
@@ -37,6 +34,30 @@ struct Facet_3d {
 };
 
 /**
+ * @brief class ExtremePositions
+ * stores extreme values of the model while parsing obj from file
+ */
+struct ExtremePositions {
+  ExtremePositions()
+      : empty(true),
+        min_x(0.0),
+        min_y(0.0),
+        min_z(0.0),
+        max_x(0.0),
+        max_y(0.0),
+        max_z(0.0) {}
+
+  void reset() { empty = true; }
+  void update(Vertex_3d v);
+  double getMaxValue();
+  Vertex_3d getCenterPoint();
+
+  bool empty;
+  double min_x, min_y, min_z;
+  double max_x, max_y, max_z;
+};
+
+/**
  * @brief class Obj
  * reads a file in .obj format and writes data about the 3d model
  */
@@ -50,20 +71,27 @@ class Obj {
   Obj& operator=(Obj&& other) noexcept;
   ~Obj() = default;
 
+  static double destanceBetweenVertexes(const Vertex_3d first,
+                                        const Vertex_3d second);
+
   void parseFile(const char* file_name);
   void modify(ObjModifier* strategy);
   bool operator==(const Obj& other) const;
   bool valid() const noexcept { return is_valid_; }
   void clear() noexcept;
+  Vertex_3d findCenter();
 
+  double max_value;                 ///< value with the maximum coordinate
+  Vertex_3d center;                 ///< obj with obj center coordinates
   std::vector<Vertex_3d> vertexes;  ///< all vertexes of 3d model
   std::vector<Facet_3d> polygons;   ///< all polygons of 3d model
 
  private:
-  void parseVertex(const std::string& v_line);
+  void parseVertex(const std::string& v_line, ExtremePositions& extreme_pos);
   void parseFacet(const std::string& f_line);
   size_t parseFacetIndex(const std::string& token_with_index);
-  bool is_valid_;  ///< true if the .obj file was successfully parsed
+
+  bool is_valid_;
 };
 
 }  // namespace s21
