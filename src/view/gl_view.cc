@@ -13,7 +13,13 @@ OpenGLWidget::OpenGLWidget(QWidget* parent, MainWidget* mv_ptr,
                            s21::Controller* controller_ptr)
     : QOpenGLWidget(parent),
       main_widget_ptr_(mv_ptr),
-      controller_(controller_ptr) {}
+      controller_(controller_ptr) {
+
+  // значения по умолчанию. потом убрать ???
+  edgeColor = QColor(Qt::white);
+  vertexColor = QColor(Qt::yellow); 
+  backgroundColor = QColor(Qt::black);
+} 
 
 // init_data_struct(&objData);
 //}
@@ -83,6 +89,7 @@ void OpenGLWidget::paintGL() {
 
   if (controller_->objIsValid()) {
     paintObjLines();
+    // if отсутствие точек добавить
     paintObjVertexes();
   }
 }
