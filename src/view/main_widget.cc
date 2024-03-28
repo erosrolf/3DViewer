@@ -51,8 +51,8 @@ MainWidget::MainWidget(QWidget *parent, s21::Controller *controller)
   connect(ui->background_btn, &QPushButton::clicked, this, &MainWidget::onBackgroundColorClicked);
   connect(ui->vertexes_color_btn, &QPushButton::clicked, this, &MainWidget::onVertexesColorClicked);
   connect(ui->edges_color_btn, &QPushButton::clicked, this, &MainWidget::onEdgesColorClicked);
-  connect(ui->vertexScaleSlider, &QSlider::sliderMoved, this, &MainWidget::onVertexScaleSliderSliderMoved);
-  connect(ui->edgeScaleSlider, &QSlider::sliderMoved, this, &MainWidget::onEdgeScaleSliderSliderMoved);
+  connect(ui->vertex_scale_slider, &QSlider::sliderMoved, this, &MainWidget::onVertexScaleSliderSliderMoved);
+  connect(ui->edge_scale_slider, &QSlider::sliderMoved, this, &MainWidget::onEdgeScaleSliderSliderMoved);
   connect(ui->vertex_mode_box, &QComboBox::currentIndexChanged, this, &MainWidget::onVertexModeSettingsCurrentIndexChanged);
   connect(ui->edge_mode_box, &QComboBox::currentIndexChanged, this, &MainWidget::onEdgeModeSettingsCurrentIndexChanged);
   connect(ui->perspective_mode_box, &QComboBox::currentIndexChanged, this, &MainWidget::onPerspectiveSettingsCurrentIndexChanged);
