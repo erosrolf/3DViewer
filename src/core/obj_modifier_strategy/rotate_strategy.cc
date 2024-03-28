@@ -33,6 +33,7 @@ void RotateStrategy::rotate(Obj& obj, double angle, RotateFunction rotateFunc) {
   for (auto& vertex : obj.vertexes) {
     (this->*rotateFunc)(vertex, sin_angle, cos_angle);
   }
+  (this->*rotateFunc)(obj.center, sin_angle, cos_angle);
 }
 
 void RotateStrategy::rotateX(Vertex_3d& vertex, double sin_angle,
