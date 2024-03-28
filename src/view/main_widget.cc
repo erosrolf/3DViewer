@@ -134,6 +134,7 @@ void MainWidget::onXRotateValueChanged(int value) {
     } else if (value) {
       controller_->objRotateAroundX(-20);
     }
+    prevValXRotate_ = value;
     ui->gl_widget->update();
   }
 }
@@ -145,6 +146,7 @@ void MainWidget::onYRotateValueChanged(int value) {
     } else if (value) {
       controller_->objRotateAroundY(-20);
     }
+    prevValYRotate_ = value;
     ui->gl_widget->update();
   }
 }
@@ -156,6 +158,7 @@ void MainWidget::onZRotateValueChanged(int value) {
     } else if (value) {
       controller_->objRotateAroundZ(-20);
     }
+    prevValZRotate_ = value;
     ui->gl_widget->update();
   }
 }
