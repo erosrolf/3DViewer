@@ -71,9 +71,6 @@ class Obj {
   Obj& operator=(Obj&& other) noexcept;
   ~Obj() = default;
 
-  static double destanceBetweenVertexes(const Vertex_3d first,
-                                        const Vertex_3d second);
-
   void parseFile(const char* file_name);
   void modify(ObjModifier* strategy);
   bool operator==(const Obj& other) const;

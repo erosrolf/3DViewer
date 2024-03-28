@@ -64,7 +64,11 @@ Vertex_3d ExtremePositions::getCenterPoint() {
 //  OBJ Constructors ------
 
 Obj::Obj() noexcept
-    : max_value(0.0), center(), vertexes(0), polygons(0), is_valid_(false) {}
+    : max_value(0.0),
+      center({0, 0, 0}),
+      vertexes(0),
+      polygons(0),
+      is_valid_(false) {}
 
 Obj::Obj(const char* file_name) : Obj() { parseFile(file_name); }
 
@@ -106,11 +110,6 @@ Obj& Obj::operator=(Obj&& other) noexcept {
 }
 
 // OBJ Public Metods ------
-double Obj::destanceBetweenVertexes(const Vertex_3d v1, const Vertex_3d v2) {
-  return std::sqrt(v2.x - v1.x * v2.x - v1.x) + (v2.y - v1.y * v2.y - v1.y) +
-         (v2.z - v1.z * v2.z - v1.z);
-}
-
 void Obj::parseFile(const char* file_name) {
   std::ifstream file(file_name);
   if (file.is_open()) {
