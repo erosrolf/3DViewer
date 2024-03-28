@@ -31,6 +31,7 @@ void OpenGLWidget::initRenderSettings() {
   // glClearColor(0, 0, 0, 0);           // цвет фона
   glClearColor(backgroundColor.redF(), backgroundColor.greenF(),
                backgroundColor.blueF(), backgroundColor.alphaF());  //цвет фона
+  glClear(GL_COLOR_BUFFER_BIT);
 
   // perspectiveMode = 1;
   if (vertexMode == 1)
@@ -70,12 +71,14 @@ void OpenGLWidget::paintObjLines() {
 
 void OpenGLWidget::paintObjVertexes() {
   // glColor3d(1, 1, 1);
-  glColor3d(vertexColor.redF(), vertexColor.greenF(), vertexColor.blueF());  // задаем цвет для точек
-  glBegin(GL_POINTS);
-  for (auto& vertex : controller_->getObjVertexes()) {
-    glVertex3d(vertex.x, vertex.y, vertex.z);
+  if (vertexMode != 2) {
+    glColor3d(vertexColor.redF(), vertexColor.greenF(), vertexColor.blueF());  // задаем цвет для точек
+    glBegin(GL_POINTS);
+    for (auto& vertex : controller_->getObjVertexes()) {
+      glVertex3d(vertex.x, vertex.y, vertex.z);
+    }
+    glEnd();
   }
-  glEnd();
 }
 
 void OpenGLWidget::paintGL() {
@@ -88,8 +91,7 @@ void OpenGLWidget::paintGL() {
 
   if (controller_->objIsValid()) {
     paintObjLines();
-    if (vertexMode != 2)
-      paintObjVertexes();
+    paintObjVertexes();
   }
 }
 

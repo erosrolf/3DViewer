@@ -68,8 +68,7 @@ void MainWidget::moveRightBtnClicked() {
   ui->gl_widget->update();
 }
 
-void MainWidget::onBackgroundColorClicked()
-{
+void MainWidget::onBackgroundColorClicked() {
     QColor background = QColorDialog::getColor();
     if (background.isValid()) {
         ui->gl_widget->backgroundColor = background;
