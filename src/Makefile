@@ -88,6 +88,9 @@ dvi:
 dist:
 	git archive --format=tar --prefix=$(NAME_PROJECT)/ HEAD | gzip > $(DIST_ARCHIVE)
 
+valgrind: tests
+	@CK_FORK=no valgrind --trace-children=yes --track-fds=yes --track-origins=yes --leak-check=full --show-leak-kinds=all ./$(TEST_EXECUTABLE)
+	
 style_check:
 	@find . -type f -name '*.cc' -or -name '*.h' | xargs -I {} sh -c 'echo "Checking {}" && clang-format -n -style=Google {}'
 
