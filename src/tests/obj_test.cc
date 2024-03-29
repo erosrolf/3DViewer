@@ -50,3 +50,30 @@ TEST(obj, test_operatror_eq) {
   ASSERT_EQ(obj1, obj2);
   ASSERT_EQ(obj1, obj1);
 }
+
+TEST(obj, constructor_copy) {
+  s21::Obj obj1("tests/obj_resurces/cube.obj");
+  s21::Obj obj2(obj1);
+  ASSERT_EQ(obj1, obj2);
+}
+
+TEST(obj, constructor_move) {
+  // s21::Obj* obj1 = new s21::Obj("tests/obj_resurces/cube.obj");
+  // s21::Obj obj2 = (std::move(*obj1));
+  // ASSERT_EQ(*obj1, obj2);
+  s21::Obj obj1("tests/obj_resurces/cube.obj");
+  s21::Obj obj2(std::move(obj1));
+}
+
+TEST(obj, constructor_equals_copy) {
+  s21::Obj obj1("tests/obj_resurces/cube.obj");
+  s21::Obj obj2;
+  obj2 = obj1;
+  ASSERT_EQ(obj1, obj2);
+}
+
+TEST(obj, constructor_equals_move) {
+  s21::Obj obj1("tests/obj_resurces/cube.obj");
+  s21::Obj obj2;
+  obj2 = std::move(obj1);
+}
