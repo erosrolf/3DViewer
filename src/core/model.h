@@ -9,6 +9,9 @@
 
 namespace s21 {
 
+/**
+ * @brief class Model is facade for core lib.
+ */
 class Model {
  public:
   const Obj& openNewObj(const char* file_name) {

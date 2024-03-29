@@ -81,6 +81,10 @@ gcov_report: tests
 	@$(OPEN_CMD) report/index.html
 	@rm -rf *.gcda *.gcno *.info *.dSYM 
 
+dvi:
+	doxygen Doxyfile
+	$(OPEN_CMD) ./documentation/html/index.html
+
 dist:
 	git archive --format=tar --prefix=$(NAME_PROJECT)/ HEAD | gzip > $(DIST_ARCHIVE)
 
@@ -94,5 +98,6 @@ clean:
 	rm -rf $(DIR_OBJ) $(DIR_BUILD)
 	rm -rf report
 	rm -rf *.tgz
+	rm -rf documentation
 
 .PHONY: all clean test

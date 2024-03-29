@@ -9,7 +9,15 @@ namespace s21 {
 class Obj;
 
 class TranslationStrategy : public ObjModifier {
+  /**
+   * @brief Strategy for translation a 3D object
+   */
  public:
+  /**
+   * @param x the number by which all points will move along the X axis
+   * @param y the number by which all points will move along the Y axis
+   * @param z the number by which all points will move along the Z axis
+   */
   TranslationStrategy(double x, double y, double z);
 
   void modify(Obj& obj) override;

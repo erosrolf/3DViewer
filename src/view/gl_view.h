@@ -6,6 +6,9 @@
 #include "controller/controller.h"
 #include "main_widget.h"
 
+/**
+ * @brief Widget in which the loaded 3D model is rendered.
+ */
 class OpenGLWidget : public QOpenGLWidget {
   Q_OBJECT
 

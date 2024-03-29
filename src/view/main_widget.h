@@ -7,20 +7,15 @@
 
 #include "../controller/controller.h"
 
-// #include <QMainWindow>
-// #include <QPixmap>
-// #include <QScreen>
-// #include <QSettings>
-// #include <QTimer>
-
-// #include "qgifimage.h"
-
 QT_BEGIN_NAMESPACE
 namespace Ui {
 class MainWidget;
 }
 QT_END_NAMESPACE
 
+/**
+ * @brief Main application window class
+ */
 class MainWidget : public QWidget {
   Q_OBJECT
 

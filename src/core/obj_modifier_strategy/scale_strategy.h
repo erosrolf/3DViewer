@@ -8,8 +8,14 @@ namespace s21 {
 
 class Obj;
 
+/**
+ * @brief Strategy for scaling a 3D object in on all axes
+ */
 class ScalingStrategy : public ObjModifier {
  public:
+  /**
+   * @param s the number by which the object's size is multiplied
+   */
   ScalingStrategy(double s) : s_(s) {}
 
   void modify(Obj& obj) override;
