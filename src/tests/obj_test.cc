@@ -58,11 +58,9 @@ TEST(obj, constructor_copy) {
 }
 
 TEST(obj, constructor_move) {
-  // s21::Obj* obj1 = new s21::Obj("tests/obj_resurces/cube.obj");
-  // s21::Obj obj2 = (std::move(*obj1));
-  // ASSERT_EQ(*obj1, obj2);
   s21::Obj obj1("tests/obj_resurces/cube.obj");
   s21::Obj obj2(std::move(obj1));
+  ASSERT_FALSE(obj1 == obj2);
 }
 
 TEST(obj, constructor_equals_copy) {
@@ -76,7 +74,9 @@ TEST(obj, constructor_equals_move) {
   s21::Obj obj1("tests/obj_resurces/cube.obj");
   s21::Obj obj2;
   obj2 = std::move(obj1);
+  ASSERT_FALSE(obj1 == obj2);
 }
+
 TEST(obj, open_empty_file) {
   s21::Obj obj("tests/obj_resurces/empty.obj");
   ASSERT_TRUE(obj.valid());
