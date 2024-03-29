@@ -86,7 +86,8 @@ class Obj {
  private:
   void parseVertex(const std::string& v_line, ExtremePositions& extreme_pos);
   void parseFacet(const std::string& f_line);
-  size_t parseFacetIndex(const std::string& token_with_index);
+  size_t parseFacetIndex(const std::string& token_with_index,
+                         const std::string& f_line);
 
   bool is_valid_;
 };

@@ -175,26 +175,24 @@ void Obj::parseFacet(const std::string& f_line) {
   std::string token_with_index;
 
   while (iss >> token_with_index && is_valid_) {
-    poly.vertex_indexes.push_back(parseFacetIndex(token_with_index));
+    poly.vertex_indexes.push_back(parseFacetIndex(token_with_index, f_line));
   }
   if (is_valid_) {
     polygons.push_back(poly);
   }
 }
 
-size_t Obj::parseFacetIndex(const std::string& token_with_index) {
+size_t Obj::parseFacetIndex(const std::string& token_with_index,
+                            const std::string& f_line) {
   std::istringstream iss(token_with_index);
-  long int num_1 = 0, num_2 = 0, num_3 = 0;
-  char slash_1 = 0x00, slash_2 = 0x00;
+  long int num_1 = 0;
 
-  iss >> num_1 >> slash_1 >> num_2 >> slash_2 >> num_3;
+  iss >> num_1;
 
-  if (slash_1 != '/' || slash_2 != '/' ||
-      num_1 > static_cast<long int>(vertexes.size())) {
-    std::cerr << "Error parse facet index: " << token_with_index << '\n';
+  if (iss.fail()) {
+    std::cerr << "Error parse facet in line: " << f_line;
     is_valid_ = false;
-  }
-  if (num_1 < 0) {
+  } else if (num_1 < 0) {
     num_1 = vertexes.size() + (num_1 + 1);
   }
   return num_1 - 1;
