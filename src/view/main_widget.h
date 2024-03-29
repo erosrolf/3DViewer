@@ -3,6 +3,7 @@
 
 #include <QFileDialog>
 #include <QColorDialog>
+#include <QSettings>
 #include <QWidget>
 
 #include "../controller/controller.h"
@@ -11,7 +12,6 @@
 // #include <QMainWindow>
 // #include <QPixmap>
 // #include <QScreen>
-// #include <QSettings>
 // #include <QTimer>
 
 // #include "qgifimage.h"
@@ -52,6 +52,9 @@ class MainWidget : public QWidget {
   void onVertexModeSettingsCurrentIndexChanged(int index);
   void onEdgeModeSettingsCurrentIndexChanged(int index);
   void onPerspectiveSettingsCurrentIndexChanged(int index);
+
+  void writeSettings();
+  void readSettings();
 
  private:
   Ui::MainWidget *ui;

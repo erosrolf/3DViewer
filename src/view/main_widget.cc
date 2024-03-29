@@ -10,6 +10,8 @@
 MainWidget::MainWidget(QWidget *parent, s21::Controller *controller)
     : QWidget(parent), controller_(controller), ui(new Ui::MainWidget) {
   ui->setupUi(this);
+  readSettings();
+
   ui->gl_widget->setMainWidgetPtr(this);
   ui->gl_widget->setControllerPtr(controller_);
   ui->settings_tab_gr->setTabIcon(0, QIcon(":/vertex_24x24.png"));
@@ -58,7 +60,10 @@ MainWidget::MainWidget(QWidget *parent, s21::Controller *controller)
   connect(ui->perspective_mode_box, &QComboBox::currentIndexChanged, this, &MainWidget::onPerspectiveSettingsCurrentIndexChanged);
 }
 
-MainWidget::~MainWidget() { delete ui; }
+MainWidget::~MainWidget() { 
+  writeSettings();
+  delete ui; 
+}
 
 void MainWidget::openFileBtnClicked() {
   QString fName = QFileDialog::getOpenFileName(this, "Выбор файла", "",       "OBJ files (*.obj)");
@@ -215,4 +220,75 @@ void MainWidget::screenshotBtnClicked() {
   if (!screenshot_name.isEmpty()) {
     controller_->screenshot(*ui->gl_widget, screenshot_name);
   }
+}
+
+void MainWidget::writeSettings() {
+  QSettings settings("MySoft", "3DViewerSettings");
+  float backgroundColor[4];
+  float edgeColor[4];
+  float vertexColor[4];
+  backgroundColor[0] = ui->gl_widget->backgroundColor.redF();
+  backgroundColor[1] = ui->gl_widget->backgroundColor.greenF();
+  backgroundColor[2] = ui->gl_widget->backgroundColor.blueF();
+  backgroundColor[3] = ui->gl_widget->backgroundColor.alphaF();
+  edgeColor[0] = ui->gl_widget->edgeColor.redF();
+  edgeColor[1] = ui->gl_widget->edgeColor.greenF();
+  edgeColor[2] = ui->gl_widget->edgeColor.blueF();
+  edgeColor[3] = ui->gl_widget->edgeColor.alphaF();
+  vertexColor[0] = ui->gl_widget->vertexColor.redF();
+  vertexColor[1] = ui->gl_widget->vertexColor.greenF();
+  vertexColor[2] = ui->gl_widget->vertexColor.blueF();
+  vertexColor[3] = ui->gl_widget->vertexColor.alphaF();
+  settings.setValue("backgroundColorRed", backgroundColor[0]);
+  settings.setValue("backgroundColorGreen", backgroundColor[1]);
+  settings.setValue("backgroundColorBlue", backgroundColor[2]);
+  settings.setValue("backgroundColorAlpha", backgroundColor[3]);
+  settings.setValue("edgeColorRed", edgeColor[0]);
+  settings.setValue("edgeColorGreen", edgeColor[1]);
+  settings.setValue("edgeColorBlue", edgeColor[2]);
+  settings.setValue("edgeColorAlpha", edgeColor[3]);
+  settings.setValue("vertexColorRed", vertexColor[0]);
+  settings.setValue("vertexColorGreen", vertexColor[1]);
+  settings.setValue("vertexColorBlue", vertexColor[2]);
+  settings.setValue("vertexColorAlpha", vertexColor[3]);
+  settings.setValue("vertexSize", ui->gl_widget->vertexSize);
+  settings.setValue("edgeWidth", ui->gl_widget->edgeWidth);
+  settings.setValue("perspectiveMode", ui->gl_widget->perspectiveMode);
+  settings.setValue("lineMode", ui->gl_widget->lineMode);
+  settings.setValue("vertexMode", ui->gl_widget->vertexMode);
+  settings.sync();
+}
+
+void MainWidget::readSettings() {
+  QSettings settings("MySoft", "3DViewerSettings");
+  ui->gl_widget->backgroundColor.setRedF(
+      settings.value("backgroundColorRed", 0).toFloat());
+  ui->gl_widget->backgroundColor.setGreenF(
+      settings.value("backgroundColorGreen", 0).toFloat());
+  ui->gl_widget->backgroundColor.setBlueF(
+      settings.value("backgroundColorBlue", 0).toFloat());
+  ui->gl_widget->backgroundColor.setAlphaF(
+      settings.value("backgroundColorAlpha", 1).toFloat());
+  ui->gl_widget->edgeColor.setRedF(
+      settings.value("edgeColorRed", 1).toFloat());
+  ui->gl_widget->edgeColor.setGreenF(
+      settings.value("edgeColorGreen", 1).toFloat());
+  ui->gl_widget->edgeColor.setBlueF(
+      settings.value("edgeColorBlue", 1).toFloat());
+  ui->gl_widget->edgeColor.setAlphaF(
+      settings.value("edgeColorAlpha", 1).toFloat());
+  ui->gl_widget->vertexColor.setRedF(
+      settings.value("vertexColorRed", 1).toFloat());
+  ui->gl_widget->vertexColor.setGreenF(
+      settings.value("vertexColorGreen", 1).toFloat());
+  ui->gl_widget->vertexColor.setBlueF(
+      settings.value("vertexColorBlue", 1).toFloat());
+  ui->gl_widget->vertexColor.setAlphaF(
+      settings.value("vertexColorAlpha", 1).toFloat());
+  ui->gl_widget->vertexSize = settings.value("vertexSize", 1).toInt();
+  ui->gl_widget->edgeWidth = settings.value("edgeWidth", 1).toFloat();
+  ui->gl_widget->perspectiveMode =
+      settings.value("perspectiveMode", 1).toInt();
+  ui->gl_widget->lineMode = settings.value("lineMode", 0).toInt();
+  ui->gl_widget->vertexMode = settings.value("vertexMode", 0).toInt();
 }
