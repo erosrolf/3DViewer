@@ -9,6 +9,26 @@
 /**
  * @brief Widget in which the loaded 3D model is rendered.
  */
+
+class SettingState {
+ public:
+  SettingState() : perspectiveMode(0),
+                   edgeColor(QColor(Qt::white)),
+                   vertexColor(QColor(Qt::yellow)),
+                   backgroundColor(QColor(Qt::black)) {};
+
+  int perspectiveMode;
+  int vertexSize;
+  int edgeWidth;
+  int lineMode;
+  int vertexMode;
+  double aspectRatio;
+  double maxCoordinate;
+  QColor backgroundColor;
+  QColor edgeColor;
+  QColor vertexColor;
+};
+
 class OpenGLWidget : public QOpenGLWidget {
   Q_OBJECT
 
@@ -20,16 +40,7 @@ class OpenGLWidget : public QOpenGLWidget {
 
   void setControllerPtr(s21::Controller* ptr) { controller_ = ptr; }
 
-  int perspectiveMode;
-  double aspectRatio;
-  QColor backgroundColor;
-  QColor edgeColor;
-  QColor vertexColor;
-  int vertexSize;
-  int edgeWidth;
-  double maxCoordinate;
-  int lineMode;
-  int vertexMode;
+  SettingState setting;
 
  protected:
   void initializeGL() override;
