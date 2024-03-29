@@ -192,7 +192,8 @@ size_t Obj::parseFacetIndex(const std::string& token_with_index,
 
   iss >> num_1;
 
-  if (iss.fail()) {
+  if (iss.fail() || num_1 > (long)vertexes.size() ||
+      (num_1 < 0 && (-1 * num_1) > (long)vertexes.size())) {
     std::cerr << "Error parse facet in line: " << f_line;
     is_valid_ = false;
   } else if (num_1 < 0) {
