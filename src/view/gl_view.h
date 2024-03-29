@@ -43,4 +43,3 @@ class OpenGLWidget : public QOpenGLWidget {
 };
 
 #endif  // OPENGLWIDGET_H
-

@@ -14,20 +14,19 @@ OpenGLWidget::OpenGLWidget(QWidget* parent, MainWidget* mv_ptr,
     : QOpenGLWidget(parent),
       main_widget_ptr_(mv_ptr),
       controller_(controller_ptr) {
-
   perspectiveMode = 0;
   // цвета по умолчанию. потом убрать ???
   edgeColor = QColor(Qt::white);
-  vertexColor = QColor(Qt::yellow); 
+  vertexColor = QColor(Qt::yellow);
   backgroundColor = QColor(Qt::black);
-} 
+}
 
 // init_data_struct(&objData);
 //}
 
 void OpenGLWidget::initRenderSettings() {
-  glPointSize(vertexSize);            // размер точек
-  glLineWidth(edgeWidth);             // толщина линий
+  glPointSize(vertexSize);  // размер точек
+  glLineWidth(edgeWidth);   // толщина линий
   // glClearColor(0, 0, 0, 0);           // цвет фона
   glClearColor(backgroundColor.redF(), backgroundColor.greenF(),
                backgroundColor.blueF(), backgroundColor.alphaF());  //цвет фона
@@ -57,7 +56,8 @@ void OpenGLWidget::resizeGL(int w, int h) {
 
 void OpenGLWidget::paintObjLines() {
   // glColor3d(1, 0, 0);
-  glColor3d(edgeColor.redF(), edgeColor.greenF(), edgeColor.blueF());  // задаем цвет для полигонов
+  glColor3d(edgeColor.redF(), edgeColor.greenF(),
+            edgeColor.blueF());  // задаем цвет для полигонов
   const std::vector<s21::Vertex_3d>& vertexes = controller_->getObjVertexes();
   const std::vector<s21::Facet_3d>& polygons = controller_->getObjPolygons();
   for (auto& poly : polygons) {
@@ -72,7 +72,8 @@ void OpenGLWidget::paintObjLines() {
 void OpenGLWidget::paintObjVertexes() {
   // glColor3d(1, 1, 1);
   if (vertexMode != 2) {
-    glColor3d(vertexColor.redF(), vertexColor.greenF(), vertexColor.blueF());  // задаем цвет для точек
+    glColor3d(vertexColor.redF(), vertexColor.greenF(),
+              vertexColor.blueF());  // задаем цвет для точек
     glBegin(GL_POINTS);
     for (auto& vertex : controller_->getObjVertexes()) {
       glVertex3d(vertex.x, vertex.y, vertex.z);
@@ -96,7 +97,7 @@ void OpenGLWidget::paintGL() {
 }
 
 void OpenGLWidget::setupPerspective() {
-  double maxCoord = 2 * 3;  //дальность камеры
+  double maxCoord = controller_->getObjMaxValue() * 2;  //дальность камеры
   GLdouble zNear = 0.01;  // Ближнее расстояние отсечения
   GLdouble zFar = maxCoord * 10;  // Дальнее расстояние отсечения
 
@@ -115,4 +116,3 @@ void OpenGLWidget::setupPerspective() {
             maxCoord, -maxCoord, zFar);
   }
 }
-

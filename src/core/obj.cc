@@ -132,7 +132,7 @@ void Obj::parseFile(const char* file_name) {
   max_value = min_max.getMaxValue();
 }
 
-void Obj::modify(ObjModifier* strategy) {
+void Obj::modify(std::unique_ptr<ObjModifier> strategy) {
   if (strategy) {
     strategy->modify(*this);
   }
@@ -163,7 +163,7 @@ void Obj::parseVertex(const std::string& v_line, ExtremePositions& min_max) {
     vertexes.push_back(vertex);
     min_max.update(vertex);
   } else {
-    std::cerr << "Error parse vertex: " << v_line << '\n';
+    std::cerr << "Error parse vertex in line: " << v_line << '\n';
     is_valid_ = false;
   }
 }

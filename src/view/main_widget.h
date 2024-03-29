@@ -1,12 +1,11 @@
 #ifndef MAINWIDGET_H
 #define MAINWIDGET_H
 
-#include <QFileDialog>
 #include <QColorDialog>
+#include <QFileDialog>
 #include <QWidget>
 
 #include "../controller/controller.h"
-
 
 // #include <QMainWindow>
 // #include <QPixmap>
@@ -54,7 +53,7 @@ class MainWidget : public QWidget {
   void onPerspectiveSettingsCurrentIndexChanged(int index);
 
  private:
-  Ui::MainWidget *ui;
+  Ui::MainWidget* ui;
   s21::Controller* controller_;
   int prevValXRotate_;
   int prevValYRotate_;

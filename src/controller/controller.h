@@ -38,6 +38,8 @@ class Controller {
 
   void objRotateAroundZ(double value) { model_->objRotateAroundZ(value); }
 
+  void objCentering() { model_->objCentering(); }
+
   void screenshot(QOpenGLWidget& view, QString screenshot_name) {
     QImage screenshot = view.grabFramebuffer();
     screenshot.save(screenshot_name);
@@ -51,13 +53,17 @@ class Controller {
 
   void objReset() noexcept { model_->reset(); }
 
-  const std::vector<Vertex_3d>& getObjVertexes() {
+  const std::vector<Vertex_3d>& getObjVertexes() const {
     return model_->getObjVertexes();
   }
 
-  const std::vector<Facet_3d>& getObjPolygons() {
+  const std::vector<Facet_3d>& getObjPolygons() const {
     return model_->getObjPolygons();
   }
+
+  const s21::Vertex_3d getObjCenter() const { return model_->getObjCenter(); }
+
+  const double getObjMaxValue() const { return model_->getObjMaxValue(); }
 
  private:
   Model* model_;

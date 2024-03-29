@@ -5,6 +5,7 @@
 
 #include <algorithm>
 #include <cmath>
+#include <memory>
 #include <string>
 #include <vector>
 
@@ -72,7 +73,7 @@ class Obj {
   ~Obj() = default;
 
   void parseFile(const char* file_name);
-  void modify(ObjModifier* strategy);
+  void modify(std::unique_ptr<ObjModifier> strategy);
   bool operator==(const Obj& other) const;
   bool valid() const noexcept { return is_valid_; }
   void clear() noexcept;

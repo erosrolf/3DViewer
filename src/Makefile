@@ -85,10 +85,10 @@ dist:
 	git archive --format=tar --prefix=$(NAME_PROJECT)/ HEAD | gzip > $(DIST_ARCHIVE)
 
 style_check:
-	@find . -type f -name '*.cc' -or -name '*.h' | xargs -I {} sh -c 'echo "Checking {}" && clang-format -n -style=Google{}'
+	@find . -type f -name '*.cc' -or -name '*.h' | xargs -I {} sh -c 'echo "Checking {}" && clang-format -n -style=Google {}'
 
 style_repair: clean
-	@find . -type f -name '*.cc' -or -name '*.h' | xargs -I {} sh -c 'echo "Checking {}" && clang-format -i -style=Google{}'
+	@find . -type f -name '*.cc' -or -name '*.h' | xargs -I {} sh -c 'echo "Checking {}" && clang-format -i -style=Google {}'
 
 clean:
 	rm -rf $(DIR_OBJ) $(DIR_BUILD)
