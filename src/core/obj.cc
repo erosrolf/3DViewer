@@ -85,8 +85,8 @@ Obj::Obj(const Obj&& other) noexcept
       vertexes(std::move(other.vertexes)),
       polygons(std::move(other.polygons)),
       is_valid_(other.is_valid_) {
-        this->clear();
-      }
+  this->clear();
+}
 
 Obj& Obj::operator=(const Obj& other) {
   if (this != &other) {

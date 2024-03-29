@@ -68,14 +68,14 @@ MainWidget::MainWidget(QWidget *parent, s21::Controller *controller)
           &MainWidget::onPerspectiveSettingsCurrentIndexChanged);
 }
 
-MainWidget::~MainWidget() { 
+MainWidget::~MainWidget() {
   writeSettings();
-  delete ui; 
+  delete ui;
 }
 
 void MainWidget::openFileBtnClicked() {
   QString f_name = QFileDialog::getOpenFileName(this, "Выбор файла", "",
-                                               "OBJ files (*.obj)");
+                                                "OBJ files (*.obj)");
   ui->obj_path_line->setText(f_name);
   if (ui->obj_path_line->text().size() > 0) {
     QByteArray ba = f_name.toLocal8Bit();
@@ -126,52 +126,52 @@ void MainWidget::zoomOutClicked() {
 }
 
 void MainWidget::onXRotateSliderReleased() {
-  prevValXRotate_ = 0;
+  prev_val_x_rotate_ = 0;
   ui->x_rotate_slider->setSliderPosition(0);
 }
 
 void MainWidget::onYRotateSliderReleased() {
-  prevValYRotate_ = 0;
+  prev_val_y_rotate_ = 0;
   ui->y_rotate_slider->setSliderPosition(0);
 }
 
 void MainWidget::onZRotateSliderReleased() {
-  prevValZRotate_ = 0;
+  prev_val_z_rotate_ = 0;
   ui->z_rotate_dial->setSliderPosition(0);
 }
 
 void MainWidget::onXRotateValueChanged(int value) {
   if (controller_->objIsValid()) {
-    if (value < prevValXRotate_) {
-      controller_->objRotateAroundX(20);
+    if (value < prev_val_x_rotate_) {
+      controller_->objRotateAroundX(5);
     } else if (value) {
-      controller_->objRotateAroundX(-20);
+      controller_->objRotateAroundX(-5);
     }
-    prevValXRotate_ = value;
+    prev_val_x_rotate_ = value;
     ui->gl_widget->update();
   }
 }
 
 void MainWidget::onYRotateValueChanged(int value) {
   if (controller_->objIsValid()) {
-    if (value < prevValYRotate_) {
-      controller_->objRotateAroundY(20);
+    if (value < prev_val_y_rotate_) {
+      controller_->objRotateAroundY(5);
     } else if (value) {
-      controller_->objRotateAroundY(-20);
+      controller_->objRotateAroundY(-5);
     }
-    prevValYRotate_ = value;
+    prev_val_y_rotate_ = value;
     ui->gl_widget->update();
   }
 }
 
 void MainWidget::onZRotateValueChanged(int value) {
   if (controller_->objIsValid()) {
-    if (value < prevValZRotate_) {
-      controller_->objRotateAroundZ(20);
+    if (value < prev_val_z_rotate_) {
+      controller_->objRotateAroundZ(5);
     } else if (value) {
-      controller_->objRotateAroundZ(-20);
+      controller_->objRotateAroundZ(-5);
     }
-    prevValZRotate_ = value;
+    prev_val_z_rotate_ = value;
     ui->gl_widget->update();
   }
 }

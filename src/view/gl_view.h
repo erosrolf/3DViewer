@@ -8,10 +8,11 @@
 
 class SettingState {
  public:
-  SettingState() : perspective_mode(0),
-                   edge_color(QColor(Qt::white)),
-                   vertex_color(QColor(Qt::yellow)),
-                   background_color(QColor(Qt::black)) {};
+  SettingState()
+      : perspective_mode(0),
+        edge_color(QColor(Qt::white)),
+        vertex_color(QColor(Qt::yellow)),
+        background_color(QColor(Qt::black)){};
 
   int perspective_mode;
   int vertex_size;

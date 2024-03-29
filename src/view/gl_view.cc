@@ -21,8 +21,10 @@ OpenGLWidget::OpenGLWidget(QWidget* parent, MainWidget* mv_ptr,
 void OpenGLWidget::initRenderSettings() {
   glPointSize(setting.vertex_size);  // размер точек
   glLineWidth(setting.edge_width);   // толщина линий
-  glClearColor(setting.background_color.redF(), setting.background_color.greenF(),
-               setting.background_color.blueF(), setting.background_color.alphaF());  //цвет фона
+  glClearColor(setting.background_color.redF(),
+               setting.background_color.greenF(),
+               setting.background_color.blueF(),
+               setting.background_color.alphaF());  //цвет фона
   glClear(GL_COLOR_BUFFER_BIT);
 
   if (setting.vertex_mode == 1)
@@ -39,8 +41,9 @@ void OpenGLWidget::initRenderSettings() {
 void OpenGLWidget::initializeGL() { initRenderSettings(); }
 
 void OpenGLWidget::resizeGL(int w, int h) {
-  setting.aspect_ratio = static_cast<double>(geometry().width()) /
-                static_cast<double>(geometry().height());  // соотношение сторон
+  setting.aspect_ratio =
+      static_cast<double>(geometry().width()) /
+      static_cast<double>(geometry().height());  // соотношение сторон
   setupPerspective();      // Настройка перспективы
   glViewport(0, 0, w, h);  // Установка точки опоры
   glLoadIdentity();
@@ -87,7 +90,7 @@ void OpenGLWidget::paintGL() {
 }
 
 void OpenGLWidget::setupPerspective() {
-  double maxCoord = controller_->getObjMaxValue() * 2;  //дальность камеры
+  double maxCoord = controller_->getObjMaxValue() * 2.5;  //дальность камеры
   GLdouble zNear = 0.01;  // Ближнее расстояние отсечения
   GLdouble zFar = maxCoord * 10;  // Дальнее расстояние отсечения
 
@@ -102,7 +105,7 @@ void OpenGLWidget::setupPerspective() {
               zFar);  // Устанавливает усеченный конус в режим перспективы
     glTranslatef(0, 0, -maxCoord);
   } else {
-    glOrtho(-maxCoord * setting.aspect_ratio, maxCoord * setting.aspect_ratio, -maxCoord,
-            maxCoord, -maxCoord, zFar);
+    glOrtho(-maxCoord * setting.aspect_ratio, maxCoord * setting.aspect_ratio,
+            -maxCoord, maxCoord, -maxCoord, zFar);
   }
 }

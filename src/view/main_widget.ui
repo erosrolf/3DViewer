@@ -1244,62 +1244,42 @@ QPushButton:clicked {
      <property name="title">
       <string/>
      </property>
-     <widget class="QPushButton" name="screenshot_btn">
-      <property name="geometry">
-       <rect>
-        <x>21</x>
-        <y>7</y>
-        <width>34</width>
-        <height>34</height>
-       </rect>
+     <layout class="QHBoxLayout" name="horizontalLayout">
+      <property name="leftMargin">
+       <number>0</number>
       </property>
-      <property name="minimumSize">
-       <size>
-        <width>34</width>
-        <height>34</height>
-       </size>
+      <property name="topMargin">
+       <number>0</number>
       </property>
-      <property name="maximumSize">
-       <size>
-        <width>32</width>
-        <height>32</height>
-       </size>
+      <property name="rightMargin">
+       <number>0</number>
       </property>
-      <property name="styleSheet">
-       <string notr="true">background-image: url(:/screenshot.png);</string>
+      <property name="bottomMargin">
+       <number>0</number>
       </property>
-      <property name="text">
-       <string/>
-      </property>
-     </widget>
-     <widget class="QPushButton" name="gif_btn">
-      <property name="geometry">
-       <rect>
-        <x>77</x>
-        <y>7</y>
-        <width>34</width>
-        <height>34</height>
-       </rect>
-      </property>
-      <property name="minimumSize">
-       <size>
-        <width>34</width>
-        <height>34</height>
-       </size>
-      </property>
-      <property name="maximumSize">
-       <size>
-        <width>32</width>
-        <height>32</height>
-       </size>
-      </property>
-      <property name="styleSheet">
-       <string notr="true">background-image: url(:/gif.png);</string>
-      </property>
-      <property name="text">
-       <string/>
-      </property>
-     </widget>
+      <item>
+       <widget class="QPushButton" name="screenshot_btn">
+        <property name="minimumSize">
+         <size>
+          <width>34</width>
+          <height>34</height>
+         </size>
+        </property>
+        <property name="maximumSize">
+         <size>
+          <width>32</width>
+          <height>32</height>
+         </size>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">background-image: url(:/screenshot.png);</string>
+        </property>
+        <property name="text">
+         <string>screenshot</string>
+        </property>
+       </widget>
+      </item>
+     </layout>
     </widget>
    </item>
    <item row="0" column="0" rowspan="5">

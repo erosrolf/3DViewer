@@ -45,10 +45,6 @@ class Controller {
     screenshot.save(screenshot_name);
   }
 
-  void gifRecord() {
-    // some instruction
-  }
-
   bool objIsValid() const noexcept { return model_->objIsValid(); }
 
   void objReset() noexcept { model_->reset(); }
