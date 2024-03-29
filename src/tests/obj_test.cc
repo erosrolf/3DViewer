@@ -77,3 +77,32 @@ TEST(obj, constructor_equals_move) {
   s21::Obj obj2;
   obj2 = std::move(obj1);
 }
+TEST(obj, open_empty_file) {
+  s21::Obj obj("tests/obj_resurces/empty.obj");
+  ASSERT_TRUE(obj.valid());
+}
+
+TEST(obj, open_no_facets_file) {
+  s21::Obj obj("tests/obj_resurces/no_facets.obj");
+  ASSERT_TRUE(obj.valid());
+}
+
+TEST(obj, open_many_indexes_file) {
+  s21::Obj obj("tests/obj_resurces/many_indexes.obj");
+  ASSERT_TRUE(obj.valid());
+}
+
+TEST(obj, open_no_such_pos_index_file) {
+  s21::Obj obj("tests/obj_resurces/no_such_pos_index.obj");
+  ASSERT_TRUE(obj.valid());
+}
+
+TEST(obj, open_no_such_neg_index_file) {
+  s21::Obj obj("tests/obj_resurces/no_such_neg_index.obj");
+  ASSERT_TRUE(obj.valid());
+}
+
+// TEST(obj, open_no_such_only_facet_file) {
+//   s21::Obj obj("tests/obj_resurces/only_facet.obj");
+//   ASSERT_FALSE(obj.valid());
+// }
