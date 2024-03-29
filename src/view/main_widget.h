@@ -3,6 +3,7 @@
 
 #include <QColorDialog>
 #include <QFileDialog>
+#include <QSettings>
 #include <QWidget>
 
 #include "../controller/controller.h"
@@ -46,6 +47,9 @@ class MainWidget : public QWidget {
   void onVertexModeSettingsCurrentIndexChanged(int index);
   void onEdgeModeSettingsCurrentIndexChanged(int index);
   void onPerspectiveSettingsCurrentIndexChanged(int index);
+
+  void writeSettings();
+  void readSettings();
 
  private:
   Ui::MainWidget* ui;
