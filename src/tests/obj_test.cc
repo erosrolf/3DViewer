@@ -102,6 +102,26 @@ TEST(obj, open_no_such_neg_index_file) {
   ASSERT_TRUE(obj.valid());
 }
 
+TEST(obj, open_cat_file) {
+  s21::Obj obj("tests/obj_resurces/cat.obj");
+  ASSERT_TRUE(obj.valid());
+}
+
+TEST(obj, open_non_existent_file) {
+  s21::Obj obj("tests/obj_resurces/non_existent_file.obj");
+  ASSERT_FALSE(obj.valid());
+}
+
+TEST(obj, open_no_vertex_file) {
+  s21::Obj obj("tests/obj_resurces/no_vertex.obj");
+  ASSERT_FALSE(obj.valid());
+}
+
+TEST(obj, open_no_facet_file) {
+  s21::Obj obj("tests/obj_resurces/no_facet.obj");
+  ASSERT_FALSE(obj.valid());
+}
+
 // TEST(obj, open_no_such_only_facet_file) {
 //   s21::Obj obj("tests/obj_resurces/only_facet.obj");
 //   ASSERT_FALSE(obj.valid());
