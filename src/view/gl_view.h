@@ -6,29 +6,29 @@
 #include "controller/controller.h"
 #include "main_widget.h"
 
+class SettingState {
+ public:
+  SettingState()
+      : perspective_mode(0),
+        edge_color(QColor(Qt::white)),
+        vertex_color(QColor(Qt::yellow)),
+        background_color(QColor(Qt::black)){};
+
+  int perspective_mode;
+  int vertex_size;
+  int edge_width;
+  int line_mode;
+  int vertex_mode;
+  double aspect_ratio;
+  double max_coordinate;
+  QColor background_color;
+  QColor edge_color;
+  QColor vertex_color;
+};
+
 /**
  * @brief Widget in which the loaded 3D model is rendered.
  */
-
-class SettingState {
- public:
-  SettingState() : perspectiveMode(0),
-                   edgeColor(QColor(Qt::white)),
-                   vertexColor(QColor(Qt::yellow)),
-                   backgroundColor(QColor(Qt::black)) {};
-
-  int perspectiveMode;
-  int vertexSize;
-  int edgeWidth;
-  int lineMode;
-  int vertexMode;
-  double aspectRatio;
-  double maxCoordinate;
-  QColor backgroundColor;
-  QColor edgeColor;
-  QColor vertexColor;
-};
-
 class OpenGLWidget : public QOpenGLWidget {
   Q_OBJECT
 
@@ -52,6 +52,7 @@ class OpenGLWidget : public QOpenGLWidget {
   void paintObjVertexes();
   void setupPerspective();
   void initRenderSettings();
+
   MainWidget* main_widget_ptr_;
   s21::Controller* controller_;
 };

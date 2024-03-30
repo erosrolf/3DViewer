@@ -68,19 +68,19 @@ MainWidget::MainWidget(QWidget *parent, s21::Controller *controller)
           &MainWidget::onPerspectiveSettingsCurrentIndexChanged);
 }
 
-MainWidget::~MainWidget() { 
+MainWidget::~MainWidget() {
   writeSettings();
-  delete ui; 
+  delete ui;
 }
 
 void MainWidget::openFileBtnClicked() {
-  QString fName = QFileDialog::getOpenFileName(this, "Выбор файла", "",
-                                               "OBJ files (*.obj)");
-  ui->obj_path_line->setText(fName);
+  QString f_name = QFileDialog::getOpenFileName(this, "Выбор файла", "",
+                                                "OBJ files (*.obj)");
+  ui->obj_path_line->setText(f_name);
   if (ui->obj_path_line->text().size() > 0) {
-    QByteArray ba = fName.toLocal8Bit();
-    char *inpt = ba.data();
-    controller_->openNewObj(inpt);
+    QByteArray ba = f_name.toLocal8Bit();
+    char *input = ba.data();
+    controller_->openNewObj(input);
     if (controller_->objIsValid()) {
       ui->vert_counter->setText(
           QString::number(controller_->getObjVertexes().size()) + " ");
@@ -126,101 +126,101 @@ void MainWidget::zoomOutClicked() {
 }
 
 void MainWidget::onXRotateSliderReleased() {
-  prevValXRotate_ = 0;
+  prev_val_x_rotate_ = 0;
   ui->x_rotate_slider->setSliderPosition(0);
 }
 
 void MainWidget::onYRotateSliderReleased() {
-  prevValYRotate_ = 0;
+  prev_val_y_rotate_ = 0;
   ui->y_rotate_slider->setSliderPosition(0);
 }
 
 void MainWidget::onZRotateSliderReleased() {
-  prevValZRotate_ = 0;
+  prev_val_z_rotate_ = 0;
   ui->z_rotate_dial->setSliderPosition(0);
 }
 
 void MainWidget::onXRotateValueChanged(int value) {
   if (controller_->objIsValid()) {
-    if (value < prevValXRotate_) {
-      controller_->objRotateAroundX(20);
+    if (value < prev_val_x_rotate_) {
+      controller_->objRotateAroundX(5);
     } else if (value) {
-      controller_->objRotateAroundX(-20);
+      controller_->objRotateAroundX(-5);
     }
-    prevValXRotate_ = value;
+    prev_val_x_rotate_ = value;
     ui->gl_widget->update();
   }
 }
 
 void MainWidget::onYRotateValueChanged(int value) {
   if (controller_->objIsValid()) {
-    if (value < prevValYRotate_) {
-      controller_->objRotateAroundY(20);
+    if (value < prev_val_y_rotate_) {
+      controller_->objRotateAroundY(5);
     } else if (value) {
-      controller_->objRotateAroundY(-20);
+      controller_->objRotateAroundY(-5);
     }
-    prevValYRotate_ = value;
+    prev_val_y_rotate_ = value;
     ui->gl_widget->update();
   }
 }
 
 void MainWidget::onZRotateValueChanged(int value) {
   if (controller_->objIsValid()) {
-    if (value < prevValZRotate_) {
-      controller_->objRotateAroundZ(20);
+    if (value < prev_val_z_rotate_) {
+      controller_->objRotateAroundZ(5);
     } else if (value) {
-      controller_->objRotateAroundZ(-20);
+      controller_->objRotateAroundZ(-5);
     }
-    prevValZRotate_ = value;
+    prev_val_z_rotate_ = value;
     ui->gl_widget->update();
   }
 }
 void MainWidget::onBackgroundColorClicked() {
   QColor background = QColorDialog::getColor();
   if (background.isValid()) {
-    ui->gl_widget->setting.backgroundColor = background;
+    ui->gl_widget->setting.background_color = background;
     ui->gl_widget->update();
   }
 }
 
 void MainWidget::onVertexesColorClicked() {
-  QColor vertexesColor = QColorDialog::getColor();
-  if (vertexesColor.isValid()) {
-    ui->gl_widget->setting.vertexColor = vertexesColor;
+  QColor vertexes_color = QColorDialog::getColor();
+  if (vertexes_color.isValid()) {
+    ui->gl_widget->setting.vertex_color = vertexes_color;
     ui->gl_widget->update();
   }
 }
 
 void MainWidget::onEdgesColorClicked() {
-  QColor edgesColor = QColorDialog::getColor();
-  if (edgesColor.isValid()) {
-    ui->gl_widget->setting.edgeColor = edgesColor;
+  QColor edges_color = QColorDialog::getColor();
+  if (edges_color.isValid()) {
+    ui->gl_widget->setting.edge_color = edges_color;
     ui->gl_widget->update();
   }
 }
 
 void MainWidget::onVertexScaleSliderSliderMoved(int action) {
-  ui->gl_widget->setting.vertexSize = action;
+  ui->gl_widget->setting.vertex_size = action;
   ui->gl_widget->update();
 }
 
 void MainWidget::onEdgeScaleSliderSliderMoved(int action) {
-  ui->gl_widget->setting.edgeWidth = action;
+  ui->gl_widget->setting.edge_width = action;
   ui->gl_widget->update();
 }
 
 void MainWidget::onVertexModeSettingsCurrentIndexChanged(int index) {
-  ui->gl_widget->setting.vertexMode = index;
+  ui->gl_widget->setting.vertex_mode = index;
   ui->gl_widget->update();
 }
 
 void MainWidget::onEdgeModeSettingsCurrentIndexChanged(int index) {
-  ui->gl_widget->setting.lineMode = index;
+  ui->gl_widget->setting.line_mode = index;
   ui->gl_widget->update();
 }
 
 void MainWidget::onPerspectiveSettingsCurrentIndexChanged(int index) {
-  ui->gl_widget->setting.perspectiveMode = index;
+  ui->gl_widget->setting.perspective_mode = index;
   ui->gl_widget->update();
 }
 
@@ -239,18 +239,18 @@ void MainWidget::writeSettings() {
   float backgroundColor[4];
   float edgeColor[4];
   float vertexColor[4];
-  backgroundColor[0] = ui->gl_widget->setting.backgroundColor.redF();
-  backgroundColor[1] = ui->gl_widget->setting.backgroundColor.greenF();
-  backgroundColor[2] = ui->gl_widget->setting.backgroundColor.blueF();
-  backgroundColor[3] = ui->gl_widget->setting.backgroundColor.alphaF();
-  edgeColor[0] = ui->gl_widget->setting.edgeColor.redF();
-  edgeColor[1] = ui->gl_widget->setting.edgeColor.greenF();
-  edgeColor[2] = ui->gl_widget->setting.edgeColor.blueF();
-  edgeColor[3] = ui->gl_widget->setting.edgeColor.alphaF();
-  vertexColor[0] = ui->gl_widget->setting.vertexColor.redF();
-  vertexColor[1] = ui->gl_widget->setting.vertexColor.greenF();
-  vertexColor[2] = ui->gl_widget->setting.vertexColor.blueF();
-  vertexColor[3] = ui->gl_widget->setting.vertexColor.alphaF();
+  backgroundColor[0] = ui->gl_widget->setting.background_color.redF();
+  backgroundColor[1] = ui->gl_widget->setting.background_color.greenF();
+  backgroundColor[2] = ui->gl_widget->setting.background_color.blueF();
+  backgroundColor[3] = ui->gl_widget->setting.background_color.alphaF();
+  edgeColor[0] = ui->gl_widget->setting.edge_color.redF();
+  edgeColor[1] = ui->gl_widget->setting.edge_color.greenF();
+  edgeColor[2] = ui->gl_widget->setting.edge_color.blueF();
+  edgeColor[3] = ui->gl_widget->setting.edge_color.alphaF();
+  vertexColor[0] = ui->gl_widget->setting.vertex_color.redF();
+  vertexColor[1] = ui->gl_widget->setting.vertex_color.greenF();
+  vertexColor[2] = ui->gl_widget->setting.vertex_color.blueF();
+  vertexColor[3] = ui->gl_widget->setting.vertex_color.alphaF();
   settings.setValue("backgroundColorRed", backgroundColor[0]);
   settings.setValue("backgroundColorGreen", backgroundColor[1]);
   settings.setValue("backgroundColorBlue", backgroundColor[2]);
@@ -263,44 +263,44 @@ void MainWidget::writeSettings() {
   settings.setValue("vertexColorGreen", vertexColor[1]);
   settings.setValue("vertexColorBlue", vertexColor[2]);
   settings.setValue("vertexColorAlpha", vertexColor[3]);
-  settings.setValue("vertexSize", ui->gl_widget->setting.vertexSize);
-  settings.setValue("edgeWidth", ui->gl_widget->setting.edgeWidth);
-  settings.setValue("perspectiveMode", ui->gl_widget->setting.perspectiveMode);
-  settings.setValue("lineMode", ui->gl_widget->setting.lineMode);
-  settings.setValue("vertexMode", ui->gl_widget->setting.vertexMode);
+  settings.setValue("vertexSize", ui->gl_widget->setting.vertex_size);
+  settings.setValue("edgeWidth", ui->gl_widget->setting.edge_width);
+  settings.setValue("perspectiveMode", ui->gl_widget->setting.perspective_mode);
+  settings.setValue("lineMode", ui->gl_widget->setting.line_mode);
+  settings.setValue("vertexMode", ui->gl_widget->setting.vertex_mode);
   settings.sync();
 }
 
 void MainWidget::readSettings() {
   QSettings settings("MySoft", "3DViewerSettings");
-  ui->gl_widget->setting.backgroundColor.setRedF(
+  ui->gl_widget->setting.background_color.setRedF(
       settings.value("backgroundColorRed", 0).toFloat());
-  ui->gl_widget->setting.backgroundColor.setGreenF(
+  ui->gl_widget->setting.background_color.setGreenF(
       settings.value("backgroundColorGreen", 0).toFloat());
-  ui->gl_widget->setting.backgroundColor.setBlueF(
+  ui->gl_widget->setting.background_color.setBlueF(
       settings.value("backgroundColorBlue", 0).toFloat());
-  ui->gl_widget->setting.backgroundColor.setAlphaF(
+  ui->gl_widget->setting.background_color.setAlphaF(
       settings.value("backgroundColorAlpha", 1).toFloat());
-  ui->gl_widget->setting.edgeColor.setRedF(
+  ui->gl_widget->setting.edge_color.setRedF(
       settings.value("edgeColorRed", 1).toFloat());
-  ui->gl_widget->setting.edgeColor.setGreenF(
+  ui->gl_widget->setting.edge_color.setGreenF(
       settings.value("edgeColorGreen", 1).toFloat());
-  ui->gl_widget->setting.edgeColor.setBlueF(
+  ui->gl_widget->setting.edge_color.setBlueF(
       settings.value("edgeColorBlue", 1).toFloat());
-  ui->gl_widget->setting.edgeColor.setAlphaF(
+  ui->gl_widget->setting.edge_color.setAlphaF(
       settings.value("edgeColorAlpha", 1).toFloat());
-  ui->gl_widget->setting.vertexColor.setRedF(
+  ui->gl_widget->setting.vertex_color.setRedF(
       settings.value("vertexColorRed", 1).toFloat());
-  ui->gl_widget->setting.vertexColor.setGreenF(
+  ui->gl_widget->setting.vertex_color.setGreenF(
       settings.value("vertexColorGreen", 1).toFloat());
-  ui->gl_widget->setting.vertexColor.setBlueF(
+  ui->gl_widget->setting.vertex_color.setBlueF(
       settings.value("vertexColorBlue", 1).toFloat());
-  ui->gl_widget->setting.vertexColor.setAlphaF(
+  ui->gl_widget->setting.vertex_color.setAlphaF(
       settings.value("vertexColorAlpha", 1).toFloat());
-  ui->gl_widget->setting.vertexSize = settings.value("vertexSize", 1).toInt();
-  ui->gl_widget->setting.edgeWidth = settings.value("edgeWidth", 1).toFloat();
-  ui->gl_widget->setting.perspectiveMode =
+  ui->gl_widget->setting.vertex_size = settings.value("vertexSize", 1).toInt();
+  ui->gl_widget->setting.edge_width = settings.value("edgeWidth", 1).toFloat();
+  ui->gl_widget->setting.perspective_mode =
       settings.value("perspectiveMode", 1).toInt();
-  ui->gl_widget->setting.lineMode = settings.value("lineMode", 0).toInt();
-  ui->gl_widget->setting.vertexMode = settings.value("vertexMode", 0).toInt();
+  ui->gl_widget->setting.line_mode = settings.value("lineMode", 0).toInt();
+  ui->gl_widget->setting.vertex_mode = settings.value("vertexMode", 0).toInt();
 }
