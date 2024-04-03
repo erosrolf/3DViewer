@@ -1,5 +1,5 @@
-#ifndef SRC_3DVIEWER_MODEL_OBJ_H_
-#define SRC_3DVIEWER_MODEL_OBJ_H_
+#ifndef _3DVIEWER_MODEL_OBJ_H_
+#define _3DVIEWER_MODEL_OBJ_H_
 
 #include <stdint.h>
 
@@ -95,4 +95,4 @@ class Obj {
 
 }  // namespace s21
 
-#endif  // SRC_3DVIEWER_MODEL_OBJ_H_
+#endif  // _3DVIEWER_MODEL_OBJ_H_

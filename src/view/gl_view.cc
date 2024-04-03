@@ -24,7 +24,7 @@ void OpenGLWidget::initRenderSettings() {
   glClearColor(setting.background_color.redF(),
                setting.background_color.greenF(),
                setting.background_color.blueF(),
-               setting.background_color.alphaF());  //цвет фона
+               setting.background_color.alphaF());  // цвет фона
   glClear(GL_COLOR_BUFFER_BIT);
 
   if (setting.vertex_mode == 1)
@@ -90,7 +90,7 @@ void OpenGLWidget::paintGL() {
 }
 
 void OpenGLWidget::setupPerspective() {
-  double maxCoord = controller_->getObjMaxValue() * 2.5;  //дальность камеры
+  double maxCoord = controller_->getObjMaxValue() * 2.5;  // дальность камеры
   GLdouble zNear = 0.01;  // Ближнее расстояние отсечения
   GLdouble zFar = maxCoord * 10;  // Дальнее расстояние отсечения
 

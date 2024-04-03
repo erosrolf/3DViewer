@@ -42,7 +42,15 @@ set(PROJECT_SOURCES
     core/model.h
 )
 
-add_executable(${PROJECT_NAME} ${PROJECT_SOURCES})
+set(RESOURCES "${CMAKE_CURRENT_SOURCE_DIR}/view/icons/icon_main.icns")
+
+set_source_files_properties(${RESOURCES} PROPERTIES 
+    MACOSX_PACKAGE_LOCATION "Resources")
+
+add_executable(${PROJECT_NAME} 
+    ${RESOURCES}
+    ${PROJECT_SOURCES}
+)
 
 target_link_libraries(${PROJECT_NAME} PRIVATE Qt${QT_VERSION_MAJOR}::Widgets Qt${QT_VERSION_MAJOR}::OpenGLWidgets)
 

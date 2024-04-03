@@ -60,7 +60,7 @@ $(DIR_OBJ)/%.o: $(DIR_CORE)/%.cc
 	@mkdir -p $(@D)
 	$(CXX) $(CXXFLAGS) -c $< -o $@
 
-tests: clean core_test
+tests: core_test
 
 # BUILD CORE TESTS
 core_test: $(TEST_EXECUTABLE)
@@ -75,7 +75,6 @@ $(DIR_OBJ)/%.o: $(DIR_TESTS)/%.cc
 	$(CXX) $(CXXFLAGS) -c $< -o $@
 
 gcov_report: tests
-	./$(TEST_EXECUTABLE)
 	@lcov -o test.info --no-external -c -d . $(LCOV_FLAG) --ignore-errors mismatch
 	@genhtml -o report test.info $(LCOV_FLAG)
 	@$(OPEN_CMD) report/index.html

@@ -1,5 +1,5 @@
-#ifndef _3DVIEWER_SRC_CORE_MODEL_H_
-#define _3DVIEWER_SRC_CORE_MODEL_H_
+#ifndef _3DVIEWER_CORE_MODEL_H_
+#define _3DVIEWER_CORE_MODEL_H_
 
 #include <memory>
 
@@ -84,4 +84,4 @@ class Model {
 };
 }  // namespace s21
 
-#endif  //_3DVIEWER_SRC_CORE_MODEL_H_
+#endif  // _3DVIEWER_CORE_MODEL_H_

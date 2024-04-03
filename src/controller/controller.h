@@ -1,5 +1,5 @@
-#ifndef _3DVIEWER_SRC_CONTROLLER_CONTROLLER_H_
-#define _3DVIEWER_SRC_CONTROLLER_CONTROLLER_H_
+#ifndef _3DVIEWER_CONTROLLER_CONTROLLER_H_
+#define _3DVIEWER_CONTROLLER_CONTROLLER_H_
 
 #include <QImage>
 #include <QOpenGLWidget>
@@ -66,4 +66,4 @@ class Controller {
 };
 
 }  // namespace s21
-#endif  //_3DVIEWER_SRC_CONTROLLER_CONTROLLER_H_
+#endif  // _3DVIEWER_CONTROLLER_CONTROLLER_H_

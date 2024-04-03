@@ -1,5 +1,5 @@
-#ifndef MAINWIDGET_H
-#define MAINWIDGET_H
+#ifndef _3DVIEWER_VIEW_MAINWIDGET_H_
+#define _3DVIEWER_VIEW_MAINWIDGET_H_
 
 #include <QColorDialog>
 #include <QFileDialog>
@@ -58,4 +58,4 @@ class MainWidget : public QWidget {
   int prev_val_y_rotate_;
   int prev_val_z_rotate_;
 };
-#endif  // MAINWIDGET_H
+#endif  // _3DVIEWER_VIEW_MAINWIDGET_H_

@@ -1,5 +1,5 @@
-#ifndef OPENGLWIDGET_H
-#define OPENGLWIDGET_H
+#ifndef _3DVIEWER_VIEW_OPERGLWIDGET_H_
+#define _3DVIEWER_VIEW_OPERGLWIDGET_H_
 
 #include <QOpenGLWidget>
 
@@ -57,4 +57,4 @@ class OpenGLWidget : public QOpenGLWidget {
   s21::Controller* controller_;
 };
 
-#endif  // OPENGLWIDGET_H
+#endif  // _3DVIEWER_VIEW_OPERGLWIDGET_H_
