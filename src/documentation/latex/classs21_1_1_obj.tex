@@ -1,0 +1,71 @@
+\doxysection{s21\+::Obj Class Reference}
+\hypertarget{classs21_1_1_obj}{}\label{classs21_1_1_obj}\index{s21::Obj@{s21::Obj}}
+
+
+class \doxylink{classs21_1_1_obj}{Obj} reads a file in .obj format and writes data about the 3d model  
+
+
+
+
+{\ttfamily \#include $<$obj.\+h$>$}
+
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{classs21_1_1_obj_a446b7f90e917b86b9a8b29192979165e}\label{classs21_1_1_obj_a446b7f90e917b86b9a8b29192979165e} 
+{\bfseries Obj} (const char \texorpdfstring{$\ast$}{*}file\+\_\+name)
+\item 
+\Hypertarget{classs21_1_1_obj_a863aee2573458b54fa635e47979e5c7e}\label{classs21_1_1_obj_a863aee2573458b54fa635e47979e5c7e} 
+{\bfseries Obj} (const \mbox{\hyperlink{classs21_1_1_obj}{Obj}} \&other)
+\item 
+\Hypertarget{classs21_1_1_obj_a27cdc88484c1e7a4fcc18863f39e200b}\label{classs21_1_1_obj_a27cdc88484c1e7a4fcc18863f39e200b} 
+{\bfseries Obj} (const \mbox{\hyperlink{classs21_1_1_obj}{Obj}} \&\&other) noexcept
+\item 
+\Hypertarget{classs21_1_1_obj_a48ea9f16f4b53df2cec09aa7b0580e5d}\label{classs21_1_1_obj_a48ea9f16f4b53df2cec09aa7b0580e5d} 
+\mbox{\hyperlink{classs21_1_1_obj}{Obj}} \& {\bfseries operator=} (const \mbox{\hyperlink{classs21_1_1_obj}{Obj}} \&other)
+\item 
+\Hypertarget{classs21_1_1_obj_acb421ee387361576712814e228ddadf6}\label{classs21_1_1_obj_acb421ee387361576712814e228ddadf6} 
+\mbox{\hyperlink{classs21_1_1_obj}{Obj}} \& {\bfseries operator=} (\mbox{\hyperlink{classs21_1_1_obj}{Obj}} \&\&other) noexcept
+\item 
+\Hypertarget{classs21_1_1_obj_a478afee88c91b00d59b48027b9339a6e}\label{classs21_1_1_obj_a478afee88c91b00d59b48027b9339a6e} 
+void {\bfseries parse\+File} (const char \texorpdfstring{$\ast$}{*}file\+\_\+name)
+\item 
+\Hypertarget{classs21_1_1_obj_afddb5cd9b1a32db770ac96c920d018f5}\label{classs21_1_1_obj_afddb5cd9b1a32db770ac96c920d018f5} 
+void {\bfseries modify} (std\+::unique\+\_\+ptr$<$ \mbox{\hyperlink{classs21_1_1_obj_modifier}{Obj\+Modifier}} $>$ strategy)
+\item 
+\Hypertarget{classs21_1_1_obj_a28640d74f0555664f895cb624a574c15}\label{classs21_1_1_obj_a28640d74f0555664f895cb624a574c15} 
+bool {\bfseries operator==} (const \mbox{\hyperlink{classs21_1_1_obj}{Obj}} \&other) const
+\item 
+\Hypertarget{classs21_1_1_obj_a53c350d0a16c361fa1719762118b8e1d}\label{classs21_1_1_obj_a53c350d0a16c361fa1719762118b8e1d} 
+bool {\bfseries valid} () const noexcept
+\item 
+\Hypertarget{classs21_1_1_obj_a3d391062ffc5af4178676c8eb6b95aae}\label{classs21_1_1_obj_a3d391062ffc5af4178676c8eb6b95aae} 
+void {\bfseries clear} () noexcept
+\item 
+\Hypertarget{classs21_1_1_obj_a516e27fd0fe2d5adfc8fa47b4d45352a}\label{classs21_1_1_obj_a516e27fd0fe2d5adfc8fa47b4d45352a} 
+\mbox{\hyperlink{structs21_1_1_vertex__3d}{Vertex\+\_\+3d}} {\bfseries find\+Center} ()
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{classs21_1_1_obj_a69b8c84213fce0ac07621af907680ea9}\label{classs21_1_1_obj_a69b8c84213fce0ac07621af907680ea9} 
+double {\bfseries max\+\_\+value}
+\begin{DoxyCompactList}\small\item\em value with the maximum coordinate \end{DoxyCompactList}\item 
+\Hypertarget{classs21_1_1_obj_a161ee33f35cea52d0e9be54f47eab639}\label{classs21_1_1_obj_a161ee33f35cea52d0e9be54f47eab639} 
+\mbox{\hyperlink{structs21_1_1_vertex__3d}{Vertex\+\_\+3d}} {\bfseries center}
+\begin{DoxyCompactList}\small\item\em obj with obj center coordinates \end{DoxyCompactList}\item 
+\Hypertarget{classs21_1_1_obj_a5f9fc64a98f6e537c6c047e306aba77e}\label{classs21_1_1_obj_a5f9fc64a98f6e537c6c047e306aba77e} 
+std\+::vector$<$ \mbox{\hyperlink{structs21_1_1_vertex__3d}{Vertex\+\_\+3d}} $>$ {\bfseries vertexes}
+\begin{DoxyCompactList}\small\item\em all vertexes of 3d model \end{DoxyCompactList}\item 
+\Hypertarget{classs21_1_1_obj_a2cf4de72af38741cb4e881c8e5dbeb7b}\label{classs21_1_1_obj_a2cf4de72af38741cb4e881c8e5dbeb7b} 
+std\+::vector$<$ \mbox{\hyperlink{structs21_1_1_facet__3d}{Facet\+\_\+3d}} $>$ {\bfseries polygons}
+\begin{DoxyCompactList}\small\item\em all polygons of 3d model \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+class \doxylink{classs21_1_1_obj}{Obj} reads a file in .obj format and writes data about the 3d model 
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+core/obj.\+h\item 
+core/obj.\+cc\end{DoxyCompactItemize}

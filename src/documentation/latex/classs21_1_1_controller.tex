@@ -1,0 +1,70 @@
+\doxysection{s21\+::Controller Class Reference}
+\hypertarget{classs21_1_1_controller}{}\label{classs21_1_1_controller}\index{s21::Controller@{s21::Controller}}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{classs21_1_1_controller_a88597195961d0093ea9071aa997c2431}\label{classs21_1_1_controller_a88597195961d0093ea9071aa997c2431} 
+{\bfseries Controller} (\mbox{\hyperlink{classs21_1_1_model}{Model}} \texorpdfstring{$\ast$}{*}m)
+\item 
+\Hypertarget{classs21_1_1_controller_a0273d9af84d9f967a803003d793a185d}\label{classs21_1_1_controller_a0273d9af84d9f967a803003d793a185d} 
+const \mbox{\hyperlink{classs21_1_1_obj}{Obj}} \& {\bfseries open\+New\+Obj} (const char \texorpdfstring{$\ast$}{*}file\+\_\+name)
+\item 
+\Hypertarget{classs21_1_1_controller_a84eebe54f977d1531627bbd32f77f685}\label{classs21_1_1_controller_a84eebe54f977d1531627bbd32f77f685} 
+void {\bfseries obj\+Move\+To\+Right} (double value)
+\item 
+\Hypertarget{classs21_1_1_controller_a244caea9fedb0e2059ed4ebffbb6672a}\label{classs21_1_1_controller_a244caea9fedb0e2059ed4ebffbb6672a} 
+void {\bfseries obj\+Move\+To\+Left} (double value)
+\item 
+\Hypertarget{classs21_1_1_controller_add374bd9f6c0e6495ba44c0d4e040f6e}\label{classs21_1_1_controller_add374bd9f6c0e6495ba44c0d4e040f6e} 
+void {\bfseries obj\+Move\+Up} (double value)
+\item 
+\Hypertarget{classs21_1_1_controller_a0885b901e402f8ad22243adae709dbb5}\label{classs21_1_1_controller_a0885b901e402f8ad22243adae709dbb5} 
+void {\bfseries obj\+Move\+Down} (double value)
+\item 
+\Hypertarget{classs21_1_1_controller_a7f532ea837543480aac00b26b67b09e9}\label{classs21_1_1_controller_a7f532ea837543480aac00b26b67b09e9} 
+void {\bfseries obj\+Move\+Forward} (double value)
+\item 
+\Hypertarget{classs21_1_1_controller_a192848eb8986c0fb5642ece91f39508a}\label{classs21_1_1_controller_a192848eb8986c0fb5642ece91f39508a} 
+void {\bfseries obj\+Move\+Back} (double value)
+\item 
+\Hypertarget{classs21_1_1_controller_aa74d0812377bd7088afc275c27eb576d}\label{classs21_1_1_controller_aa74d0812377bd7088afc275c27eb576d} 
+void {\bfseries obj\+Zoom} (double value)
+\item 
+\Hypertarget{classs21_1_1_controller_a0db7f36e7870761441706414a0486eb4}\label{classs21_1_1_controller_a0db7f36e7870761441706414a0486eb4} 
+void {\bfseries obj\+Rotate\+AroundX} (double value)
+\item 
+\Hypertarget{classs21_1_1_controller_a7e8f6eda03adee3d3bce78eddc738f09}\label{classs21_1_1_controller_a7e8f6eda03adee3d3bce78eddc738f09} 
+void {\bfseries obj\+Rotate\+AroundY} (double value)
+\item 
+\Hypertarget{classs21_1_1_controller_a5d19c12b934a854a319d5210840af71a}\label{classs21_1_1_controller_a5d19c12b934a854a319d5210840af71a} 
+void {\bfseries obj\+Rotate\+AroundZ} (double value)
+\item 
+\Hypertarget{classs21_1_1_controller_af761ed4c797044e6864339c17f4daf4f}\label{classs21_1_1_controller_af761ed4c797044e6864339c17f4daf4f} 
+void {\bfseries obj\+Centering} ()
+\item 
+\Hypertarget{classs21_1_1_controller_ad75166bd10b8fd032fda6af30fe4830a}\label{classs21_1_1_controller_ad75166bd10b8fd032fda6af30fe4830a} 
+void {\bfseries screenshot} (QOpen\+GLWidget \&view, QString screenshot\+\_\+name)
+\item 
+\Hypertarget{classs21_1_1_controller_a591fd2a3ff199a4dea063b7b150527e0}\label{classs21_1_1_controller_a591fd2a3ff199a4dea063b7b150527e0} 
+bool {\bfseries obj\+Is\+Valid} () const noexcept
+\item 
+\Hypertarget{classs21_1_1_controller_af68f27c7fc13fba9a5d71d814e8095fd}\label{classs21_1_1_controller_af68f27c7fc13fba9a5d71d814e8095fd} 
+void {\bfseries obj\+Reset} () noexcept
+\item 
+\Hypertarget{classs21_1_1_controller_a200e1e6f038270072b6ea76567b36fd5}\label{classs21_1_1_controller_a200e1e6f038270072b6ea76567b36fd5} 
+const std\+::vector$<$ \mbox{\hyperlink{structs21_1_1_vertex__3d}{Vertex\+\_\+3d}} $>$ \& {\bfseries get\+Obj\+Vertexes} () const
+\item 
+\Hypertarget{classs21_1_1_controller_accbec04f07ee7fb906c9d7ddf5aaca4b}\label{classs21_1_1_controller_accbec04f07ee7fb906c9d7ddf5aaca4b} 
+const std\+::vector$<$ \mbox{\hyperlink{structs21_1_1_facet__3d}{Facet\+\_\+3d}} $>$ \& {\bfseries get\+Obj\+Polygons} () const
+\item 
+\Hypertarget{classs21_1_1_controller_a2577f25b8a75462c91409bffbcdd0845}\label{classs21_1_1_controller_a2577f25b8a75462c91409bffbcdd0845} 
+const \mbox{\hyperlink{structs21_1_1_vertex__3d}{s21\+::\+Vertex\+\_\+3d}} {\bfseries get\+Obj\+Center} () const
+\item 
+\Hypertarget{classs21_1_1_controller_ac29e7ce5639c2d007dd2698fae0812c1}\label{classs21_1_1_controller_ac29e7ce5639c2d007dd2698fae0812c1} 
+const double {\bfseries get\+Obj\+Max\+Value} () const
+\end{DoxyCompactItemize}
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+controller/controller.\+h\end{DoxyCompactItemize}
