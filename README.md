@@ -28,5 +28,5 @@ directory, to view the coverage report.<br>
 
 ## Contributors
 [__Albert Nikitin__](https://github.com/erosrolf)<br>
-[__Chulpan Bahteeva__](https://github.com/SwCherr)<br>
-[__Julia Kungurova__](https://github.com/chulpanbahteeva)<br>
+[__Chulpan Bahteeva__](https://github.com/chulpanbahteeva)<br>
+[__Julia Kungurova__](https://github.com/SwCherr)<br>
